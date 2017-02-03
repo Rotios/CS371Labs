@@ -1,0 +1,11 @@
+Planet { 
+    landBevel = 0.0001; 
+    landNoise = 0; 
+    mountainBevel = 0.0001; 
+    mountainDiversity = 1; 
+    mountainHeight = 10; 
+    oceanLevel = 4.59121e-41; 
+    oceanNoise = 0; 
+    recursions = 4; 
+    waterMount = true; 
+} 

@@ -1,0 +1,155 @@
+/* -*- c++ -*- */
+{ 
+    name = "Test Coral"; 
+
+    models = {
+        
+        starModel = ArticulatedModel::Specification {
+            filename = "star2.off";
+            scale = 2;
+            preprocess = {
+                setTwoSided(all(), true);
+            };
+        };
+
+        boxModel = ArticulatedModel::Specification { 
+            //filename = "model/CornellBox/CornellBox.zip/CornellBox-Water.obj";
+            filename = "water.obj";
+            preprocess = {
+                transformGeometry(all(), Matrix4::scale(4,4,4));
+            };
+        };
+
+         fish1 = ArticulatedModel::Specification {
+            filename = "Models/TropicalFish.zip/TropicalFish/TropicalFish01.obj";
+            scale = 0.001f;
+            
+        };
+        
+        fish2 = ArticulatedModel::Specification {
+            filename = "Models/TropicalFish.zip/TropicalFish/TropicalFish02.obj";
+            scale = 0.001f;
+        };
+    };
+
+    entities = { 
+        
+        
+        light1 = Light { 
+            attenuation = ( 0.0001, 0, 1 ); 
+            bulbPower = Power3(60 ); 
+            castsShadows = true; 
+            extent = Vector2(0.75, 0.75 ); 
+            frame = CFrame::fromXYZYPRDegrees(0, 2, 0, 0, -90, 0 ); 
+            shadowMapSize = Vector2int16(1024, 1024 ); 
+            spotHalfAngleDegrees = 45; 
+            spotSquare = true; 
+            type = "SPOT"; 
+        }; 
+        
+        light2 = Light { 
+            attenuation = ( 0.0001, 0, 1 ); 
+            bulbPower = Power3(60 ); 
+            castsShadows = true; 
+            extent = Vector2(0.75, 0.75 ); 
+            frame = CFrame::fromXYZYPRDegrees(0, 2, 0, 0, 0, 0 ); 
+            shadowMapSize = Vector2int16(1024, 1024 ); 
+            spotHalfAngleDegrees = 45; 
+            spotSquare = true; 
+            type = "SPOT"; 
+        }; 
+        
+        light3 = Light { 
+            attenuation = ( 0.0001, 0, 1 ); 
+            bulbPower = Power3(60 ); 
+            castsShadows = true; 
+            extent = Vector2(0.75, 0.75 ); 
+            frame = CFrame::fromXYZYPRDegrees(0, 2, 0, 90, 0, 0 ); 
+            shadowMapSize = Vector2int16(1024, 1024 ); 
+            spotHalfAngleDegrees = 45; 
+            spotSquare = true; 
+            type = "SPOT"; 
+        }; 
+        
+        light4 = Light { 
+            attenuation = ( 0.0001, 0, 1 ); 
+            bulbPower = Power3(60 ); 
+            castsShadows = true; 
+            extent = Vector2(0.75, 0.75 ); 
+            frame = CFrame::fromXYZYPRDegrees(0, 2, 0, -90, 0, 0 ); 
+            shadowMapSize = Vector2int16(1024, 1024 ); 
+            spotHalfAngleDegrees = 45; 
+            spotSquare = true; 
+            type = "SPOT"; 
+        }; 
+        
+        light5 = Light { 
+            attenuation = ( 0.0001, 0, 1 ); 
+            bulbPower = Power3(60 ); 
+            castsShadows = true; 
+            extent = Vector2(0.75, 0.75 ); 
+            frame = CFrame::fromXYZYPRDegrees(0, 2, 0, 180, 0, 180 ); 
+            shadowMapSize = Vector2int16(1024, 1024 ); 
+            spotHalfAngleDegrees = 45; 
+            spotSquare = true; 
+            type = "SPOT"; 
+        };
+
+       crazy = VisibleEntity {
+            model = "starModel";
+            frame = CFrame::fromXYZYPRDegrees(0, 0, 0, 0, 0, 0);
+            articulatedModelPose = UniversalMaterial::Specification { 
+                lambertian = "crazy-lambertian.png";
+                bump = "crazy-bump.png";
+            };
+        };
+
+        finger = VisibleEntity {
+            model = "starModel";
+            frame = CFrame::fromXYZYPRDegrees(.5, 0, .5, 0, 0, 0);
+            articulatedModelPose = UniversalMaterial::Specification { 
+                lambertian = "finger-lambertian.png";
+                bump = "finger-bump.png";
+            };
+        };
+
+        branch = VisibleEntity {
+            model = "starModel";
+            frame = CFrame::fromXYZYPRDegrees(1, .5, .5, 0, 0, 0);
+            articulatedModelPose = UniversalMaterial::Specification { 
+                lambertian = "branch-lambertian.png";
+                bump = "branch-bump.png";
+            };
+        };
+
+        thin = VisibleEntity {
+            model = "starModel";
+            frame = CFrame::fromXYZYPRDegrees(.5, 0, 1, 0, 0, 0);
+            articulatedModelPose = UniversalMaterial::Specification { 
+                lambertian = "thin-lambertian.png";
+                bump = "thin-bump.png";
+            };
+        };
+
+         friend1 = VisibleEntity {
+            model = "fish1";
+            frame = CFrame::fromXYZYPRDegrees(0.01f, 0, 0, 0,0, 0);
+
+        };
+        
+        friend2 = VisibleEntity {
+            model = "fish2";
+            frame = CFrame::fromXYZYPRDegrees(2,0,2, 0, 0, 0);
+
+        };
+
+        /*box = VisibleEntity { 
+            frame = Vector3(0, -.3, 0); 
+            model = "boxModel"; 
+        };*/
+
+        camera = Camera {
+            frame = CFrame::fromXYZYPRDegrees(0, 0, 5);
+        };
+    };
+};

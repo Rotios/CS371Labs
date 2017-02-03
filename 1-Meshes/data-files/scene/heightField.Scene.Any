@@ -1,0 +1,28 @@
+/* -*- c++ -*- */
+{ 
+    name = "heightField"; 
+    models = {
+        cubeModel = ArticulatedModel::Specification { 
+            filename = "model/heightField.off";
+            preprocess = {
+                setMaterial(all(), Color3(1,0,0));
+                transformGeometry(all(),Matrix4::scale(1.0,1.0,1.0));
+            };
+        }; 
+    };
+
+    entities = { 
+
+        skybox = Skybox { 
+            texture = "cubemap/whiteroom/whiteroom-*.png"; 
+        };
+
+        cube0 = VisibleEntity {
+            model = "cubeModel";
+        };
+
+        camera = Camera {             
+            frame = CFrame::fromXYZYPRDegrees( 0, 0, 5); 
+        }; 
+    }; 
+ } 

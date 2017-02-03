@@ -1,0 +1,73 @@
+# Max2Mtl Version 4.0 Mar 10th, 2001
+#
+newmtl Stones_Benedeti
+Ka  0.4 0.4 0.4
+Kd  0.4 0.4 0.4
+Ks  0.9 0.9 0.9
+d  1
+Ns  0
+illum 2
+map_Kd -o 0.8 0.5 0 -s 1.5 1.7 1 Benedeti.jpg
+bump -o 0.8 0.5 0 -s 1.5 1.7 1 Benedeti.jpg
+#
+newmtl GlossBlack
+Ka  0 0 0
+Kd  0 0 0
+Ks  1 1 1
+d  1
+Ns  25
+illum 2
+#
+newmtl Ice
+Ka  0 0 0
+Kd  0 0 0
+Ks  1 1 1
+d  0.1
+Ns  13.9
+illum 2
+#
+# Multi/Sub Material__26 (3) to come 
+#
+newmtl Stones_Benedeti_01
+Ka  0.4 0.4 0.4
+Kd  0.4 0.4 0.4
+Ks  0.9 0.9 0.9
+d  0.9
+Ns  0
+illum 2
+map_Kd Benedeti.jpg
+bump Benedeti.jpg
+#
+newmtl Stones_Benedeti
+Ka  0.4 0.4 0.4
+Kd  0.4 0.4 0.4
+Ks  0.9 0.9 0.9
+d  1
+Ns  0
+illum 2
+map_Kd -o 0.8 0.5 0 -s 1.5 1.7 1 Benedeti.jpg
+bump -o 0.8 0.5 0 -s 1.5 1.7 1 Benedeti.jpg
+#
+newmtl Metal_Rust
+Ka  0 0 0
+Kd  0.4 0.4 0.4
+Ks  0.9 0.9 0.9
+d  0.9
+Ns  7.5
+illum 2
+map_Kd -s 2.1 2 1 Medrust3.jpg
+bump -s 2.1 2 1 Medrust3.jpg
+#
+# Multi/Sub Material__26 done 
+#
+newmtl Metal_Rust
+Ka  0 0 0
+Kd  0.4 0.4 0.4
+Ks  0.9 0.9 0.9
+d  0.9
+Ns  7.5
+illum 2
+map_Kd -s 2.1 2 1 Medrust3.jpg
+bump -s 2.1 2 1 Medrust3.jpg
+#
+# EOF

@@ -1,0 +1,125 @@
+﻿ <meta charset="utf-8">
+**Report - Working with Cubes**
+
+System Overview
+=============================================================
+
+This program begins by calling on the main method in App.cpp, which sets different G3D settings, such as the GUI resolution and audio. It then creates an [App](index.html) object with those G3D settings and runs it by calling the [run](http://g3d.sourceforge.net/manual/10.00/class_g3_d_1_1_g_app.html#a06777912a15afc65d170fb76f82bbc5d) method from its superclass, [GApp](http://g3d.sourceforge.net/manual/10.00/class_g3_d_1_1_g_app.html), which is G3D's App class. This then calls the [onInit](class_app.html#a383cf8e8949745f9b2b10651b27d1724) method, which creates and loads a scene into the GUI with the help of its superclass's [onInit](http://g3d.sourceforge.net/manual/10.00/class_g3_d_1_1_g_app.html#a58ee3f2becfeea662c30ca8f5943af2a) method and App's [makeGUI](class_app.html#acc651be7614a7d8dde8509f3ef510772) method. The superclass's [onInit](http://g3d.sourceforge.net/manual/10.00/class_g3_d_1_1_g_app.html#a58ee3f2becfeea662c30ca8f5943af2a) method  allows for the loading of Scene.Any files, which store information for each scene's entities and models. On the other hand, the [makeGUI](class_app.html#acc651be7614a7d8dde8509f3ef510772) method simply makes the GUI. Finally, it loads a selected scene onto the GUI, which is parsed through like a JSON file.
+
+For my program, I added 4 different scenes to be loaded, as well as code that autogenerates the staircase scene. This code starts with the [creatScene](class_app.html#a533676df4cd51af4aa5d2cdf2c156ee9) method, which creates a [TextOutput](http://g3d.sourceforge.net/manual/10.00/class_g3_d_1_1_text_output.html) object to write to a .Scene.Any file. It then calls on the [generateModels](class_app.html#a4ed0d413980ca622e966583cb11c8def) and [generateEntities](class_app.html#aa5e321988e3603726e36356e8eed7c6d) methods to build the models and entities code for the scene. The [generateEntities](class_app.html#aa5e321988e3603726e36356e8eed7c6d) method calls a final method, called [generateStairs](class_app.html#a60385283b43117036dfc52e725293436), which creates all of the individual steps for the staircase through the use of a while loop. All of this then gets written to the file.
+
+For more information, click [here](index.html) to look at my App class and [here](http://g3d.sourceforge.net/manual/10.00/index.html) to go to the G3D page.
+
+
+The Coordinate System in 3GD
+=============================================================
+
+The Coordinate System in 3GD can be described in the following (admittedly bad) drawings:
+
+![The 2D Axis](2DAxis.jpg)
+
+Screens go from left to right on the x axis, but, since they start at the top left corner as the origin, they go top to bottom on the y-axis.
+
+![The 3D Axis](3DAxis.jpg)
+
+Yaw is just the rotation around the Y-axis, Pitch is the rotation around the X-axis, and Roll is the rotation around the Z-axis. The Z-axis faces the player, the Y-axis is the vertical axis, and the X-axis is the axis that allows a player to strafe left and right.
+
+A better way to visualize it is through the GUI:
+
+![3D Axis in G3D](axisVisual.jpg)
+
+Results
+=============================================================
+
+Here are the results of my lab:
+
+**The White Cube**
+
+![The White Cube Rotated 45 Degrees](cube.jpg)
+
+From the image, we can see that the cube is -2 meters from the z-axis and is rotated 45 degrees around the y-axis.
+
+**The Cornell Box**
+
+![My Recreation](cornell.jpg)
+
+![Original Cornell Box](original.png)
+
+While not perfect, it looks similar to the image we were meant to copy.
+
+**The Staircase**
+
+![The Spiraling Staircase](stairs.jpg)
+
+The staircase uses at least 50 total steps.
+
+My Custom Scene - The Study Room
+============================================================ 
+
+![The Study Room](room.jpg)
+
+This is my custom scene, which I call the Study Room. All of the entities were manually placed through constant editting of code and using the debug tool to duplicate items and move them around. All of the textures were found online, except for the macbook texture, which was made through paint after finding the logo. To place the items, I also used the camera coordinates to figure out where things should be placed after creating a model. Most models are so similar, that I just copied the code and editted the size and the material when necessary.
+
+An Equation to Ponder
+============================================================
+
+\begin{equation} 
+\dfrac{df(x)}{dx} = \lim_{h \to 0} \left[\dfrac{f(x + h) - f(x - h)}{2h}\right]
+\end{equation}
+
+Questions
+=============================================================
+
+1. The Scene* and shared_ptr<Scene> data types are different, because shared pointers are able to manage memory automatically and will not cause memory leaks as long as there is no self-referencing pointers. This makes it easier to avoid dangling pointers and allows the programmer to have to worry less about how he/she is managing memory. This makes it easier to delete scenes when they are no longer necessary.
+
+2. G3D knows where the scene files are located because in App.cpp the variable *dataDir* is set in the *main* method. This gives G3D the ability to search throughout the entire directory, including subdirectory's. Furthermore, in order to actually find the scene files, and in case no *dataDir* is set, in [Scene.cpp](http://g3d.cs.williams.edu/g3d/G3D10/build/manual/class_g3_d_1_1_scene.html) the method [setSceneSearchPaths](http://g3d.cs.williams.edu/g3d/G3D10/build/manual/class_g3_d_1_1_scene.html#a7c8320f905546b7264922ff42e4b1933) uses the environment variable called *G3D10DATA* or a hardcoded path in case the environment variable does not exist or does not contain that path already.
+
+3. One of the biggest reasons to put initialization code into a method like *App::Init* instead of in the constructor *App::App* is because if an exception is thrown from the constructor, then it could potentially corrupt the data or cause a null-pointer exception to be thrown. This makes it harder to trace back the error. 
+
+4.  The call chain is as follows (from beginnning to *App::onGraphics3D*):
+    - WinMain begins the program
+    - G3D_WinMain is called from WinMain
+    - App::main begins running from WinMain
+    - G3D::GAPP::run() is called
+    - G3D::GAPP::onRun() is called from run()
+    - from there APP::onInit() is called
+    - this calls G3D::GApp::loadScene(...)
+    - which eventually calls G3D::GApp::onGraphics(...)
+    - and finally App::onGraphics3D(...) is called
+
+5.  The file *cube.obj* is stored at C:\g3d\G3D10\build\data\model\cube\cube.obj. The Scene parser knew to load it from there, because it already is a part of the search paths set in the [setSceneSearchPaths](http://g3d.cs.williams.edu/g3d/G3D10/build/manual/class_g3_d_1_1_scene.html#a7c8320f905546b7264922ff42e4b1933) method. 
+
+6. The reason for this is that materials have a lot of properties that could cause light to react differently. Some items, for example, may be more transluscent, like water or stained glass. Thus, in order to account for all of these things, different color types need to be placed on the object. Otherwise, there could not be any homogenous objects with different properties like glossyness. 
+
+Time
+=============================================================
+
+In total, this project took 15 hours and 15 minutes to complete, not counting finishing the report. Most of this time was spent meeting the requirements of the specification. At least 3 of those hours alone were spent on fixing the lighting in the Cornell Box, so that it actually created shadows and an "omni"-like feel. Fortunately, the staircase took me much less time, because it was just a lot of string manipulation. In the end, it took me about 4 hours to complete, which is already a lot less than the 5 I took on the Cornell Box. The 4 hours mostly came from figuring out what I needed to do to create it, reading over the documentation for TextOutput, and then figuring out how to create the spiral. The custom scene took me the longest, simply because I mannually editted every piece, and created models as I needed them. I met the specifications after about 4 hours of working, having created a room, laptop, chair and desk. In the end, meeting the specification, then, took me, more or less, 13 hours. 
+
+Having said all of that, only about 2 hours (give or take some number of minutes) were used to really edit my scenes to make them more realistic. The custom scene took the longest, and it was mostly just texturing and adding more minute details (like chalk and erasers for the chalkboard). If I had more time, I would definitely create a desklamp, a person, and maybe piles of papers lying around.
+
+Reflections
+=============================================================
+
+I learned quite a few things from this Lab, which I will list below.
+
+    1. From the Reading:
+        - I learned how to instantiate variables without using the "=" sign
+        - I learned about shared pointers and their usefulness in c++
+    2. From the Programming:
+        - I learned how to create Scenes and how to autogenerate them
+        - I learned how to use Visual Studio
+    3. From Debugging:
+        - I learned how to use the GUI to edit scenes in order to find necessary coordinates and model placements
+        - I learned how to find the call stack
+        - I learned how to distinguish between yaw, pitch and roll better
+    4. From the Report:
+        - I learned how to navigate through the documentation to find how the program works
+    5. Other:
+        - I learned how to budget my time better
+        - I learned the difference between OMNI, SPOT, and DIRECTIONAL Lights in G3D from Prof. Morgan McGuire
+
+Overall, this lab took a lot of time, but it did help me learn how to create scenes both manually and by autogeneration. Furthermore, it brought me a lot closer to understanding how people create the items we used. More importantly, I learned how to use the tools we will be using in this course, so that when we move on to harder materials, I will have a solid foundation for creating and editting in this environment. 
+
+<!-- Markdeep: -->
+<style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace;}</style><script src="https://casual-effects.com/markdeep/latest/markdeep.min.js"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>

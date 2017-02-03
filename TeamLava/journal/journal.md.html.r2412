@@ -1,0 +1,406 @@
+﻿                  <meta charset="utf-8">
+                 **Development Journal**
+            **Procedurally Generated Low-Poly Planet**
+        **Jose Rivas (jdr3@williams.edu),**
+        **John Freeman (jcf1@williams.edu),**
+        **Julia Goldman (jdg2@williams.edu),**
+        **and Matheus de Carvalho Souza (mc13@williams.edu)** 
+
+2016-11-15: That's good, but...
+=============================================================
+
+![](2016-11-15_004_starter_r2389_g3d_r977__.jpg)
+
+Other triangles aren't going the right way. How to do this?
+
+
+
+2016-11-15: Counterclockwise?
+=============================================================
+
+![](2016-11-15_003_starter_r2389_g3d_r977__.jpg)
+
+All the triangles are there, but some are inside out.
+
+
+
+2016-11-15: Bevel!
+=============================================================
+
+![](2016-11-15_002_starter_r2389_g3d_r977__.jpg)
+
+
+
+2016-11-15: Bevel
+=============================================================
+
+![](2016-11-15_001_starter_r2389_g3d_r977__.jpg)
+
+Beveling works! (Mind, we still need to do the vertices.)
+
+
+
+2016-11-15: Beveling!
+=============================================================
+
+![](2016-11-15_000_starter_r2389_g3d_r977__.jpg)
+
+Still need to cap vertices, but otherwise good!
+
+
+
+2016-11-15: More bevel thoughts
+=============================================================
+
+2016-11-15: Still beveling...
+=============================================================
+Morgan's Advice:
+What you need is an extra data structure (which is just an array) that keeps track of the mapping from pre-exploded indices to post-exploded indices. With that data structure in hand, you can use the pre- adjacency information to ask the question of which adjacent post- indices should be connected. G3D::MeshAlg contains both the adjacency computation code.
+
+Then, you just need to consider the two kinds of cases separately: 
+
+- an edge in the original mesh becomes two triangles (be careful to only process each edge once, not for each triangle that contains it!)
+- a vertex in the original mesh becomes a set of triangles (almost always five for a sphere mesh, but occasionally four)
+
+Thoughts:
+Map indices. Actually, since we're keeping our old index array, and the number of faces hadn't changed, we shouldn't need a new data structure, since indices are stored in the same place. We called computeAdjacency already, so adjacency info is stored in the vertex objects, I think. Each vertex become multiple vertices, which makes this hard.
+
+Now iterate through the edges. We can get the vertex objects, and from there find out what their number is, but still not sure....
+We can also find the faces associated with the edges, but that doesn't help. 
+
+
+
+
+2016-11-14: Connecting the wrong two triangles?
+=============================================================
+
+![](2016-11-14_008_starter_r2350_g3d_r977__.jpg)
+
+
+
+2016-11-14: Parts okay....
+=============================================================
+
+![](2016-11-14_007_starter_r2350_g3d_r977__.jpg)
+
+See, that triangle there's okay....
+
+
+
+2016-11-14: Not that either.....
+=============================================================
+
+![](2016-11-14_006_starter_r2350_g3d_r977__.jpg)
+
+
+
+2016-11-14: Beveling
+=============================================================
+
+![](2016-11-14_005_starter_r2350_g3d_r977__.jpg)
+
+Attempting beveling, but clearly not getting the right vertices.
+
+
+
+2016-11-14: Edge Collapsing
+=============================================================
+At first we thought we might need to sort the edges by length so we can pick an arbitrary n smallest edges to collapse. So we defined a merge sort procedure based on edge length. However, we realized we should probably take the new formed edges into account everytime we collapse an old edge. So we defined a simple linear time iterating procedure to find the min length edge for each collapsing round. 
+
+![Edge Collapsing](2016-11-14_006_starter_r2350_g3d_r977__Edge_Collapsing.jpg)
+
+The algorithm works, but it iterates through the edges each time to find the
+mininum lenght edge to be collapsed. Since most edges are the same length, it
+always ends up choosing roughly the same edge to collapse. We need a way to
+check every edge length in random access order
+
+![Sort of fixed](2016-11-14_007_starter_r2352_g3d_r977__Fixed_edge_collapsing.jpg)
+
+By setting the initial minEdge within findMinEdge to a random edge in the array
+
+![With more collapsing](2016-11-14_008_starter_r2352_g3d_r977__More_collapse_edges.jpg)
+
+Our first fix does not really work when we collapse more edges. There must be a
+way to iterate through edges randomly so we can fix that.
+
+
+![Random iteration](2016-11-14_010_starter_r2352_g3d_r977__Random_iteration.jpg)
+
+Accomplished by creating a list of all edge list indices, but in random order,
+then using that list to iterate through the edge list randomly. The results
+don't look that much better. Maybe the solution would just be ignoring vertices
+that were already used in an edge collapse.
+
+
+2016-11-14: Exploded Sphere
+=============================================================
+
+![](2016-11-14_004_starter_r2341_g3d_r977__.jpg)
+
+Sphere w/ triangles pushed out.
+
+
+
+2016-11-14: Explode
+=============================================================
+
+![](2016-11-14_003_starter_r2341_g3d_r977__.jpg)
+
+Blowing out shape with smaller bump.
+
+
+
+2016-11-14: Explode
+=============================================================
+
+![](2016-11-14_002_starter_r2341_g3d_r977__.jpg)
+
+I seem to be able to spread out the triangles. Good.
+
+
+
+2016-11-14: ComputeAdjacency
+=============================================================
+
+Compute Adjacency won't work, and I'm not sure why, since the arrays I'm giving it seems to be the correct size.
+
+Because of a thought about how index arrays work, Mesh class will take in faces indexed from 0, and then add 1 when converting to obj.
+
+It seems like compute adjacency needed the index array to be indexed from 0;
+
+2016-11-14:
+=============================================================
+
+![](2016-11-14_001_starter_r2341_g3d_r977__.jpg)
+
+Changed tooObj so it uses indexArray instead of triArray, so that alterations to
+indexArray will appear. We need to change tooObj so that it does normals too.
+
+
+
+2016-11-14:  Noise
+=============================================================
+
+![](2016-11-14_000_starter_r2338_g3d_r977__.jpg)
+
+An early attampt at adding actual noise to our spheres using sampleFloat.
+
+
+
+2016-11-14: Obj files working
+=============================================================
+Got .obj files to work.  Problem was that .off files start at index 0, but .obj files start at index 1.  The solution to this was to add 1 to each of our vertex indexes in our faces.
+
+
+2016-11-13: Obj file as an OFF file
+
+![](2016-11-13_014_starter_r2322_g3d_r977__.jpg)
+
+This is testing.obj which when made into an off file works perfectly fine
+
+=============================================================
+
+![](2016-11-13_013_starter_r2322_g3d_r977__.jpg)
+
+The Object Parsing seems to be incorrect. The syntax must be really wrong. This
+was simply editing the obj file to become and off file on a 2 recursive level
+sphere.
+
+
+
+2016-11-13: Left-Hand vs Right-Hand Rule...
+=============================================================
+
+![](2016-11-13_015_starter_r2326_g3d_r977__.jpg)
+
+Sooooo.... Object files use the opposite rule???
+
+
+
+2016-11-13: Attempting to combine mesh and planet
+=============================================================
+
+![](2016-11-13_012_starter_r2322_g3d_r977__.jpg)
+
+
+
+2016-11-13: BevelEdges
+=============================================================
+Plan:
+Split up triangles- blow out. (So add to vertices in direction of face normal? But make every vertex multiple vertices. So, for each triangle of ints, construct an actual triangle, change the ints, (make a new vertex array and index array when testing).) (Should probably get this working before anything else.)
+
+Then, fill in the gaps. So, need way to iterate. Iterate over the edges, and
+
+2016-11-13: Generate meshes
+=============================================================
+
+![MARS with Wireframe](2016-11-13_013_starter_r2322_g3d_r977__MARS_with_Wireframe.jpg)
+
+Can generate obj file from tri array and vertex array. (Currently, we don't specify the normals in the OBJ file, but we can easily edit our toObj code to include them.)
+
+Our mesh class now has most of the functions we think we'll need to begin with. Currently, the initial heightfield is being generated prior to being given to our mesh class, but it will probably happen within our mesh class eventually.
+
+We still are unsure as to how to get an articulated model froma mesh class.
+
+
+2016-11-13: Mesh
+=============================================================
+
+![MARS](2016-11-13_012_starter_r2322_g3d_r977__MARS.jpg)
+
+
+
+2016-11-13: We have texture
+=============================================================
+
+![](2016-11-13_011_starter_r2313_g3d_r977__.jpg)
+
+We got weld to work finally! The problem we fixed is that we were defining faces using the vertices we had before the weld insted of the new vertices we got back from weld. We now are able to actually bump the vertices with
+noise! Right now it's just random nums, but good enough.
+
+
+
+2016-11-13: First attempt at using weld
+=============================================================
+
+![](2016-11-13_010_starter_r2313_g3d_r977__.jpg)
+
+
+
+2016-11-13: Sphere with Wireframe and 8 recursion levels
+=============================================================
+
+![](2016-11-13_009_starter_r2313_g3d_r977__.jpg)
+
+
+
+2016-11-13: Attempt at noise function
+=============================================================
+
+![](2016-11-13_008_starter_r2313_g3d_r977__.jpg)
+
+Trying to add detail to the planet. Using a random function and adding the
+normal to each midpoint position.
+
+
+
+2016-11-13: IT IS DONE!
+=============================================================
+
+![](2016-11-13_007_starter_r2313_g3d_r977__.jpg)
+
+Turns out... Vector3.unit() does NOT manipulate the vector itself, but returns
+the manipulated Vector :(. So, when I used it originally, I wasn't getting it
+back.
+
+
+
+2016-11-13: Midpoint Works, Bumping them does not
+=============================================================
+
+![](2016-11-13_006_starter_r2313_g3d_r977__.jpg)
+
+Our midpoint formula is correct. We knew that really, but it is not bumping the
+midpoints correctly so we can get a sphere shape
+
+
+
+2016-11-13: The Big Bang
+=============================================================
+
+![](2016-11-13_005_starter_r2313_g3d_r977__.jpg)
+
+Still trying to debug and find the midpoints correctly.
+
+
+
+2016-11-13: Buggy Sphere with Wireframe
+=============================================================
+
+![](2016-11-13_004_starter_r2313_g3d_r977__.jpg)
+
+
+
+2016-11-13: Spherical... Sort of
+=============================================================
+
+![](2016-11-13_003_starter_r2313_g3d_r977__.jpg)
+
+Simple fix, I was doing i+=3 instead of ++i when iterating through the faces. It
+looks as though I need to bump the original vertices or something similar. Will
+work on it.
+
+
+
+2016-11-13: Continue to Debug
+=============================================================
+
+![](2016-11-13_002_starter_r2309_g3d_r977__.jpg)
+
+It looks as though the midpoint algorithm is wrong. The faces are fixed, but
+they seems to either not be following the right hand rule, or not be in the
+correct positions
+
+
+
+2016-11-13: Attempt at the IcoSphere Algorithm
+=============================================================
+
+![](2016-11-13_001_starter_r2309_g3d_r977__.jpg)
+
+I might need to change a few things.... Right now it seems as though I am not
+calculating the correct midpoints and editing the faces correctly
+
+
+
+2016-11-13: We have a sphere and backgound
+=============================================================
+
+![](2016-11-13_001_starter_r2301_g3d_r977__.jpg)
+
+We found a sphere obj file online which we think has enough vertices and faces
+that will allow us to have the detail we need.  We also added a space backgorund
+to our Planet scene and set the camera to default to this nice cinematic view.
+
+Link to sphere.obj: http://graphics.stanford.edu/hackliszt/meshes/sphere.obj
+Link to space background: http://www.technocrazed.com/wp-content/uploads/2015/12/HD-Space-Wallpaper-For-Background-6.jpg
+
+
+
+2016-11-13: We have a Icohedron
+=============================================================
+
+We have added a new class Planet, where we will do all of the icohedron transformations. This should help keep the code simple and organized. It also will help us create member variables.
+
+![](2016-11-13_000_starter_r2292_g3d_r977__.jpg)
+
+We wrote a method that writes an off file for a Icohedron.  We will then
+tessellate it to make a sphere and then map a texture to it to bump the radius
+at each point to create a planet.
+
+
+
+2016-11-12: Planning Our Mesh Class
+===================================================================
+We will use the static functions in the MeshAlg Class to build our own Mesh class. This class will hold the functions needed to create a mesh, and functions for manipulating and mutating the Mesh.
+We need to be able to create objs from our Mesh.
+
+As of right now, our design is as follows:
+
+Triangle Parsing:
+    - Take the TriTree of the scene containing a prespecified sphere OBJ Model;
+    - Parse the TriTree; 
+    - Add each triangle to a MeshBuilder; 
+    - Create a vertexArray and indexArray using MeshBuilder::commit(), and feed them into our Mesh class
+
+Mesh Class:
+    - Instantiated arrays for: vertex positions, vertex indices, MeshAlg::Faces, MeshAlg::Edges, MeshAlg::Vertex;
+    - methods to explicitly add to vertex position and vertex index arrays;
+    - computeAdjacency() method to set the  MeshAlg::Faces, MeshAlg::Edges, MeshAlg::Vertex arryas through MeshAlg::computeAdjacency;
+    - collapseEdges(), bevelEdges() to manipulate the mesh;
+    - outputOBJ() method to output the OBJ file;
+
+We wonder if there's a better way to output an OBJ file than to explicitly feed strings into TextOutput.
+
+<!-- Markdeep: -->
+<style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace;}</style><script src="https://casual-effects.com/markdeep/latest/markdeep.min.js"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>

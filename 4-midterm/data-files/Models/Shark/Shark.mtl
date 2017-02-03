@@ -1,0 +1,50 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 13.10.2016 15:38:15
+
+newmtl _Sharkgreatwhiteshark
+	Ns 96.0784
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.5787 0.5753 0.5888
+	Ks 0.1000 0.1000 0.1000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka \Texture\greatwhiteshark.tga
+	map_Kd Texture\greatwhiteshark.tga
+	map_bump Texture\greatwhiteshark_n.tga
+	bump Texture\greatwhiteshark_n.tga
+
+newmtl _Sharkgreatwhiteshark_teet
+	Ns 96.0784
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.5070 0.7134 0.4462
+	Ks 0.1000 0.1000 0.1000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Texture\greatwhiteshark_teeth.tga
+	map_Kd Texture\greatwhiteshark_teeth.tga
+	map_bump Texture\greatwhiteshark_teeth_n.tga
+	bump Texture\greatwhiteshark_teeth_n.tga
+
+newmtl _Sharkgreatwhiteshark_eye
+	Ns 96.0784
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.3614 0.3764 0.6524
+	Ks 0.1000 0.1000 0.1000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Texture\greatwhiteshark_Eye.tga
+	map_Kd Texture\greatwhiteshark_Eye.tga
+	map_bump Texture\greatwhiteshark_Eye_n.tga
+	bump Texture\greatwhiteshark_Eye_n.tga

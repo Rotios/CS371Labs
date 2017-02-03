@@ -1,0 +1,46 @@
+{ 
+    camera = Camera { 
+        frame = CFrame::fromXYZYPRDegrees(50, 50, 50 ); 
+        projection = Projection { 
+            farPlaneZ = -inf; 
+            fovDegrees = 50; 
+            fovDirection = "VERTICAL"; 
+            nearPlaneZ = -0.1; 
+        }; 
+        
+    }; 
+    
+    land = VisibleEntity { 
+        frame = CFrame::fromXYZYPRDegrees(0, 0, 0 ); 
+        model = "land"; 
+        track = entity("ocean"); 
+    }; 
+    
+    mountain = VisibleEntity { 
+        frame = CFrame::fromXYZYPRDegrees(0, 0, 0 ); 
+        model = "mountain"; 
+        track = entity("ocean"); 
+    }; 
+    
+    ocean = VisibleEntity { 
+        frame = CFrame::fromXYZYPRDegrees(0, 0, 0 ); 
+        model = "ocean"; 
+        track = orbit(0, 10 ); 
+    }; 
+    
+    sun = Light { 
+        attenuation = Vector3(0, 0, 1 ); 
+        bulbPower = Color3(1e+06, 1e+06, 1e+06 ); 
+        castsShadows = true; 
+        shadowMapBias = 0.05; 
+        shadowMapSize = Vector2int16(2048, 2048 ); 
+        spotHalfAngleDegrees = 8; 
+        spotSquare = true; 
+        track = lookAt(
+            Point3(-15, 200, 40 ), 
+            Point3(0, 0, 0 ) ); 
+        
+        type = "SPOT"; 
+    }; 
+    
+} 

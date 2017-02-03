@@ -1,0 +1,28 @@
+/* -*- c++ -*- */
+{ 
+    name = "Cylinder Off"; 
+    models = {
+        cylinderModel = ArticulatedModel::Specification { 
+            filename = "model/cylinder.off";
+            preprocess = {
+                setMaterial(all(), Color3(1,0,1));
+            };
+        }; 
+    };
+
+    entities = { 
+
+        skybox = Skybox { 
+            texture = "cubemap/whiteroom/whiteroom-*.png"; 
+        };
+
+
+        cube0 = VisibleEntity {
+            model = "cylinderModel";
+        };
+
+        camera = Camera {             
+            frame = CFrame::fromXYZYPRDegrees( 0, 0, 5); 
+        }; 
+    }; 
+ } 

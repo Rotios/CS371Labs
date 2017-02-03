@@ -1,0 +1,987 @@
+
+/* -*- c++ -*- */
+{ 
+    entities = { 
+        camera = 
+        /* ground = VisibleEntity {            model = "groundModel";            frame = CFrame::fromXYZYPRDegrees(0,0,0,0,-90,0);        }; */
+        Camera { 
+            depthOfFieldSettings = DepthOfFieldSettings { 
+                enabled = true; 
+                farBlurRadiusFraction = 0.005; 
+                farBlurryPlaneZ = -100; 
+                farSharpPlaneZ = -40; 
+                focusPlaneZ = -10; 
+                lensRadius = 0.01; 
+                model = "NONE"; 
+                nearBlurRadiusFraction = 0.015; 
+                nearBlurryPlaneZ = -0.25; 
+                nearSharpPlaneZ = -1; 
+            }; 
+            
+            filmSettings = FilmSettings { 
+                antialiasingEnabled = true; 
+                antialiasingFilterRadius = 0; 
+                antialiasingHighQuality = true; 
+                bloomRadiusFraction = 0.015; 
+                bloomStrength = 0.25; 
+                debugZoom = 1; 
+                effectsEnabled = true; 
+                gamma = 2.2; 
+                sensitivity = 1; 
+                toneCurve = Spline { 
+                    control = ( 0, 0.1, 0.2, 0.5, 1 ); 
+                    extrapolationMode = "LINEAR"; 
+                    finalInterval = -1; 
+                    interpolationMode = "CUBIC"; 
+                    time = ( 0, 0.1, 0.2, 0.5, 1 ); 
+                }; 
+                
+                vignetteBottomStrength = 0.05; 
+                vignetteSizeFraction = 0.17; 
+                vignetteTopStrength = 0.5; 
+            }; 
+            
+            frame = CFrame::fromXYZYPRDegrees(89.579, -13.701, 32.709, 68.492, 10.648, 0 ); 
+            motionBlurSettings = MotionBlurSettings { 
+                cameraMotionInfluence = 0.5; 
+                enabled = false; 
+                exposureFraction = 0.75; 
+                maxBlurDiameterFraction = 0.1; 
+                numSamples = 27; 
+            }; 
+            
+            projection = Projection { 
+                farPlaneZ = -inf; 
+                fovDegrees = 50; 
+                fovDirection = "VERTICAL"; 
+                nearPlaneZ = -0.1; 
+                pixelOffset = Vector2(0, 0 ); 
+            }; 
+            
+            visualizationScale = 1; 
+        }; 
+        
+        land = VisibleEntity { 
+            frame = CFrame::fromXYZYPRDegrees(100, 0, 0, 45, 45 ); 
+            model = "landModel"; 
+            track = PFrameSpline { 
+                control = ( 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ) ); 
+                
+                extrapolationMode = "CYCLIC"; 
+                finalInterval = -1; 
+                interpolationMode = "LINEAR"; 
+                time = ( 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128 ); 
+            }; 
+            
+        }; 
+        
+        lava = VisibleEntity { 
+            frame = CFrame::fromXYZYPRDegrees(0, 0, 0, 45, 45 ); 
+            model = "lavaModel"; 
+            track = PFrameSpline { 
+                control = ( 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -72 ) ); 
+                
+                extrapolationMode = "CYCLIC"; 
+                finalInterval = -1; 
+                interpolationMode = "LINEAR"; 
+                time = ( 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128 ); 
+            }; 
+            
+        }; 
+        
+        mount = VisibleEntity { 
+            frame = CFrame::fromXYZYPRDegrees(0, 0, 0, 45, 45 ); 
+            model = "mountModel"; 
+            track = PFrameSpline { 
+                control = ( 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ) ); 
+                
+                extrapolationMode = "CYCLIC"; 
+                finalInterval = -1; 
+                interpolationMode = "LINEAR"; 
+                time = ( 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128 ); 
+            }; 
+            
+        }; 
+        
+        mountain = VisibleEntity { 
+            frame = CFrame::fromXYZYPRDegrees(100, 0, 0, 45, 45 ); 
+            model = "mountainModel"; 
+            track = PFrameSpline { 
+                control = ( 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ) ); 
+                
+                extrapolationMode = "CYCLIC"; 
+                finalInterval = -1; 
+                interpolationMode = "LINEAR"; 
+                time = ( 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128 ); 
+            }; 
+            
+        }; 
+        
+        ocean = VisibleEntity { 
+            frame = CFrame::fromXYZYPRDegrees(100, 0, 0, 45, 45 ); 
+            model = "oceanModel"; 
+            track = PFrameSpline { 
+                control = ( 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 36 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 72 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -144 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -108 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -72 ) ); 
+                
+                extrapolationMode = "CYCLIC"; 
+                finalInterval = -1; 
+                interpolationMode = "LINEAR"; 
+                time = ( 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128 ); 
+            }; 
+            
+        }; 
+        
+        sun = 
+        /* skybox = Skybox {             texture = "cubemap/noonclouds/noonclouds_*.png";         }; */
+        Light { 
+            attenuation = ( 0, 0, 1 ); 
+            bulbPower = Power3(1e+06 ); 
+            castsShadows = true; 
+            shadowMapBias = 0.01; 
+            shadowMapSize = Vector2int16(2048, 2048 ); 
+            spotHalfAngleDegrees = 8; 
+            spotSquare = true; 
+            track = lookAt(
+                Point3(-15, 200, 40 ), 
+                Point3(0, 0, 0 ) ); 
+            
+            type = "SPOT"; 
+        }; 
+        
+        twin = VisibleEntity { 
+            frame = CFrame::fromXYZYPRDegrees(0, 0, 0, 45, 45 ); 
+            model = "twinModel"; 
+            track = PFrameSpline { 
+                control = ( 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, 180 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -135 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -90 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0, -45 ), 
+                    CFrame::fromXYZYPRDegrees(0, 0, 0 ) ); 
+                
+                extrapolationMode = "CYCLIC"; 
+                finalInterval = -1; 
+                interpolationMode = "LINEAR"; 
+                time = ( 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128 ); 
+            }; 
+            
+        }; 
+        
+    }; 
+    
+    lightingEnvironment = LightingEnvironment { 
+        ambientOcclusionSettings = AmbientOcclusionSettings { 
+            bias = 0.012; 
+            blurRadius = 4; 
+            blurStepSize = 2; 
+            depthPeelSeparationHint = 0.872287; 
+            edgeSharpness = 1; 
+            enabled = false; 
+            highQualityBlur = true; 
+            intensity = 1; 
+            monotonicallyDecreasingBilateralWeights = false; 
+            numSamples = 19; 
+            packBlurKeys = false; 
+            radius = 1.5; 
+            temporalFilterSettings = TemporalFilter::Settings { 
+                falloffEndDistance = 0.07; 
+                falloffStartDistance = 0.05; 
+                hysteresis = 0; 
+            }; 
+            
+            temporallyVarySamples = false; 
+            useDepthPeelBuffer = true; 
+            useNormalBuffer = true; 
+            useNormalsInBlur = true; 
+            zStorage = "HALF"; 
+        }; 
+        
+        environmentMap = Texture::Specification { 
+            encoding = Texture::Encoding { 
+                readMultiplyFirst = 1; 
+            }; 
+            
+            filename = "cubemap/hipshot_m9_sky/16_*.png"; 
+        }; 
+        
+    }; 
+    
+    models = { 
+        groundModel = ArticulatedModel::Specification { 
+            filename = "square.ifs"; 
+            scale = 50; 
+        }; 
+        
+    }; 
+    
+    name = "g"; 
+} 

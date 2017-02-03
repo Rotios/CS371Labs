@@ -1,0 +1,87 @@
+<meta charset="utf-8"><!-- -*- markdown -*- -->        
+        **Ray Marched Tank**
+        **Jose Rivas (jdr3@williams.edu)** 
+
+![Figure [teaser]: My Ray-Marched Tank Close Up](gunCloseUp.jpg border=1)
+
+Introduction
+================================
+
+I created my tank by separating it into three distinct pieces. These pieces are the turret, the body, and the tracks. I created structs for each of these, so that I could use distance functions on them separately. For each of these structs, I build their primitives at the origin and then transformed them using my transformation function, in order to allow me to create them one at a time.
+
+I started by creating my turret's gun. I rotated three cylinders, unioned two wider tubes of different length, and subtracted a narrower tube. I then unioned the gun with a round box to create a gun mantlet and a larger box to create the actual turret. Funally, I unioned a cylinder to the top for a cupola and a larger cylinder at the bottom to create the turret ring for the final product. ![Completed Turret](turret.jpg)
+
+I then moved on to create the body of the tank. The tank's body is more complicated, as a I used four different distance subtractions to create its final shape. I started with a large round rectangle for the base. I then subtracted from the front and back a rotated rectangle to create the angled surface. For the sideskirts, where the tracks are hidden, I transformed the same rectangle and subtracted it from one side, manually changing its location each time until I got it in the correct position. Thankfully, due to the body's symetrical appearance, I was able to just invert the x value to get it right on the other side. The two cylinders in the back were likewise manually editted using a transformation macros.![Body](body.jpg)
+
+Finally, the tracks were created using a similar structure. I transformed a torus and translated it to the correct position. I then unioned it with more of the same primitive going down the z axis. 
+
+The tank's camoflauge, the background, and the ground's color, are both done using a combination of a lerp and noise function, in order to provide a more warlike feel.
+
+Correctness
+================================
+
+The following are proofs of correctness for my ray marching program. The first image is of a checkerboard, where each square takes up 16X16 pixels. The middle image of the clouds are generated using a three-octave noise function from G3D's [noise.glsl](http://g3d.cs.williams.edu/websvn/filedetails.php?repname=g3d&path=%2FG3D10%2Fdata-files%2Fshader%2Fnoise.glsl). The final image is of eye-ray directions visualized at $\vec{c} = (\w + 1) / 2$.
+
+![Checkerboard](checkerBoard.jpg width=200px) ![Clouds](clouds.jpg width=200px) ![Eye-Ray Directions](eye-ray.jpg width=200px) 
+
+These next images each demonstrate my program's correctness results when creating an analytic or a ray marched sphere.
+![Analytic Sphere Normals](analyticSphereNormals.jpg width=200px) ![Analytic Sphere Positions](analyticSpherePositions.jpg width=200px) 
+![Ray Marched Sphere Normals](rayMarchedSphereNormals.jpg width=200px) ![Ray Marched Sphere Positions](rayMarchedSpherePositions.jpg width=200px )
+
+Finally, these last images demonstrate my 7 primitives and their shadow casting ability.
+
+![A Sphere](rayMarchedSphere.jpg)
+![A Torus](transformedDoughtnut.jpg)![A Cylinder](cylinder.jpg)
+![A Square](squareScaledUp.jpg)![A Round Cube](roundCube.jpg)
+![A Rectangle](rectangle.jpg)![A Round Rectangle](roundRectangle.jpg)
+
+Demonstration Images
+================================
+
+My tank was created by unioning, subtracting, and transforming the above primitives.
+
+![My Tank](tankFront.jpg)
+![Side View](tankSide.jpg)![Side View](sideView.jpg)
+![From Behind](tankBack.jpg)![Top View](tankAbove.jpg)
+
+Report
+================================
+![[Buckle Up](https://www.shadertoy.com/view/MltXzN) by Dila](rotate.png)
+
+1. Buckle Up by Dila is a really interesting shadertoy code. It is interesting, becasue it shows how such little code can actually create really amazing scenes. He uses a lot of sine and cosines, as well as The code seems pretty straightforward.
+
+2. I used only a few unique sources to find information. For the most part, I used http://www.iquilezles.org/ to figure out different functions that I could use. I also used [shadertoy](https://www.shadertoy.com/) to gain some inspiration. Finally, I used [shaderific](http://www.shaderific.com/glsl-types/) to figure out how to do the matrices.
+
+3. Some very important details are:
+    1. There is no way to debug anything you create in GLSL. It all is based on how you edit the code.
+    2. Along with the no debugging, there is also no way to really print with GLSL.
+    3. You have to do your best to avoid branching and avoid ints.
+    4. You cannot recurse, because it has no stack!
+    5. Everything you do in GLSL is a vector operation.
+    6. There are no pointers. Everything is specified as in out, instead.
+    7. Constants are generated at compile time only, so you cannot pass as constant.
+
+Self-Review
+=====================================
+
+I believe I deserve an A-. Personally, I feel my code is pretty readable, although there may be some confusion with the structs that I create, but the design follows what we learned in class. The code also correctly generates my primitives and all of tank's pieces. Visually, I think my scene is not perfect, the tank, of course, could use a lot more detail, but the tank would pass for a toy or a rather old video game rendering. I believe I followed the specification completely, and I have answered all of the questions in the report pretty thouroughly.
+
+Skills
+======================================
+Software Engineering Skills:
+1. I learned how to work in the glsl environment.
+2. I learned how to use #define in glsl.
+3. Triple check all code for small errors. Translation of code is not always easy.
+
+Algorithmic Skill:
+1. I learned the ray marching algorithm.
+2. I learned how to combine different distance operations
+
+Mathematic Skills:
+1. I relearned how to use matrices to rotate and translate an object.
+2. I learned all of the different distance functions for my primitives.
+
+<!-- Markdeep: -->
+<style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace;}</style><script src="https://casual-effects.com/markdeep/latest/markdeep.min.js"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>
+
+<script src="../common.js"></script>

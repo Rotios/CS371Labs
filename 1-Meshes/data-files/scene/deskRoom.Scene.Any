@@ -1,0 +1,422 @@
+/* -*- c++ -*- */ 
+
+{	
+    name = "Desk Scene";
+   models = {
+        chairLegModel = ArticulatedModel::Specification {
+            filename = "model/crate/crate.obj";
+            preprocess = {
+                transformGeometry(all(),Matrix4::scale(.2, 1, .2));
+                setMaterial(all(),"morewood.jpg");
+            };
+        };
+
+        chairSeatModel = ArticulatedModel::Specification {
+            filename = "model/crate/crate.obj";
+            preprocess = {
+                transformGeometry(all(),Matrix4::scale(1.2, .1, 1.2));
+                setMaterial(all(),"morewood.jpg");
+            };
+        };
+
+        chairBackModel = ArticulatedModel::Specification {
+            filename = "model/crate/crate.obj";
+            preprocess = {
+                transformGeometry(all(),Matrix4::scale(.05, 1, .2));
+                setMaterial(all(),"morewood.jpg");
+            };
+        };
+
+        tableLegModel = ArticulatedModel::Specification {
+            filename = "model/crate/crate.obj";
+            preprocess = {
+                transformGeometry(all(),Matrix4::scale(.3, 1.75, .3));
+                setMaterial(all(),"morewood.jpg");
+            };
+        };
+
+        tableTopModel = ArticulatedModel::Specification {
+            filename = "model/crate/crate.obj";
+            preprocess = {
+                transformGeometry(all(),Matrix4::scale(2.4, .2, 4.4));
+                setMaterial(all(),"morewood.jpg");
+            };
+        };
+
+        laptopModel = ArticulatedModel::Specification {
+            filename = "model/crate/crate.obj";
+            preprocess = {
+                transformGeometry(all(),Matrix4::scale(.8, .05, .6));
+                setMaterial(all(),"grey.jpg");
+            };
+        };
+
+        tapeModel = ArticulatedModel::Specification {
+            filename = "model/crate/crate.obj";
+            preprocess = {
+                transformGeometry(all(),Matrix4::scale(0, .15, .8));
+                setMaterial(all(),"DuctTape.jpg");
+            };
+        };
+
+        wallModel = ArticulatedModel::Specification { 
+            filename = "model/cube/cube.obj";
+            preprocess = {
+                setMaterial(all(), Color3(.84,.7,0.42));
+                transformGeometry(all(),Matrix4::scale(0,7,7));
+                setMaterial(all(),"wall.jpg");
+            };
+        }; 
+
+        floorModel = ArticulatedModel::Specification { 
+            filename = "model/cube/cube.obj";
+            preprocess = {
+                setMaterial(all(), Color3(.84,.7,0.42));
+                transformGeometry(all(),Matrix4::scale(0,7,7));
+                setMaterial(all(),"woodfloor.jpg");
+            };
+        }; 
+
+        roofModel = ArticulatedModel::Specification { 
+            filename = "model/cube/cube.obj";
+            preprocess = {
+                transformGeometry(all(),Matrix4::scale(0,7,7));
+                setMaterial(all(),"ceiling.jpg");
+            };
+        }; 
+
+        windowModel = ArticulatedModel::Specification { 
+            filename = "model/cube/cube.obj";
+            preprocess = {
+                transformGeometry(all(),Matrix4::scale(0,3.5,5));
+                setMaterial(all(),"window.jpg");
+            };
+        }; 
+
+        blackBoardModel = ArticulatedModel::Specification { 
+            filename = "model/cube/cube.obj";
+            preprocess = {
+                transformGeometry(all(),Matrix4::scale(0,3,5));
+                setMaterial(all(),"blackboard.png");
+            };
+        }; 
+        
+        boardFrameHeightModel = ArticulatedModel::Specification {
+            filename = "model/crate/crate.obj";
+            preprocess = {
+                transformGeometry(all(),Matrix4::scale(.099, 3, 0.1));
+                setMaterial(all(),"darkwood.jpg");
+            };
+        };
+
+        boardFrameLengthModel = ArticulatedModel::Specification {
+            filename = "model/crate/crate.obj";
+            preprocess = {
+                transformGeometry(all(),Matrix4::scale(.11, 0.1, 5.2));
+                setMaterial(all(),"darkwood.jpg");
+            };
+        };
+
+        chalkModel = ArticulatedModel::Specification {
+            filename = "model/crate/crate.obj";
+            preprocess = {
+                setMaterial(all(), Color3(1,1,1));
+                transformGeometry(all(),Matrix4::scale(.015, 0.015, .11));
+            };
+        };
+
+        eraserModel = ArticulatedModel::Specification {
+            filename = "model/crate/crate.obj";
+            preprocess = {
+                transformGeometry(all(),Matrix4::scale(.03, 0.04, .1));
+                setMaterial(all(),"felt.jpg");
+            };
+        };
+
+        glassModel = ArticulatedModel::Specification { 
+            filename = "model/glass.off";
+            preprocess = {
+                setMaterial(all(), Color4(0.3,0.3,0.3,03));
+                transformGeometry(all(),Matrix4::scale(.1, 0.1, .1));
+            };
+        }; 
+
+        cylinderModel = ArticulatedModel::Specfication{
+            filename = "model/cylinder.off";
+            preprocess = {
+                setMaterial(all(), Color3(0,0,0));
+                transformGeometry(all(),Matrix4::scale(.1, 0.1, .1));
+            };
+        };
+    
+        trashModel = ArticulatedModel::Specfication{
+            filename = "model/cylinder.off";
+            preprocess = {
+                setMaterial(all(), Color3(0,0,0));
+                transformGeometry(all(),Matrix4::scale(.3, 0.3, .3));
+            };
+        }
+    };
+
+    entities = { 
+
+        skybox = Skybox { 
+            texture = "cubemap/whiteroom/whiteroom-*.png"; 
+        };
+
+
+        chairLeg1 = VisibleEntity {
+            model = "chairLegModel";
+            frame = CFrame::fromXYZYPRDegrees(0,0,1.0,0,0.0,0.0);
+        };
+
+        chairLeg2 = VisibleEntity {
+            model = "chairLegModel";
+            frame = CFrame::fromXYZYPRDegrees(0,0,2.0,0,0.0,0.0);
+        };
+
+        chairLeg3 = VisibleEntity {
+            model = "chairLegModel";
+            frame = CFrame::fromXYZYPRDegrees(1,0,1.0,0,0.0,0.0);
+        };
+
+        chairLeg4 = VisibleEntity {
+            model = "chairLegModel";
+            frame = CFrame::fromXYZYPRDegrees(1,0,2.0,0,0.0,0.0);
+        };
+
+        chairSeat = VisibleEntity {
+            model = "chairSeatModel";
+            frame = CFrame::fromXYZYPRDegrees(0.5,0.5,1.5,0,0.0,0.0);
+        };
+
+        chairBack = VisibleEntity {
+            model = "chairSeatModel";
+            frame = CFrame::fromXYZYPRDegrees(1,1.1,1.5,0,0.0,90.0);
+        };
+
+        chairBackHolder1 = VisibleEntity {
+            model = "chairBackModel";
+            frame = CFrame::fromXYZYPRDegrees(1.1,.95,1.2,0,0.0,0);
+        };
+
+        chairBackHolder2 = VisibleEntity {
+            model = "chairBackModel";
+            frame = CFrame::fromXYZYPRDegrees(1.1,.95,1.8,0,0.0,0);
+        };
+
+        tableLeg1 = VisibleEntity {
+            model = "tableLegModel";
+            frame = CFrame::fromXYZYPRDegrees(-.5,0.375,3.5,0,0.0,0.0);
+        };
+
+        tableLeg2 = VisibleEntity {
+            model = "tableLegModel";
+            frame = CFrame::fromXYZYPRDegrees(-.5,0.375,-.5,0,0.0,0.0);
+        };
+
+        tableLeg3 = VisibleEntity {
+            model = "tableLegModel";
+            frame = CFrame::fromXYZYPRDegrees(-2.5,0.375,3.5,0,0.0,0.0);
+        };
+
+        tableLeg4 = VisibleEntity {
+            model = "tableLegModel";
+            frame = CFrame::fromXYZYPRDegrees(-2.5,0.375,0,0,0.0,0.0);
+        };
+
+        tableTop = VisibleEntity {
+            model = "tableTopModel";
+            frame = CFrame::fromXYZYPRDegrees(-1.5,1.2,1.5,0,0.0,0.0);
+        };
+
+        glass = VisibleEntity {
+            model = "glassModel";
+            frame = CFrame::fromXYZYPRDegrees(-1.5,1.4,2,0,0.0,90.0);
+        };
+
+        Echo = VisibleEntity {
+            model = "cylinderModel";
+            frame = CFrame::fromXYZYPRDegrees(-1.7,1.5,.4,0,0,0.0);
+        };
+        Trash = VisibleEntity {
+            model = "trashModel";
+            frame = CFrame::fromXYZYPRDegrees(2.8,0,-1,0,0,0.0);
+        };
+        roof = VisibleEntity {
+            model = "roofModel";
+            frame = CFrame::fromXYZYPRDegrees(0.0,6.5,1.5,90.0,0.0,90.0);
+        };
+
+        floor = VisibleEntity {
+            model = "floorModel";
+            frame = CFrame::fromXYZYPRDegrees(0.0,-.5,1.5,90.0,0,90);
+        };
+
+        wall0 = VisibleEntity {
+            model = "wallModel";
+            frame = CFrame::fromXYZYPRDegrees(3.5,3,1.5,0.0,90.0,0.0);
+        };
+
+        chalk = VisibleEntity {
+            model = "chalkModel";
+            frame = CFrame::fromXYZYPRDegrees(3.37,1.55,1.0,0.0,0,0.0);
+        };
+
+        chalk2 = VisibleEntity {
+            model = "chalkModel";
+            frame = CFrame::fromXYZYPRDegrees(3.37,1.55,2,0.0,0,0.0);
+        };
+
+        eraser = VisibleEntity {
+            model = "eraserModel";
+            frame = CFrame::fromXYZYPRDegrees(3.365,1.57,0,0.0,0,90);
+        };
+
+        eraser2 = VisibleEntity {
+            model = "eraserModel";
+            frame = CFrame::fromXYZYPRDegrees(3.365,1.57,3,0.0,0,90);
+        };
+
+        blackBoard = VisibleEntity {
+            model = "blackBoardModel";
+            frame = CFrame::fromXYZYPRDegrees(3.4,3,1.5,0.0,0,0.0);
+        };
+
+        boardFrame1 = VisibleEntity {
+            model = "boardFrameLengthModel";
+            frame = CFrame::fromXYZYPRDegrees(3.4,4.5,1.5,0.0,0,0.0);
+        };
+
+        boardFrame2 = VisibleEntity {
+            model = "boardFrameLengthModel";
+            frame = CFrame::fromXYZYPRDegrees(3.4,1.5,1.5,0.0,0,0.0);
+        };
+
+        boardFrame3 = VisibleEntity {
+            model = "boardFrameHeightModel";
+            frame = CFrame::fromXYZYPRDegrees(3.4,3,4.0,0.0,0,0.0);
+        };
+
+        boardFrame4 = VisibleEntity {
+            model = "boardFrameHeightModel";
+            frame = CFrame::fromXYZYPRDegrees(3.4,3,-1,0.0,0,0.0);
+        };
+
+        wall1 = VisibleEntity {
+            model = "wallModel";
+            frame = CFrame::fromXYZYPRDegrees(-3.5,3,1.5,0.0,90.0,0.0);
+        };
+
+        backwall = VisibleEntity {
+            model = "wallModel";
+            frame = CFrame::fromXYZYPRDegrees(0.0,3.0,-2,90.0,0,0.0);
+        };
+
+        window = VisibleEntity {
+            model = "windowModel";
+            frame = CFrame::fromXYZYPRDegrees(0.0,3.0,-1.9,90.0,0,0.0);
+        };
+
+
+        tape0 = VisibleEntity {
+            model = "tapeModel";
+            frame = CFrame::fromXYZYPRDegrees(2.3,4.6,-1.89,90,45,0.0);
+        };
+
+        tape1 = VisibleEntity {
+            model = "tapeModel";
+            frame = CFrame::fromXYZYPRDegrees(2.3,1.4,-1.89,90,-45,0.0);
+        };
+
+        tape2 = VisibleEntity {
+            model = "tapeModel";
+            frame = CFrame::fromXYZYPRDegrees(-2.3,4.6,-1.89,90,-45,0.0);
+        };
+
+        tape3 = VisibleEntity {
+            model = "tapeModel";
+            frame = CFrame::fromXYZYPRDegrees(-2.3,1.4,-1.89,90,45,0.0);
+        };
+
+        laptopBottom = VisibleEntity {
+            model = "laptopModel";
+            frame = CFrame::fromXYZYPRDegrees(-.7,1.32,1.5,90,0,0.0);
+        };
+
+        camera = Camera {             
+            frame = CFrame::fromXYZYPRDegrees( -.2, 4, 8.5, -1, -7); 
+        }; 
+
+        floorLight = Light { 
+            attenuation = (0, 0, 1); 
+            bulbPower = Power3(100); 
+            castsShadows = true;
+            extent = Vector2(0.75, 0.75); 
+            frame = CFrame::fromXYZYPRDegrees(0, 6.3, 0, 0, -90, 0); 
+            producesDirectIllumination = true; 
+            producesIndirectIllumination = true; 
+            shadowMapSize = Vector2int16(1024, 1024); 
+            spotHalfAngleDegrees = 45; 
+            spotSquare = true; 
+            type = "SPOT"; 
+        };
+    
+        backLight = Light { 
+            attenuation = (0, 0, 1); 
+            bulbPower = Power3(100); 
+            castsShadows = true;
+            extent = Vector2(0.75, 0.75); 
+            frame = CFrame::fromXYZYPRDegrees(0, 6.3, 0, 0, 0, 0); 
+            producesDirectIllumination = true; 
+            producesIndirectIllumination = true; 
+            shadowMapSize = Vector2int16(1024, 1024); 
+            spotHalfAngleDegrees = 45; 
+            spotSquare = true; 
+            type = "SPOT"; 
+        };
+        
+        foreLight = Light { 
+            attenuation = (0, 0, 1); 
+            bulbPower = Power3(100); 
+            castsShadows = true;
+            extent = Vector2(0.75, 0.75); 
+            frame = CFrame::fromXYZYPRDegrees(0, 6.3, 0, 180, 0, 180); 
+            producesDirectIllumination = true; 
+            producesIndirectIllumination = true; 
+            shadowMapSize = Vector2int16(1024, 1024); 
+            spotHalfAngleDegrees = 45; 
+            spotSquare = true; 
+            type = "SPOT"; 
+        };
+            
+        leftLight = Light { 
+            attenuation = (0, 0, 1); 
+            bulbPower = Power3(100); 
+            castsShadows = true;
+            extent = Vector2(0.75, 0.75); 
+            frame = CFrame::fromXYZYPRDegrees(0, 6.3, 0, -90, 0, 0); 
+            producesDirectIllumination = true; 
+            producesIndirectIllumination = true; 
+            shadowMapSize = Vector2int16(1024, 1024); 
+            spotHalfAngleDegrees = 45; 
+            spotSquare = true; 
+            type = "SPOT"; 
+        };
+        
+   
+        rightLight = Light { 
+            attenuation = (0, 0, 1); 
+            bulbPower = Power3(100); 
+            castsShadows = true;
+            extent = Vector2(0.75, 0.75); 
+            frame = CFrame::fromXYZYPRDegrees(0, 6.3, 0, 90, 0, 0); 
+            producesDirectIllumination = true; 
+            producesIndirectIllumination = true; 
+            shadowMapSize = Vector2int16(1024, 1024); 
+            spotHalfAngleDegrees = 45; 
+            spotSquare = true; 
+            type = "SPOT"; 
+        };
+    }; 
+ } 

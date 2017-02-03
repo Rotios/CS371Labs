@@ -1,0 +1,291 @@
+﻿<meta charset="utf-8"><!-- -*- markdown -*- -->        
+        **Procedurally Generated Coral**
+        **John Freeman (jcf1@williams.edu), Jose Rivas (jdr3@williams.edu),** 
+        **Julia Goldman (jdg2@williams.edu),**
+        **and Matheus de Carvalho Souza (mc13@williams.edu)** 
+
+![A Fish Tank Scene with Procedually Generated Coral.](inside_tank.png border=1)
+
+Introduction
+================================
+
+Our project was to procedurally generate distinct species of coral using Lindernmeyer Systems (L-system). By specifying the species and specifying a color, we can generate unique corral that will look amazing in any underwater environment. 
+
+Coral, like trees, can be represented as a recursive structure made of cylinders that shrink as they go farther from the base. Thus, an L-System can be used to model coral. In order to avoid having an exponential number of polygons as we recurse, we model the L-systems in 2D, generating a bump map and color gradient for each coral as we do so. Then, we create a billboard for each piece of coral, with a material that has the colored image of the coral as its lambertian and the bump map as the bump.  This gives the illusion of a 3-dimensional object, but requires significantly less polygons, making it much easier to render, which is what made it an industry standard for decades.
+
+Specification
+============================================================================================
+
+Procedurally generate realistic coral using "Billboard" Texture and Normal Maps. 
+
+1. Scene Generation:
+  1. Create different 2D images representing different species of coral with slight variations.
+  2. Write a scene file that puts generated lambertian and bump map on a model in an underwater setting.
+  3. Add fish models and other accessories to the scene to make it look realistic.
+
+2. Code:
+  1. Create a class (Rasterizer) that can be used to create 2D images, including desired gradiants. This should be called from App::onInit().
+  2. Create a class that generates 2D coral using L-systems.
+  3. Write code to generate interesting scenes using our coral.
+
+3. Correctness Results:
+    1. Take a picture coral from an angle with the mesh visible to demonstrate billboards.
+    2. For each type of coral, show the lambertian image, the bump image, and a simple shot of the resulting coral.
+    3. For a species of coral, show the effects that occur when you change the various parameters passed to its L-System.
+
+4. Quality Results:
+  1. A scene with multiple coral in a fishtank with fish.
+  2. Close ups of the same scene, such as a particular fish hiding among some coral.
+  3. Create a beautiful, unique scene that demonstrates the beauty of our creations. Put the coral in the ocean with shadows and fish going around to make it look like a real ocean scene.
+
+Topic Overview
+=====================================================================================
+To generate practical coral models, we use: 
+- L-system: specifies coral structure; 
+- Billboards: to generate "light weight" models; 
+- Image generation through adapted **rasterization** techniques.
+
+L-System
+------------------------------------------------------------------------------------
+The Lindenmayer (L) systems are mainly used for generating fractals and realistic modeling of plants. 
+
+According to Joel Castellanos, an L-system consists of: 
+- A set of variables: nonterminals that can be replaced by production rules.
+- A set of constants: terminals. Constants are any of the following symbols: [, ], +, -.
+- A single axiom which is a string composed of some number of variables and constants. The axiom is the initial state of the system. 
+- A set of production rules defining the way variables can be replaced with combinations of constants and other variables. A production consists of two strings - the predecessor and the successor. The most interesting L-systems are defined by recursive production rules (i.e. rules that include the replaced variable along with other variable and constant combinations). [#Castellanos] 
+
+Through the above rules, L-Systems can create realistic looking trees and leave patterns using the correct textures. Many coral formations are just simply smaller versions of trees. Thus, this project uses L-systems as the base for creating different coral models.  We use the L-systems to generate lines drawn on an image that resemble the shape of different coral which is then created as a bump map and color gradient and billboarded as a 3D model. 
+
+![@[Castellanos](http://www.cs.unm.edu/~joel/PaperFoldingFractal/paper.html)](L-system2.png width=200px height=200px) ![@[Castellanos](http://www.cs.unm.edu/~joel/PaperFoldingFractal/paper.html)](L-system1.png width=200px height=200px) ![A simple L-system](simple_system.png width=200px height=200px) ![A complex L-system](complex_system.png width=200px height=200px)
+
+
+Billboards
+------------------------------------------------------------------------------------
+Billboards are shaded 2D images used in 3D graphics. These 2D images are often used to simulate 3D objects at lower rendering costs. 
+
+Since our coral models are entirely created by following an L-system, with different recursion depths and recursive rules it would be impractical to create them entirely out of actual 3D polygons, which would create extensive triangle meshes and be heavy to render. Instead we used Billboards to achive the same effect with low tessalation. 
+
+We generate many 3D-looking 2D images of a given coral, then paste them onto flat cubes (the billboards), and intersect them in their centers at different angles. This generates the illusion of a 3D coral that looks slightly different from different angles, within the wireframe of a few cubes instead of many cylinders. 
+
+![Billboard Coral with Wireframe](wire.png width=400px) ![Billboard coral from above](billboard.png width=400px)
+
+3D-looking 2D images were created out of 2 images: one specifying the color, and the other specifying a bump map. The two images were then respectively assigned to the lambertian and bump parameters of the billboard model within the scene file.
+
+Rasterization
+-----------------------------------------------------------------------------------
+Rasterization is used to create Billboard lambertian and bump images. 
+
+Rasterization describes a technique to fill out the pixels of a 2D image according to what is visible in a 3D space. 
+
+We use rasterization's pixel filling techniques to create color and bump map images for our corals according to the L-system. Our algorithm takes a center line from the L-system and sets all image pixels within a thickness from the center line to the given solid color or bump map gradient.
+
+![Thick color lines](tubes.png width=200px height=200px) ![Thick bump map lines](tubesMap.png width=200px height=200px) ![Color L-system](flat_example_color.png width=200px height=200px) ![Bump Map L-System](flat_example_bump.png width=200px height=200px)
+
+Design
+=====================================================================================
+
+The following is a description of our design.
+
+Flowchart
+-------------------------------------------------------------------------------------
+*****************************************************************************************************************************************
+*                                                                                                                                       *
+*   .---------.                  .------------.        .-------------.                                                                  *
+*  |   GAPP    |                 | Rasterizer +------>+ drawThickLine |           .----------------------.     .------------------.     *
+*   '----+----'                  '-----+------'        '-----+-------'            |  CoralSceneGenerator +---->| writeTankScene   |     *
+*        |                             ^                     | draw quadrant      '------+---------------'     | or writeSeaScene |     *
+*        v                             |                     | bump and                  ^                     '-------+----------'     *
+*   .----+---.                  .------+---.                 v lambertian                |                             |                * 
+*   | onInit |                 | writeCoral |          .-----+--------.                  |                             v                *
+*   '----+---'                  '------+---'           | GAPP::onInit |          .-------+-------------.        .------+------.         *
+*        |                             ^               '-----+--------'          | GAPP::generateScene |        | writeModels |         *
+*        v                             | line edges          | 4 map             '-------+-------------'        '-+--------+--'         *
+*    .------------------.         .----+-------.             | quadrants                 ^                        | tank   | sea        *
+*   /  CoralGenerator  /         / Apply Rules/              v bump & lambertian         |                        v sceme  v scene      *
+*  '-----+------------'         '-----+------'          .----+---------.                 |               .--------+--.  .--+-------.    *
+*        |                            ^                | Rasterizer     |  2 maps    .---+--------.      | writeTank |  | writeSea |    *
+*        v                            | L-System       | mergeQuadrants +---------->| GAPP::onInit |     | Entities  |  | Entities |    *
+*  .------------.  1 per quadrant .---+----------.      '--------------'             '--+-------+-'      '--------+--'  '--------+-'    *
+*  | writeCoral +---------------->| generateCoral|                                      | save  | save            ^  load bump   ^      *
+*  '------------'                 '--------------'                                      v bump  v lambertian      | & lambertian |      *
+*****************************************************************************************************************************************
+
+App makes an instance of CoralGenerator which it uses to call writeCoral with 2 given images.  CoralGenerator then generates the coral using one of the generate methods specifying an L-System and gives it to the applyRules method.  It writes the results of that generation to the images using an instance of the Rasterizor class' drawThickLine method.  Finally, App saves these two images and displays them as a billboard in our coral custom scene.
+
+Class Descriptions
+-----------------------------------------------------------------------------------------------------------------------------
+
+|[Rasterizer](class_rasterizer.html): | |
+|------------|---|
+|[drawThickLine](class_rasterizer.html#acc2b4bb9010772397ab4fb84192d2c25) | Calls fitToBounds(). Draws a line of given thickness in a given solid color for the color image, and in greyscale gradient for the bump map image|
+|[fitToBounds](class_rasterizer.html#a489e11fc5bc889a2cbf4bdf9e0d00c06) | Makes sure that center line origin and end are in the image offset by at least the given radius from the image bounds. |
+|[mergeQuadrants](class_rasterizer.html#a16ffe7ee5781c8b85001a80a390dde5a) | Calls findQuadrant(), merges four n x n images into one 2n x 2n image as four quadrants. |
+|[findQuadrant](class_rasterizer.html#ac3ae73048079019875588ba58c711d68) | Given current pixel coordinates and width and height of an image, determines in which quadrant the pixel is with respect to lines width/2 and height/2. |
+|[drawGradientBackground](class_rasterizer.html#a9ce27a441aef7c1c6d3eefbfb4584eae) | Draws a gradient between given start and end colors to an image respect to its height. |
+
+
+|[CoralGenerator](class_coral_generator.html): | |
+|--------------------------|---------------------------------------|
+|[writeCoral](class_coral_generator.html#a2f63d6ad93c8c9247b219cdc9049026f) | Given two images, a thickness, and 2 angles, it draws the coral lambertian and the accompanying bump map for a given type of coral. |
+|[applyRules](class_coral_generator.html#a06fd1cda6975a01ee4658e5ffce0ff7c) | Takes a set of tokens and expands each token based on the rules that are passed to it as an L-System. |
+|[generateFingerCoral](class_coral_generator.html#ab7302ff370600c126fd13b530ee293c3) | Generates heavy braching coral that clumps up. |
+|[generateThinCoral](class_coral_generator.html#ae35cd5fb1b018bc85fa9a5dfd1a89aa8) | Generates heavy branching coral that thins quickly. |
+|[generateCrazyCoral](class_coral_generator.html#a23821ec795d4d19c58ec674855af1720) | Generates heavy braching coral that clumps up. |
+|[generateFlatCoral](class_coral_generator.html#ac721c6e88b26f66738cf49b6b15b58b0) |  Generates low branching coral that spreads out. |
+|[generateBranchCoral](class_coral_generator.html#a18061c0c63d314730acbae18120d8fad) | Generates branching, fan-like coral. |
+|[generateTallCoral](class_coral_generator.html#a0658e7979244fd37b08cad459fb7a7d6) | Generates long, tall wire-like coral. |
+
+
+|[CoralSceneGenerator](class_coral_scene_generator.html): | |
+|--------------------------|---------------------------------------|
+|[writeSeaScene](class_coral_scene_generator.html#a6a1c994277385e2db80c1d22ea2227e6) | Creates a Scene File for a custom Sea Scene through Helper methods. |
+|[writeTankScene](class_coral_scene_generator.html#a3c9598eae14cee53494c3ab0314b6219) | Cretaes a Scene File for a custom Tank Scene through helper methods. |
+|[writeModels](class_coral_scene_generator.html#a6be6d011035d7bc7eed7997b9067a593) | Returns a String that creates all of the models in all of the custom scenes. |
+|[writeTankEntities](class_coral_scene_generator.html#afd79841ce53aec034c114cbd0ee8a2a6) | Returns a String for all the entities in the fish tank scene. |
+|[writeSeaEntities](class_coral_scene_generator.html#a50ed176c402de35be4b6b56543f6f9ee)| Returns a String for all the entities in the sea scene. |
+|[writeTankFish](class_coral_scene_generator.html#af3c60e277f314d20cfedcc2f6eebb825) | Returns a String of fish entities within a prescribed bounds offset to be at the center.|
+|[writeSchoolOfFish](class_coral_scene_generator.html#a1446d44093464f53223a575aae92304a) | Returns a String for a school of fish entities facing the same direction. |
+|[writeBubbles](class_coral_scene_generator.html#ae33402e8e4a6f70da40782e85c95d6bf) | Returns a String for a school of bubble entities. |
+|[writeCoral](class_coral_scene_generator.html#a136084db026880ba03d4bf562ef0b09a) | Writes the coral entities for the tank scene within the specified bounds. |
+|[writeSeaCoral](class_coral_scene_generator.html#ac8c72c764191446d69098d837ef0dcdc)| Writes the coral entities for the sea scene within the specified bounds. |
+
+Justification
+------------------------------------------------------------------------------------------------------------------------------
+As a class Rasterizer, is solely responsible for manipulating inputs and setting image pixels. This choice enabled us to separate the definition of what we draw from the definition of how we draw it, and allowed us to work in different definitions simultaneously. Rasterizer doesn't keep any sate, so indefinitely many images can be drawn by calling the methods of a single instance of the class. Although thick line rasterization can be done linearly, drawThickLine() is quadratic. This drawback in time complexity is compensated by the simplicity and robustness of the quadratic approach, especially considering that we can take great advantage of multithreading for setting image pixels. We generate four separate N x N images of slightly different coral faces, then use mergeQuadrants() to set each to one quadrant of a final 2N x 2N image to be used by our OFF file. Although this can be done directly in our final image, our aproach preserves the robustness of Rasterizer.
+
+We have another class called CoralGenerator which is responsible for the procedural generation of coral through L-Systems.  Making the L-Systems a seperate class allows us to focus just on how we would want to generate coral conceptually without having to worry about how the rest of the code functions.  It has a public writeCoral method called from App which generates different types of coral and writes them two images for color and the bump map.  It uses a series of generate functions that specify different L-Systems that are passed to the applyRules method and allow us to create many different types of coral without much code.  The apply rules method was written such that it is able to create many different types of coral given different sets of rules, which makes the code for generating coral easy to read and add allows us to easily add new types of coral to be generated without changing any of our old code.  CoralGenerator also uses a user defined class Edges which holds information for the start and end point for a line to be drawn on an image along with its depth to allow Rasterizer to draw the line and correctly shade it when it is drawn.
+
+CoralSceneGenerator is responsible for generating our two scenes. It does not generate perfect scenes, but places objects approximately in the correct area, allowing for easier manipulation of the scene. The focus was to allow us to create our own custom scenes without having to manually write the entire scene ourselves. The two methods, writeSeaScene and writeTankScene are the two entry points for the program, and they fill in the appropriate information for each scene through their respective helper functions, writeTankEntities and writeSeaEntities. They both share the same models, though they do not necessarily employ all of them. This makes the code simpler, and it allows for better manual editting, since we have all of the models available in either scene. Furthermore, if we need to create more scenes, we can easily copy and paste code around, or change certain specifications for the scenes. Finally, all of this allows for a bit of randomness, which allows for more creative scenes.
+
+We also include a Path Tracer in our project developed by John, Jose, and Julia that allows us to render beautiful images of the custom scenes we created to show off our coral.
+
+Results
+=====================================================================================
+The following are the results of our procedural generation. We first demonstrate that the coral we create is visually accurate. Each coral should look as realistic as possible using the "billboard" method. Next, we will demonstrate the different effects the parameters passed to our L-System have on the resulting coral.  We then show our coral in various custom scenes, including with modeled fish floating around them.
+
+Types of Coral
+-------------------------------------------------------------------------------------
+We have 6 different sets of rules that make up L-Systems for coral to be generated.  The following show the coral model rendered through billboarding, its bump map, and its color gradient.
+
+![Branch Coral](branch_example_model.png width=200px) ![Bump Map](branch_example_bump.png width=200px) ![Color Gradient](branch_example_color.png width=200px) 
+
+![Thin Coral](thin_example_model.png width=200px) ![Bump Map](thin_example_bump.png width=200px) ![Color Gradient](thin_example_color.png width=200px) 
+
+![Finger Coral](finger_example_model.png width=200px) ![Bump Map](finger_example_bump.png width=200px) ![Color Gradient](finger_example_color.png width=200px) 
+
+![Flat Coral](flat_example_model.png width=200px) ![Bump Map](flat_example_bump.png width=200px) ![Color Gradient](flat_example_color.png width=200px) 
+
+![Tall Coral](tall_example_model.png width=200px) ![Bump Map](tall_example_bump.png width=200px) ![Color Gradient](tall_example_color.png width=200px) 
+
+![Crazy Coral](crazy_example_model.png width=200px) ![Bump Map](crazy_example_bump.png width=200px) ![Color Gradient](crazy_example_color.png width=200px) 
+
+L-System Results 
+-------------------------------------------------------------------------------------
+Here we demonstrate the diversity of differnt coral we can achieve under the same set of rules, but by changing the paramenters we pass to the generator methods using our L-System.  We demonstate the effects of changing recursion depth, thickness, and range of angles.
+
+![Branch Coral with 6 initial thickness, 12-20 degree angles, and 6 recursion depths](branch_example_model.png width=200px)
+
+![Branch Coral with 6 initial thickness, 12-20 degree angles, and 4 recursion depths](branch_example_low_recursion.png width=200px)
+
+![Branch Coral with 12 initial thickness, 12-20 degree angles, and 6 recursion depths](branch_example_thicker.png width=200px)
+
+![Branch Coral with 6 initial thickness, 0-12 degree angles, and 6 recursion depths](branch_example_low_angle.png width=200px)
+
+![Branch Coral with 6 initial thickness, 0-20 degree angles, and 6 recursion depths](branch_example_angle_range.png width=200px)
+
+
+Quality Results
+-------------------------------------------------------------------------------------
+Here, we show high quality images that show both the advantages and limitations of our project.  These images were created using a Path Tracer written by John, Jose, and Julia.
+
+![Close up of our coral in a Fish Tank Scene with fish.  Image from inside our fish tank that shows off our coral combined with a single fish model for a simple scene.  While the color in the scene is good, it is easy to see here that the coral is not truly 3D, but is billboarded.  Reguardless, the scene still looks nice, the coral is quick to render, and the shadows given by the coral look good.](good_close_coral.png)
+
+![Another close up of our coral in a Fish Tank Scene.  Another image from inside our fish tank to show off the detail, diversity, and beauty of our coral.](close_up_coral.png)
+
+![Sea Scene with sharks.  An image of one of our custom scenes that shows both how our coral adds to the atmosphere of the scene but is also limited due to billboarding as shown with the blue coral in the middle.](sea_scene2.png) 
+
+
+Evocative Results
+-------------------------------------------------------------------------------------
+Here, we demonstrate how our coral could be used to create with various models to create interesting scenes and beautiful images.  These images were created using a Path Tracer written by John, Jose, and Julia.
+
+![Full view of our Fish Tank Scene.  This image is completely procedually generated by our program from the shapes of the different coral to the fishs' placement in the tank.  Image was cropped after being rendered.](outside_tank_crop.png) 
+
+![Inside our Fish Tank Scene.  This image was taken inside our fish tank scene to show off how our coral can create a beautiful scene combined with fish and rock models.](inside_tank2.png)
+
+![Inside our Fish Tank Scene.  This image was taken inside our fish tank scene with fish swiming through and around our coral, just like they do in real life.](close_coral3.png)
+
+![Sea Scene with sharks.  Shows off our coral in a more open scene with larger models.](sea_scene.png)
+
+These images provide good examples of why our program is interesting and necessary to achieve fun and complex underwater landscape scenes as the coral provides necessary color and life to the images.
+
+Schedule
+===================================================================
+
+|To Do| Date | Person|
+|-----|------|-------|
+|Report Draft | 7 Oct. 2016 | Jose|
+|L-System Creation Draft| 10 Oct. 2016 | John|
+|Bump Mapping Draft | 9 Oct. 2016 | Julia|
+|Drawing Lines Draft | 9 Oct. 2016 | Matheus|
+|2D Coral Creation Draft| 10 Oct. 2016 | All|
+|Bump Mapping MVP | 11 Oct. 2016 | Julia|
+|Drawing Lines MVP | 11 Oct. 2016 | Matheus|
+|L-System Creation MVP | 11 Oct. 2016 | John|
+|Create Scene Draft | 13 Oct. 2016 | Jose|
+|Report MVP | 13 Oct. 2016 | Jose and Julia|
+|L-System Creation Polish | 16 Oct. 2016 | John and Jose|
+|Create Scene Polish | 15 Oct. 2016 | Jose|
+|Bump Mapping Polish | 16 Oct. 2016 | Julia|
+|Line Drawing Polish | 16 Oct. 2016 | Matheus|
+|Create Scene Polish | 16 Oct. 2016 | Jose|
+|Report Polish | 17 Oct. 2016 | All|
+
+Change Log
+===================================================================
+1. Created initial plans. All 10/5
+2. Using old CS 136 code changed to work with g3d directly in App. Julia 10/6
+3. Created a separate class for our 2D rasterizer. Matheus 10/7
+4. Using UniversalMaterials for lambertian and bump. Julia 10/8
+5. Updated specification to say what we want to be able to make. Jose 10/8
+6. Creating 2D L-systems in App using line drawing code. John 10/9
+7. Created a separate class for genertaing L-systems. John 10/10
+8. Created a separate class for generating 3D coral L-systems. Jose 10/13
+9. As a group, decided 3D coral was unecessary. Jose 10/14
+10. Created a new class to print out two different scenes with varying fish and coral. Jose 10/15
+11. Added John and Jose's Path Tracer with fixes. John 10/19
+
+Acknowledgements and Bibliography
+============================================
+All of the models in the above images and in our code were found online at TurboSquid.com. We would like to acknowledge all of the wonderful artists, who allowed us to use their work. 
+
+<b>3D Models:</b>
+
+[#Rocks]: aristarch. <I>Granite outcrops lowpoly.</I> TurboSquid, 2 Jul. 2004. Web. 14 OCt. 2016. http://www.turbosquid.com/FullPreview/Index.cfm/ID/234978
+
+[#Castle1]: Captainmarlowe. <I>XIIth century city watchtower.</I> TurboSquid, 20 Aug. 2010. Web. 14 Oct. 2016. http://www.turbosquid.com/FullPreview/Index.cfm/ID/552087.
+
+[#Castle2]: Captainmarlowe. <I>Manor of Saint-Medard.</I> TurboSquid, 20 Aug. 2010. Web. 14 Oct. 2016. http://www.turbosquid.com/FullPreview/Index.cfm/ID/552091
+
+[#GreatWhite]: cartoomotion. <I>Great White Shark.</I> TurboSquid, 29 Aug. 2010. Web. 14 Oct. 2016. http://www.turbosquid.com/FullPreview/Index.cfm/ID/763930
+
+[#TreasureChes]: HE_Ready. <I>Free Treasure Chest.</I> TurboSquid, 8 Jul. 2011. Web. 14 OCt. 2016. http://www.turbosquid.com/FullPreview/Index.cfm/ID/615861
+
+[#HammerHead]: Kay_xablau. <I>Hammer Shark.</I> TurboSquid, 19 May 2016. Web. 14 OCt. 2016. http://www.turbosquid.com/FullPreview/Index.cfm/ID/1038510
+
+[#Shells]: Tecna. <I>Realistic shells low-poly.</I> TurboSquid, 20 May 2016. Web. 14 OCt. 2016. http://www.turbosquid.com/FullPreview/Index.cfm/ID/1038793
+
+[#TropicalFish]: ZivixLLC. <I>Tropical Fish Pack.</I> TurboSquid, 2 Feb. 2012. Web. 14 Oct. 2016. http://www.turbosquid.com/FullPreview/Index.cfm/ID/652729
+
+
+<b>L-System Information and Images:</b>
+
+[#Castellanos]: Castellanos, Joel. "Lindenmayer Systems: Details." <I>L-System Rules</I>. The University of New Mexico, Computer Science, n.d. Web. 12 Oct. 2016. http://www.cs.unm.edu/~joel/PaperFoldingFractal/L-system-rules.html
+
+
+
+<!-- Markdeep: -->
+<style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace;}</style><script src="https://casual-effects.com/markdeep/latest/markdeep.min.js"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>
+
+<script src="../common.js"></script>

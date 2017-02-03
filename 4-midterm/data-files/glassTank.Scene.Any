@@ -1,0 +1,5158 @@
+/* -*- c++ -*- */
+{
+name = "GlassTank";
+
+models = {
+        genericCoralModel1 = ArticulatedModel::Specification {
+            filename = "star.off";
+            preprocess = {
+                setTwoSided(all(), true);
+            };
+        };
+        
+       genericCoralModel2 = ArticulatedModel::Specification {
+            filename = "star.off";
+            scale = 1.5;
+            preprocess = {
+                setTwoSided(all(), true);
+            };
+        };
+        
+       genericCoralModel3 = ArticulatedModel::Specification {
+            filename = "star.off";
+            scale = 2;
+            preprocess = {
+                setTwoSided(all(), true);
+            };
+        };
+        
+       genericCoralModel4 = ArticulatedModel::Specification {
+            filename = "star.off";
+            scale = 2.3;
+            preprocess = {
+                setTwoSided(all(), true);
+            };
+        };
+        
+        
+fish0 = ArticulatedModel::Specification {
+            filename =
+"Models/TropicalFish.zip/TropicalFish/TropicalFish12.obj";
+            scale = 0.000982;
+        };
+
+        
+fish1 = ArticulatedModel::Specification {
+            filename =
+"Models/TropicalFish.zip/TropicalFish/TropicalFish02.obj";
+            scale = 0.000672;
+        };
+
+        
+fish2 = ArticulatedModel::Specification {
+            filename =
+"Models/TropicalFish.zip/TropicalFish/TropicalFish09.obj";
+            scale = 0.000755;
+        };
+
+        
+fish3 = ArticulatedModel::Specification {
+            filename =
+"Models/TropicalFish.zip/TropicalFish/TropicalFish14.obj";
+            scale = 0.000790;
+        };
+
+        
+fish4 = ArticulatedModel::Specification {
+            filename =
+"Models/TropicalFish.zip/TropicalFish/TropicalFish01.obj";
+            scale = 0.000857;
+        };
+
+        
+fish5 = ArticulatedModel::Specification {
+            filename =
+"Models/TropicalFish.zip/TropicalFish/TropicalFish07.obj";
+            scale = 0.000876;
+        };
+
+        
+    shell0 = ArticulatedModel::Specification {
+            filename = "Models/Shells.zip/nautilus_shell.obj";
+        scale = 0.520705;
+        preprocess = {
+            setMaterial(all(), 
+                UniversdsalMaterial::Specification {
+                    lambertian = Color3(0.02);
+                    glossy = Color4(Color3(0.3), 0.8);
+                    transmissive = Color3(0.9, 1.0, 1.0);
+                    emissive = Color3(0.01);
+                    etaReflect = 1.3f;
+                    etaTransmit = 1.00f;
+            });
+        };
+    };
+
+    shell1 = ArticulatedModel::Specification {
+            filename = "Models/Shells.zip/nautilus_shell.obj";
+        scale = 0.874736;
+        preprocess = {
+            setMaterial(all(), 
+                UniversdsalMaterial::Specification {
+                    lambertian = Color3(0.02);
+                    glossy = Color4(Color3(0.3), 0.8);
+                    transmissive = Color3(0.9, 1.0, 1.0);
+                    emissive = Color3(0.01);
+                    etaReflect = 1.3f;
+                    etaTransmit = 1.00f;
+            });
+        };
+    };
+
+    shell2 = ArticulatedModel::Specification {
+            filename = "Models/Shells.zip/lambis_truncata_shell.obj";
+        scale = 0.909575;
+        preprocess = {
+            setMaterial(all(), 
+                UniversdsalMaterial::Specification {
+                    lambertian = Color3(0.02);
+                    glossy = Color4(Color3(0.3), 0.8);
+                    transmissive = Color3(0.9, 1.0, 1.0);
+                    emissive = Color3(0.01);
+                    etaReflect = 1.3f;
+                    etaTransmit = 1.00f;
+            });
+        };
+    };
+
+    shell3 = ArticulatedModel::Specification {
+            filename = "Models/Shells.zip/lambis_truncata_shell.obj";
+        scale = 0.858929;
+        preprocess = {
+            setMaterial(all(), 
+                UniversdsalMaterial::Specification {
+                    lambertian = Color3(0.02);
+                    glossy = Color4(Color3(0.3), 0.8);
+                    transmissive = Color3(0.9, 1.0, 1.0);
+                    emissive = Color3(0.01);
+                    etaReflect = 1.3f;
+                    etaTransmit = 1.00f;
+            });
+        };
+    };
+
+    shell4 = ArticulatedModel::Specification {
+            filename = "Models/Shells.zip/nautilus_shell.obj";
+        scale = 0.719369;
+        preprocess = {
+            setMaterial(all(), 
+                UniversdsalMaterial::Specification {
+                    lambertian = Color3(0.02);
+                    glossy = Color4(Color3(0.3), 0.8);
+                    transmissive = Color3(0.9, 1.0, 1.0);
+                    emissive = Color3(0.01);
+                    etaReflect = 1.3f;
+                    etaTransmit = 1.00f;
+            });
+        };
+    };
+
+    shell5 = ArticulatedModel::Specification {
+            filename = "Models/Shells.zip/nautilus_shell.obj";
+        scale = 0.946351;
+        preprocess = {
+            setMaterial(all(), 
+                UniversdsalMaterial::Specification {
+                    lambertian = Color3(0.02);
+                    glossy = Color4(Color3(0.3), 0.8);
+                    transmissive = Color3(0.9, 1.0, 1.0);
+                    emissive = Color3(0.01);
+                    etaReflect = 1.3f;
+                    etaTransmit = 1.00f;
+            });
+        };
+    };
+
+    bubble0 = ArticulatedModel::Specification {
+        filename = "ifs/sphere.ifs";
+        scale = 0.037828;
+        preprocess = {
+            setMaterial(all(), 
+                UniversalMaterial::Specification {
+                    lambertian = Color3(0.02);
+                    glossy = Color4(Color3(0.3), 0.8);
+                    transmissive = Color3(0.9, 1.0, 1.0);
+                    emissive = Color3(0.01);
+                    etaReflect = 1.3f;
+                    etaTransmit = 1.00f;
+            });
+        };
+    };
+
+    bubble1 = ArticulatedModel::Specification {
+        filename = "ifs/sphere.ifs";
+        scale = 0.048162;
+        preprocess = {
+            setMaterial(all(), 
+                UniversalMaterial::Specification {
+                    lambertian = Color3(0.02);
+                    glossy = Color4(Color3(0.3), 0.8);
+                    transmissive = Color3(0.9, 1.0, 1.0);
+                    emissive = Color3(0.01);
+                    etaReflect = 1.3f;
+                    etaTransmit = 1.00f;
+            });
+        };
+    };
+
+    bubble2 = ArticulatedModel::Specification {
+        filename = "ifs/sphere.ifs";
+        scale = 0.036881;
+        preprocess = {
+            setMaterial(all(), 
+                UniversalMaterial::Specification {
+                    lambertian = Color3(0.02);
+                    glossy = Color4(Color3(0.3), 0.8);
+                    transmissive = Color3(0.9, 1.0, 1.0);
+                    emissive = Color3(0.01);
+                    etaReflect = 1.3f;
+                    etaTransmit = 1.00f;
+            });
+        };
+    };
+
+    shark1 = ArticulatedModel::Specification {
+        filename = "Models/Shark.zip/Shark/Shark.obj";
+        scale = 0.15f;
+    };
+
+    shark2 = ArticulatedModel::Specification {
+        filename = "Models/Shark.zip/Shark/Shark2.obj";
+        scale = 50.0f;
+    };
+
+    castle = ArticulatedModel::Specification {
+        filename = "Models/Castle.zip/Castle/Castle.obj";
+        scale = .002f;
+    };
+
+    chest = ArticulatedModel::Specification {
+        filename = "Models/Chest/Chest.obj";
+        scale = 1.0f;
+    };
+
+    tankWater = ArticulatedModel::Specification {
+        filename = "water.obj";
+        preprocess = {
+            transformGeometry(all(), Matrix4::scale(5.8f,1.0f,2.8f));
+        };
+    };
+
+    seaWater = ArticulatedModel::Specification {
+        filename = "water.obj";
+        preprocess = {
+            transformGeometry(all(), Matrix4::scale(50.0f,50.0f,50.0f));
+        };
+    };
+
+    blueRectangle = ArticulatedModel::Specification {
+        filename = "model/cube/cube.obj";
+        preprocess = {
+            setMaterial(all(), 
+                UniversalMaterial::Specification {
+                    lambertian = Color3(0, 0.807843, 0.819608);
+            });
+            transformGeometry(all(), Matrix4::scale(12.6f,6.0f,0.6f));
+        };
+    };
+
+    glassRectangle = ArticulatedModel::Specification {
+        filename = "model/cube/cube.obj";
+        preprocess = {
+            setMaterial(all(), 
+                UniversalMaterial::Specification {
+                    lambertian = Color3(0.02);
+                    glossy = Color4(Color3(0.3), 0.8);
+                    transmissive = Color3(0.9, 1.0, 1.0);
+                    emissive = Color3(0.01);
+                    etaReflect = 1.0;
+                    etaTransmit = 1.03;
+            });
+            transformGeometry(all(), Matrix4::scale(12.6f,6.0f,0.6f));
+        };
+    };
+
+    glassSquare = ArticulatedModel::Specification {
+        filename = "model/cube/cube.obj";
+        preprocess = {
+            setMaterial(all(), 
+                UniversalMaterial::Specification {
+                    lambertian = Color3(0.02);
+                    glossy = Color4(Color3(0.3), 0.8);
+                    transmissive = Color3(0.9, 1.0, 1.0);
+                    emissive = Color3(0.01);
+                    etaReflect = 1.0;
+                    etaTransmit = 1.03;
+            });
+            transformGeometry(all(), Matrix4::scale(0.6f,6.0f,6.0f));
+        };
+    };
+
+    tankGround = ArticulatedModel::Specification {
+        filename = "model/cube/cube.obj";
+        preprocess = {
+            transformGeometry(all(), Matrix4::scale(11.6f,0.6f,5.6f));
+            setMaterial(all(),
+                UniversalMaterial::Specification {
+                    lambertian = "ground.jpg";
+                    bump = "groundBump.jpg";
+            });
+        };
+    };
+
+    seaGround = ArticulatedModel::Specification {
+        filename = "model/cube/cube.obj";
+        preprocess = {
+            transformGeometry(all(), Matrix4::scale(50.0f,0.6f,50.0f));
+            setMaterial(all(),
+                UniversalMaterial::Specification {
+                    lambertian = "ground.jpg";
+                    bump = "groundBump.jpg";
+            });
+        };
+    };
+
+    rock1 = ArticulatedModel::Specification {
+        filename = "Models/outcrops.zip/granite_outcrops/RockOutcrop5.obj";
+        preprocess = {
+            transformGeometry(all(), Matrix4::scale(0.1f,0.1f,0.1f));
+        };
+    };
+
+    rock2 = ArticulatedModel::Specification {
+        filename = "Models/outcrops.zip/granite_outcrops/RockOutcrop4.obj";
+        preprocess = {
+            transformGeometry(all(), Matrix4::scale(0.045f,0.045f,0.045f));
+        };
+    };
+
+    rock3 = ArticulatedModel::Specification {
+        filename = "Models/outcrops.zip/granite_outcrops/RockOutcrop2.obj";
+        preprocess = {
+            transformGeometry(all(), Matrix4::scale(0.1f,0.1f,0.1f));
+        };
+    };
+
+    rock4 = ArticulatedModel::Specification {
+        filename = "Models/outcrops.zip/granite_outcrops/RockOutcrop1.obj";
+        preprocess = {
+            transformGeometry(all(), Matrix4::scale(0.1f,0.1f,0.1f));
+        };
+    };
+
+    largeRock1 = ArticulatedModel::Specification {
+        filename = "Models/outcrops.zip/granite_outcrops/RockOutcrop5.obj";
+        scale = 0.15f;
+    };
+
+    largeRock2 = ArticulatedModel::Specification {
+        filename = "Models/outcrops.zip/granite_outcrops/RockOutcrop4.obj";
+        scale = 0.15f;
+    };
+
+    largeRock3 = ArticulatedModel::Specification {
+        filename = "Models/outcrops.zip/granite_outcrops/RockOutcrop2.obj";
+        scale = 0.15f;
+    };
+
+    largeRock4 = ArticulatedModel::Specification {
+        filename = "Models/outcrops.zip/granite_outcrops/RockOutcrop1.obj";
+        scale = 0.15f;
+    };
+
+};
+
+entities = {
+        skybox = Skybox {
+            texture = Color3(0,0,.5);
+        };
+
+        camera = Camera {
+            frame = CFrame::fromXYZYPRDegrees(0.0, 1.0, 14.0, -1.2,4.0);
+        };
+        light1 = Light {
+               attenuation = (0, 0, 1);
+                bulbPower = Power3(2000); 
+                frame = CFrame::fromXYZYPRDegrees(3.9, 6.2, 1.4, -164, -77,
+77);
+                shadowMapSize = Vector2int16(2048, 2048); 
+                spotHalfAngleDegrees = 60;
+                spotSquare = true; 
+                type = "SPOT"; 
+        };
+
+        light2 = Light {
+               attenuation = (0, 0, 1);
+                bulbPower = Power3(2000); 
+                frame = CFrame::fromXYZYPRDegrees(-4.1, 5.3, .5, -164, -77,
+77);
+                shadowMapSize = Vector2int16(2048, 2048); 
+                spotHalfAngleDegrees = 60;
+                spotSquare = true; 
+                type = "SPOT"; 
+        };
+
+        side1 = VisibleEntity {
+            model = "blueRectangle";
+            frame = CFrame::fromXYZYPRDegrees(0,0,-2,0,0,0);
+        };
+
+        side2 = VisibleEntity {
+            model = "glassRectangle";
+            frame = CFrame::fromXYZYPRDegrees(0,0,4,0,0,0);
+        };
+
+        bottom = VisibleEntity {
+            model = "glassRectangle";
+            frame = CFrame::fromXYZYPRDegrees(0,-2.7f,1,0,90,0);
+        };
+
+        squareSide1 = VisibleEntity {
+            model = "glassSquare";
+            frame = CFrame::fromXYZYPRDegrees(6,0,1.0f,0,0,0);
+        };
+
+        squareSide2 = VisibleEntity {
+            model = "glassSquare";
+            frame = CFrame::fromXYZYPRDegrees(-6,0,1.0f,0,0,0);
+        };
+
+        WATER = VisibleEntity {
+            model = "tankWater";
+            frame = CFrame::fromXYZYPRDegrees(0,1.6f,0.9f,0,0,0);
+        };
+
+        ground = VisibleEntity {
+            model = "tankGround";
+            frame = CFrame::fromXYZYPRDegrees(0,-2.0f,0.9f,0,0,0);
+        };
+
+        aRock1 = VisibleEntity {
+            model = "rock1";
+            frame = CFrame::fromXYZYPRDegrees(3.3,-1.8f,-0.2f,173.4f,0,0);
+        };
+
+        aRock2 = VisibleEntity {
+            model = "rock3";
+            frame = CFrame::fromXYZYPRDegrees(-0.1,-2.0f,1.1f,-17.5,0,0);
+        };
+
+        aRock3 = VisibleEntity {
+            model = "rock4";
+            frame = CFrame::fromXYZYPRDegrees(-4.0f,-1.8f,2.4f,135.0f,0,0);
+        };
+
+        chest1 = VisibleEntity {
+            model = "chest";
+            frame =
+CFrame::fromXYZYPRDegrees(-4.3,-2.0f,-0.6f,-141.0f,2.2f,9.9f);
+        };
+
+         fish00 = VisibleEntity {
+            model = "fish0";
+        frame = CFrame::fromXYZYPRDegrees(3.429842f , 0.329912f , -1.041896f
+,204.633499f, -5.756969f, 0.0f);
+        };
+    fish01 = VisibleEntity {
+            model = "fish0";
+        frame = CFrame::fromXYZYPRDegrees(1.512242f , 0.799387f , 0.959460f
+,284.611664f, -37.373398f, 0.0f);
+        };
+    fish02 = VisibleEntity {
+            model = "fish0";
+        frame = CFrame::fromXYZYPRDegrees(-3.909957f , 1.726013f , 0.661636f
+,324.444946f, 5.536003f, 0.0f);
+        };
+    fish03 = VisibleEntity {
+            model = "fish0";
+        frame = CFrame::fromXYZYPRDegrees(3.815753f , -0.121817f , 3.126564f
+,283.876007f, -6.771721f, 0.0f);
+        };
+    fish04 = VisibleEntity {
+            model = "fish0";
+        frame = CFrame::fromXYZYPRDegrees(-0.299160f , 0.821849f , -0.170259f
+,38.750309f, -14.227665f, 0.0f);
+        };
+    fish05 = VisibleEntity {
+            model = "fish0";
+        frame = CFrame::fromXYZYPRDegrees(-4.194365f , 0.063224f , -1.119342f
+,160.813995f, 1.131443f, 0.0f);
+        };
+    fish06 = VisibleEntity {
+            model = "fish0";
+        frame = CFrame::fromXYZYPRDegrees(3.972162f , 0.176966f , -1.018874f
+,289.730530f, 17.148911f, 0.0f);
+        };
+    fish07 = VisibleEntity {
+            model = "fish0";
+        frame = CFrame::fromXYZYPRDegrees(-0.746138f , 0.225808f , -0.734089f
+,336.181458f, 54.712585f, 0.0f);
+        };
+    fish08 = VisibleEntity {
+            model = "fish0";
+        frame = CFrame::fromXYZYPRDegrees(-4.246105f , -0.963127f , 2.745015f
+,112.456558f, 19.955078f, 0.0f);
+        };
+    fish09 = VisibleEntity {
+            model = "fish0";
+        frame = CFrame::fromXYZYPRDegrees(-1.002839f , -1.374410f , 2.106467f
+,250.189804f, 43.455521f, 0.0f);
+        };
+    fish010 = VisibleEntity {
+            model = "fish0";
+        frame = CFrame::fromXYZYPRDegrees(-0.207500f , 0.823125f , 2.591426f
+,156.856522f, -7.592720f, 0.0f);
+        };
+    fish011 = VisibleEntity {
+            model = "fish0";
+        frame = CFrame::fromXYZYPRDegrees(3.985477f , -0.871374f , 3.078289f
+,86.504349f, 7.523937f, 0.0f);
+        };
+    fish012 = VisibleEntity {
+            model = "fish0";
+        frame = CFrame::fromXYZYPRDegrees(-3.570491f , -1.373506f , -0.228071f
+,305.948822f, 24.751076f, 0.0f);
+        };
+    fish013 = VisibleEntity {
+            model = "fish0";
+        frame = CFrame::fromXYZYPRDegrees(5.027176f , -0.356861f , -0.620218f
+,153.720795f, 7.035496f, 0.0f);
+        };
+    fish014 = VisibleEntity {
+            model = "fish0";
+        frame = CFrame::fromXYZYPRDegrees(1.142390f , 1.088447f , 1.649824f
+,119.341492f, 2.903858f, 0.0f);
+        };
+    fish015 = VisibleEntity {
+            model = "fish0";
+        frame = CFrame::fromXYZYPRDegrees(-2.803653f , 1.881982f , 1.351862f
+,189.573776f, 51.408745f, 0.0f);
+        };
+    fish016 = VisibleEntity {
+            model = "fish0";
+        frame = CFrame::fromXYZYPRDegrees(1.347465f , 0.904219f , 0.550376f
+,238.443192f, -2.123253f, 0.0f);
+        };
+    fish017 = VisibleEntity {
+            model = "fish0";
+        frame = CFrame::fromXYZYPRDegrees(0.210056f , -1.025063f , 3.173890f
+,319.469086f, -31.427605f, 0.0f);
+        };
+    fish018 = VisibleEntity {
+            model = "fish0";
+        frame = CFrame::fromXYZYPRDegrees(-2.056973f , 0.219800f , 3.482157f
+,299.061768f, 21.501717f, 0.0f);
+        };
+    fish019 = VisibleEntity {
+            model = "fish0";
+        frame = CFrame::fromXYZYPRDegrees(-1.895172f , 0.672837f , 0.323547f
+,58.487068f, 19.347511f, 0.0f);
+        };
+    fish020 = VisibleEntity {
+            model = "fish0";
+        frame = CFrame::fromXYZYPRDegrees(0.427345f , 1.320608f , -0.688158f
+,267.458130f, -33.342026f, 0.0f);
+        };
+    fish021 = VisibleEntity {
+            model = "fish0";
+        frame = CFrame::fromXYZYPRDegrees(-4.413468f , -0.426742f , 3.154944f
+,138.162521f, 25.961189f, 0.0f);
+        };
+    fish022 = VisibleEntity {
+            model = "fish0";
+        frame = CFrame::fromXYZYPRDegrees(0.364838f , -0.134794f , -1.355639f
+,340.876404f, -48.544029f, 0.0f);
+        };
+    fish023 = VisibleEntity {
+            model = "fish0";
+        frame = CFrame::fromXYZYPRDegrees(-3.545121f , -0.027121f , -0.872513f
+,325.825928f, -34.496838f, 0.0f);
+        };
+    fish10 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(-2.901420f , -0.816003f , 2.547753f
+,128.331467f, 29.341042f, 0.0f);
+        };
+    fish11 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(-4.105138f , -0.632543f , -0.220193f
+,47.339005f, -3.027828f, 0.0f);
+        };
+    fish12 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(2.582505f , 0.142041f , 0.865556f
+,12.514237f, -22.120991f, 0.0f);
+        };
+    fish13 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(-2.655687f , 0.474497f , 3.317522f
+,166.324219f, -15.941181f, 0.0f);
+        };
+    fish14 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(-2.096668f , 0.449064f , 3.359166f
+,46.606258f, 34.885918f, 0.0f);
+        };
+    fish15 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(-0.424139f , 0.219564f , 3.543748f
+,50.960030f, -42.007191f, 0.0f);
+        };
+    fish16 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(-1.886599f , -1.174978f , 0.708901f
+,355.390045f, -43.652531f, 0.0f);
+        };
+    fish17 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(-5.585532f , 0.009516f , 0.033072f
+,261.703003f, 25.866409f, 0.0f);
+        };
+    fish18 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(-0.967653f , 0.620619f , -1.185127f
+,19.949848f, -32.189384f, 0.0f);
+        };
+    fish19 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(3.494287f , 1.030997f , 0.919564f
+,78.695778f, 21.092148f, 0.0f);
+        };
+    fish110 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(3.022398f , 0.409782f , -0.845673f
+,358.544220f, 14.774895f, 0.0f);
+        };
+    fish111 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(-2.643990f , 0.994399f , 1.601490f
+,347.216736f, 45.572601f, 0.0f);
+        };
+    fish112 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(3.339228f , -0.744429f , -1.121413f
+,36.149540f, -13.381237f, 0.0f);
+        };
+    fish113 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(3.342929f , -1.458430f , 0.685925f
+,52.633438f, -45.905437f, 0.0f);
+        };
+    fish114 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(-4.177165f , -0.234095f , 1.473551f
+,247.167984f, 5.422634f, 0.0f);
+        };
+    fish115 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(-0.995935f , 0.413170f , 1.414736f
+,119.803642f, -0.781967f, 0.0f);
+        };
+    fish116 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(2.496288f , -0.390843f , -1.267421f
+,46.563515f, -31.561813f, 0.0f);
+        };
+    fish117 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(-0.954698f , 0.435670f , 3.159209f
+,28.815651f, -7.107826f, 0.0f);
+        };
+    fish20 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(-3.415876f , -1.438352f , 1.948870f
+,5.319545f, 39.228767f, 0.0f);
+        };
+    fish21 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(-2.506572f , -1.214016f , 2.787166f
+,85.610504f, 47.460754f, 0.0f);
+        };
+    fish22 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(-5.306122f , 0.515085f , 1.944276f
+,2.060250f, -6.469669f, 0.0f);
+        };
+    fish23 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(-1.022979f , -0.222578f , -1.319189f
+,24.401163f, -10.351238f, 0.0f);
+        };
+    fish24 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(1.577253f , -0.838916f , -0.324059f
+,211.375198f, 1.807610f, 0.0f);
+        };
+    fish25 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(-1.088867f , 1.336888f , -0.642454f
+,280.750366f, 47.977036f, 0.0f);
+        };
+    fish26 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(-1.892805f , 0.454100f , 3.375259f
+,331.905670f, -4.638851f, 0.0f);
+        };
+    fish27 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(1.657172f , 0.995753f , -0.332123f
+,319.735291f, -6.733395f, 0.0f);
+        };
+    fish28 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(-0.477443f , -0.699925f , 1.518207f
+,268.931610f, 36.755508f, 0.0f);
+        };
+    fish29 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(-2.565413f , -1.788781f , 0.775914f
+,96.625412f, -51.426281f, 0.0f);
+        };
+    fish210 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(2.612687f , 1.277644f , -0.592108f
+,343.126099f, -2.845978f, 0.0f);
+        };
+    fish211 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(-2.902396f , -0.190159f , 3.457854f
+,148.515182f, 42.315224f, 0.0f);
+        };
+    fish212 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(4.047967f , 0.812818f , 2.114123f
+,11.859090f, -3.270672f, 0.0f);
+        };
+    fish213 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(1.304256f , -0.275863f , 3.422309f
+,59.175041f, 30.687805f, 0.0f);
+        };
+    fish214 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(0.420234f , -0.001831f , -1.019474f
+,39.285889f, 16.421829f, 0.0f);
+        };
+    fish215 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(4.246024f , 0.455642f , 0.613181f
+,268.851166f, -47.322453f, 0.0f);
+        };
+    fish216 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(4.094705f , -0.376927f , 0.344928f
+,239.627014f, -8.470535f, 0.0f);
+        };
+    fish217 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(-3.515384f , 0.830661f , 2.882428f
+,283.091827f, 26.979942f, 0.0f);
+        };
+    fish218 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(0.835367f , -1.025635f , 2.673516f
+,304.472626f, 17.848839f, 0.0f);
+        };
+    fish219 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(4.592420f , 0.791093f , 1.872104f
+,264.405792f, 26.332375f, 0.0f);
+        };
+    fish220 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(-1.750365f , -0.855843f , 1.535929f
+,304.725616f, 15.286369f, 0.0f);
+        };
+    fish221 = VisibleEntity {
+            model = "fish5";
+        frame = CFrame::fromXYZYPRDegrees(-1.575796f , 0.655898f , -1.304641f
+,39.585773f, -54.853825f, 0.0f);
+        };
+    bubble0 = VisibleEntity {
+            model = "bubble0";
+            frame = CFrame::fromXYZYPRDegrees(3.031154f , -0.402854f ,
+0.840687f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble1 = VisibleEntity {
+            model = "bubble0";
+            frame = CFrame::fromXYZYPRDegrees(0.524275f , 0.768551f , 1.762727f
+, 0.0f, 0.0f, 0.0f);
+        };
+    bubble2 = VisibleEntity {
+            model = "bubble2";
+            frame = CFrame::fromXYZYPRDegrees(-3.237067f , -0.464166f ,
+-0.382471f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble3 = VisibleEntity {
+            model = "bubble2";
+            frame = CFrame::fromXYZYPRDegrees(-2.319039f , 0.005950f ,
+2.036641f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble4 = VisibleEntity {
+            model = "bubble0";
+            frame = CFrame::fromXYZYPRDegrees(0.103620f , -0.808908f ,
+-0.413714f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble5 = VisibleEntity {
+            model = "bubble2";
+            frame = CFrame::fromXYZYPRDegrees(2.951403f , -0.830289f ,
+1.692375f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble6 = VisibleEntity {
+            model = "bubble0";
+            frame = CFrame::fromXYZYPRDegrees(2.100723f , -0.416763f ,
+0.831629f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble7 = VisibleEntity {
+            model = "bubble0";
+            frame = CFrame::fromXYZYPRDegrees(2.705352f , 0.981357f , 0.876261f
+, 0.0f, 0.0f, 0.0f);
+        };
+    bubble8 = VisibleEntity {
+            model = "bubble1";
+            frame = CFrame::fromXYZYPRDegrees(-1.957989f , 1.991007f ,
+0.894140f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble9 = VisibleEntity {
+            model = "bubble0";
+            frame = CFrame::fromXYZYPRDegrees(-3.462404f , -0.029524f ,
+0.577102f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble10 = VisibleEntity {
+            model = "bubble0";
+            frame = CFrame::fromXYZYPRDegrees(-2.832298f , -0.930683f ,
+-0.453180f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble11 = VisibleEntity {
+            model = "bubble0";
+            frame = CFrame::fromXYZYPRDegrees(1.513449f , -1.007266f ,
+-0.278165f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble12 = VisibleEntity {
+            model = "bubble0";
+            frame = CFrame::fromXYZYPRDegrees(-3.101854f , 0.484754f ,
+0.869771f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble13 = VisibleEntity {
+            model = "bubble1";
+            frame = CFrame::fromXYZYPRDegrees(1.860924f , -1.053636f ,
+1.360067f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble14 = VisibleEntity {
+            model = "bubble0";
+            frame = CFrame::fromXYZYPRDegrees(-2.991743f , 0.130138f ,
+1.954707f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble15 = VisibleEntity {
+            model = "bubble0";
+            frame = CFrame::fromXYZYPRDegrees(-0.968421f , 0.245445f ,
+2.233240f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble16 = VisibleEntity {
+            model = "bubble0";
+            frame = CFrame::fromXYZYPRDegrees(-1.131627f , 1.585467f ,
+1.540156f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble17 = VisibleEntity {
+            model = "bubble0";
+            frame = CFrame::fromXYZYPRDegrees(-0.008579f , -1.395730f ,
+2.154358f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble18 = VisibleEntity {
+            model = "bubble0";
+            frame = CFrame::fromXYZYPRDegrees(-1.032260f , 1.479046f ,
+1.576778f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble19 = VisibleEntity {
+            model = "bubble1";
+            frame = CFrame::fromXYZYPRDegrees(0.167435f , 1.902148f ,
+-0.238304f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble20 = VisibleEntity {
+            model = "bubble1";
+            frame = CFrame::fromXYZYPRDegrees(-1.605189f , -0.791192f ,
+-0.462985f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble21 = VisibleEntity {
+            model = "bubble0";
+            frame = CFrame::fromXYZYPRDegrees(-1.523182f , 1.024974f ,
+-0.401067f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble22 = VisibleEntity {
+            model = "bubble2";
+            frame = CFrame::fromXYZYPRDegrees(-2.491494f , -1.513315f ,
+0.972231f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble23 = VisibleEntity {
+            model = "bubble2";
+            frame = CFrame::fromXYZYPRDegrees(2.020985f , 1.303106f , 0.489697f
+, 0.0f, 0.0f, 0.0f);
+        };
+    bubble24 = VisibleEntity {
+            model = "bubble0";
+            frame = CFrame::fromXYZYPRDegrees(0.326548f , 0.681365f , 0.689902f
+, 0.0f, 0.0f, 0.0f);
+        };
+    bubble25 = VisibleEntity {
+            model = "bubble1";
+            frame = CFrame::fromXYZYPRDegrees(1.566847f , -0.065621f ,
+1.280779f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble26 = VisibleEntity {
+            model = "bubble2";
+            frame = CFrame::fromXYZYPRDegrees(-1.964462f , 0.289968f ,
+1.612792f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble27 = VisibleEntity {
+            model = "bubble2";
+            frame = CFrame::fromXYZYPRDegrees(3.901254f , -0.373292f ,
+-0.017469f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble28 = VisibleEntity {
+            model = "bubble2";
+            frame = CFrame::fromXYZYPRDegrees(-1.667968f , 1.956351f ,
+1.438155f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble29 = VisibleEntity {
+            model = "bubble1";
+            frame = CFrame::fromXYZYPRDegrees(2.625067f , -0.598467f ,
+-0.487025f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble30 = VisibleEntity {
+            model = "bubble1";
+            frame = CFrame::fromXYZYPRDegrees(-2.180536f , -0.922937f ,
+2.190821f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble31 = VisibleEntity {
+            model = "bubble0";
+            frame = CFrame::fromXYZYPRDegrees(1.757781f , -0.445365f ,
+1.723021f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble32 = VisibleEntity {
+            model = "bubble2";
+            frame = CFrame::fromXYZYPRDegrees(-0.243737f , -0.013682f ,
+1.986360f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble33 = VisibleEntity {
+            model = "bubble0";
+            frame = CFrame::fromXYZYPRDegrees(2.683875f , 1.129219f , 1.519425f
+, 0.0f, 0.0f, 0.0f);
+        };
+    bubble34 = VisibleEntity {
+            model = "bubble2";
+            frame = CFrame::fromXYZYPRDegrees(-2.490708f , -0.508560f ,
+1.911089f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble35 = VisibleEntity {
+            model = "bubble2";
+            frame = CFrame::fromXYZYPRDegrees(0.152382f , 0.532998f ,
+-0.355649f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble36 = VisibleEntity {
+            model = "bubble1";
+            frame = CFrame::fromXYZYPRDegrees(-0.447332f , -0.346348f ,
+2.461506f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble37 = VisibleEntity {
+            model = "bubble1";
+            frame = CFrame::fromXYZYPRDegrees(3.231286f , 0.495198f , 1.975296f
+, 0.0f, 0.0f, 0.0f);
+        };
+    bubble38 = VisibleEntity {
+            model = "bubble1";
+            frame = CFrame::fromXYZYPRDegrees(2.453427f , 0.925217f , 1.315182f
+, 0.0f, 0.0f, 0.0f);
+        };
+    bubble39 = VisibleEntity {
+            model = "bubble0";
+            frame = CFrame::fromXYZYPRDegrees(0.136695f , 0.308902f , 0.176077f
+, 0.0f, 0.0f, 0.0f);
+        };
+    bubble40 = VisibleEntity {
+            model = "bubble1";
+            frame = CFrame::fromXYZYPRDegrees(3.183790f , 0.543123f ,
+-0.224407f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble41 = VisibleEntity {
+            model = "bubble1";
+            frame = CFrame::fromXYZYPRDegrees(1.207882f , -0.368450f ,
+2.117083f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble42 = VisibleEntity {
+            model = "bubble0";
+            frame = CFrame::fromXYZYPRDegrees(2.469393f , -0.571802f ,
+-0.133075f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble43 = VisibleEntity {
+            model = "bubble1";
+            frame = CFrame::fromXYZYPRDegrees(4.266506f , 0.524306f , 0.487412f
+, 0.0f, 0.0f, 0.0f);
+        };
+    bubble44 = VisibleEntity {
+            model = "bubble1";
+            frame = CFrame::fromXYZYPRDegrees(0.710597f , 1.790359f , 2.374512f
+, 0.0f, 0.0f, 0.0f);
+        };
+    bubble45 = VisibleEntity {
+            model = "bubble2";
+            frame = CFrame::fromXYZYPRDegrees(0.988157f , -0.829984f ,
+2.334715f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble46 = VisibleEntity {
+            model = "bubble0";
+            frame = CFrame::fromXYZYPRDegrees(-2.778806f , 0.947384f ,
+0.263926f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble47 = VisibleEntity {
+            model = "bubble2";
+            frame = CFrame::fromXYZYPRDegrees(-2.106484f , -0.886993f ,
+1.119809f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble48 = VisibleEntity {
+            model = "bubble2";
+            frame = CFrame::fromXYZYPRDegrees(-1.881366f , 2.108112f ,
+0.858139f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble49 = VisibleEntity {
+            model = "bubble0";
+            frame = CFrame::fromXYZYPRDegrees(-2.525038f , -0.415440f ,
+1.504194f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble50 = VisibleEntity {
+            model = "bubble0";
+            frame = CFrame::fromXYZYPRDegrees(-2.811553f , 0.342948f ,
+0.333107f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble51 = VisibleEntity {
+            model = "bubble2";
+            frame = CFrame::fromXYZYPRDegrees(0.899560f , 0.025825f , 2.514675f
+, 0.0f, 0.0f, 0.0f);
+        };
+    bubble52 = VisibleEntity {
+            model = "bubble2";
+            frame = CFrame::fromXYZYPRDegrees(4.146867f , 1.066248f , 1.866565f
+, 0.0f, 0.0f, 0.0f);
+        };
+    bubble53 = VisibleEntity {
+            model = "bubble0";
+            frame = CFrame::fromXYZYPRDegrees(0.458887f , -1.053021f ,
+1.665872f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble54 = VisibleEntity {
+            model = "bubble0";
+            frame = CFrame::fromXYZYPRDegrees(-0.034585f , -0.477384f ,
+0.831975f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble55 = VisibleEntity {
+            model = "bubble0";
+            frame = CFrame::fromXYZYPRDegrees(1.975279f , 0.225982f , 0.779858f
+, 0.0f, 0.0f, 0.0f);
+        };
+    bubble56 = VisibleEntity {
+            model = "bubble1";
+            frame = CFrame::fromXYZYPRDegrees(1.052114f , -0.651428f ,
+1.484212f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble57 = VisibleEntity {
+            model = "bubble1";
+            frame = CFrame::fromXYZYPRDegrees(2.585110f , 2.064928f , 0.395774f
+, 0.0f, 0.0f, 0.0f);
+        };
+    bubble58 = VisibleEntity {
+            model = "bubble0";
+            frame = CFrame::fromXYZYPRDegrees(-3.585566f , -0.364020f ,
+1.516985f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble59 = VisibleEntity {
+            model = "bubble1";
+            frame = CFrame::fromXYZYPRDegrees(-3.346887f , 0.237711f ,
+0.577553f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble60 = VisibleEntity {
+            model = "bubble2";
+            frame = CFrame::fromXYZYPRDegrees(0.328260f , 1.278797f , 0.826050f
+, 0.0f, 0.0f, 0.0f);
+        };
+    bubble61 = VisibleEntity {
+            model = "bubble0";
+            frame = CFrame::fromXYZYPRDegrees(2.997264f , 1.012028f ,
+-0.249573f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble62 = VisibleEntity {
+            model = "bubble1";
+            frame = CFrame::fromXYZYPRDegrees(-0.150839f , 0.262893f ,
+1.950004f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble63 = VisibleEntity {
+            model = "bubble2";
+            frame = CFrame::fromXYZYPRDegrees(0.577498f , 2.041349f , 2.077878f
+, 0.0f, 0.0f, 0.0f);
+        };
+    bubble64 = VisibleEntity {
+            model = "bubble2";
+            frame = CFrame::fromXYZYPRDegrees(1.339273f , 2.064835f , 0.294723f
+, 0.0f, 0.0f, 0.0f);
+        };
+    bubble65 = VisibleEntity {
+            model = "bubble1";
+            frame = CFrame::fromXYZYPRDegrees(-0.406229f , 1.110430f ,
+2.273364f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble66 = VisibleEntity {
+            model = "bubble2";
+            frame = CFrame::fromXYZYPRDegrees(-2.841642f , -0.761316f ,
+1.504107f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble67 = VisibleEntity {
+            model = "bubble0";
+            frame = CFrame::fromXYZYPRDegrees(-0.989234f , 0.517730f ,
+1.686211f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble68 = VisibleEntity {
+            model = "bubble1";
+            frame = CFrame::fromXYZYPRDegrees(2.808516f , 0.332194f , 1.250983f
+, 0.0f, 0.0f, 0.0f);
+        };
+    bubble69 = VisibleEntity {
+            model = "bubble2";
+            frame = CFrame::fromXYZYPRDegrees(0.767601f , 0.245796f , 0.023207f
+, 0.0f, 0.0f, 0.0f);
+        };
+    bubble70 = VisibleEntity {
+            model = "bubble2";
+            frame = CFrame::fromXYZYPRDegrees(2.368287f , -0.563138f ,
+2.270667f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble71 = VisibleEntity {
+            model = "bubble2";
+            frame = CFrame::fromXYZYPRDegrees(0.668781f , -1.285657f ,
+1.819267f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble72 = VisibleEntity {
+            model = "bubble2";
+            frame = CFrame::fromXYZYPRDegrees(2.648450f , -1.303463f ,
+-0.136622f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble73 = VisibleEntity {
+            model = "bubble2";
+            frame = CFrame::fromXYZYPRDegrees(1.082945f , -0.155749f ,
+0.645889f , 0.0f, 0.0f, 0.0f);
+        };
+    bubble74 = VisibleEntity {
+            model = "bubble1";
+            frame = CFrame::fromXYZYPRDegrees(0.342796f , -0.907656f ,
+0.541454f , 0.0f, 0.0f, 0.0f);
+        };
+
+
+    coral0 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(3.621184f, -1.200000f, 0.090710f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral2.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral2_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral1 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(1.859682f, -1.200000f, 2.043085f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral2 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(2.114562f, -1.200000f, -0.689466f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral5.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral5_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral3 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(4.257266f, -1.200000f, -0.103297f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral4 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-5.385082f, -1.200000f, 0.824105f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral2.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral2_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral5 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-1.354000f, -1.200000f, -1.273623f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral6 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-5.220327f, -1.200000f, 1.876804f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral7 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(1.414809f, -1.200000f, -0.887785f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral8 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-3.055241f, -1.200000f, -0.236678f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral2.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral2_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral9 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(1.949470f, -1.200000f, 1.889024f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral10 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(2.083753f, -1.200000f, 2.350734f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral11 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-4.967421f, -1.200000f, 0.748295f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral12 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(0.100571f, -1.200000f, 1.426561f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral13 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-3.318164f, -1.200000f, 1.900091f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral2.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral2_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral14 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-2.182382f, -1.200000f, -0.474296f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral15 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-1.861428f, -1.200000f, 2.290870f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral16 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-2.109336f, -1.200000f, 1.405963f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral17 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-4.998558f, -1.200000f, 0.815894f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral2.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral2_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral18 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(2.438733f, -1.200000f, 0.455440f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral19 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-2.862661f, -1.200000f, -1.260126f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral2.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral2_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral20 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(3.986195f, -1.200000f, 1.413405f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral21 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(1.001456f, -1.200000f, -0.401067f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral22 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-0.118676f, -1.200000f, -0.158749f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral2.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral2_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral23 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-0.233184f, -1.200000f, 0.935586f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral24 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(0.373257f, -1.200000f, 1.347953f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral25 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(0.215370f, -1.200000f, -0.447590f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral26 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(5.082322f, -1.200000f, 2.915352f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral27 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-4.040498f, -1.200000f, -0.392714f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral28 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-5.321117f, -1.200000f, -1.054039f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral29 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(1.920743f, -1.200000f, -0.642324f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral30 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(2.268287f, -1.200000f, -1.076186f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral2.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral2_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral31 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-2.303704f, -1.200000f, -0.784940f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral5.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral5_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral32 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(4.685439f, -1.200000f, 0.967689f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral33 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(5.062857f, -1.200000f, -0.933288f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral34 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(0.647701f, -1.200000f, -0.516578f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral35 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-4.309913f, -1.200000f, -0.815559f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral36 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-2.513657f, -1.200000f, -0.072753f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral37 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(4.441081f, -1.200000f, 0.088241f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral2.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral2_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral38 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(1.734385f, -1.200000f, -0.520504f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral39 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(3.819623f, -1.200000f, 1.893830f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral5.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral5_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral40 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-1.709863f, -1.200000f, 1.737525f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral5.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral5_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral41 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-2.068658f, -1.200000f, 0.363226f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral42 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(3.805461f, -1.200000f, 2.402954f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral43 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(0.060399f, -1.200000f, -0.511629f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral44 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(1.204566f, -1.200000f, 2.404870f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral2.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral2_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral45 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-4.442414f, -1.200000f, 1.258657f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral46 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-5.312726f, -1.200000f, -0.066142f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral47 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-1.802937f, -1.200000f, 2.030065f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral5.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral5_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral48 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(1.050632f, -1.200000f, 0.328580f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral5.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral5_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral49 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(0.395606f, -1.200000f, 1.962684f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral50 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(1.825624f, -1.200000f, 1.173147f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral5.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral5_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral51 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(2.873901f, -1.200000f, 0.112230f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral52 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-4.273436f, -1.200000f, 2.180372f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral53 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-2.096852f, -1.200000f, 2.992736f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral54 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-2.539509f, -1.200000f, 2.066088f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral55 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(0.729161f, -1.200000f, -0.580058f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral56 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-0.412684f, -1.200000f, 0.349331f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral57 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-2.209252f, -1.200000f, 0.103500f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral58 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(4.951315f, -1.200000f, 2.547493f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral59 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-0.969212f, -1.200000f, 0.980280f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral5.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral5_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral60 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-4.660373f, -1.200000f, -0.064322f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral61 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(4.354104f, -1.200000f, -0.508458f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral62 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-2.223450f, -1.200000f, 0.828779f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral63 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(2.073529f, -1.200000f, -1.175252f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral5.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral5_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral64 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(4.813949f, -1.200000f, 1.367822f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral65 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-0.750265f, -1.200000f, 2.998894f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral5.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral5_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral66 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(4.020670f, -1.200000f, 1.839995f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral67 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-1.967165f, -1.200000f, 1.943128f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral68 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(1.992686f, -1.200000f, 0.997849f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral69 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(3.640754f, -1.200000f, -0.599843f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral70 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-2.797908f, -1.200000f, -0.441316f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral71 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-3.053509f, -1.200000f, -0.927121f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral2.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral2_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral72 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(1.590803f, -1.200000f, 2.644464f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral2.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral2_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral73 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(5.128144f, -1.200000f, -0.259828f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral74 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-3.308071f, -1.200000f, 1.582224f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral5.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral5_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral75 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-2.676950f, -1.200000f, 1.107198f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral76 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(2.667864f, -1.200000f, 0.427954f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral77 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(4.388724f, -1.200000f, 0.925562f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral78 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(4.556827f, -1.200000f, 0.934278f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral79 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(2.531525f, -1.200000f, 2.097260f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral80 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(2.481879f, -1.200000f, -0.789103f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral81 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(2.502841f, -1.200000f, -1.155965f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral82 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-2.573622f, -1.200000f, 2.538601f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral83 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(4.287913f, -1.200000f, 2.134388f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral2.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral2_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral84 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(4.314775f, -1.200000f, 1.367936f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral85 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-2.420979f, -1.200000f, 0.680716f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral86 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-4.487406f, -1.200000f, 0.530784f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral87 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(0.874568f, -1.200000f, 1.467006f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral88 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-4.103849f, -1.200000f, 2.448362f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral89 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(3.504871f, -1.200000f, 0.987777f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral5.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral5_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral90 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(1.087130f, -1.200000f, 2.364632f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral91 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-4.451134f, -1.200000f, 0.769562f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral92 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-4.856796f, -1.200000f, 2.653315f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral2.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral2_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral93 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(5.041655f, -1.200000f, -1.160301f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral94 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(4.285270f, -1.200000f, 1.970382f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral2.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral2_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral95 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-2.159774f, -1.200000f, 1.790815f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral96 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-5.018806f, -1.200000f, 1.121103f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral97 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-0.775826f, -1.200000f, 0.877333f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral98 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(0.094325f, -1.200000f, -0.722677f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral99 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-0.002871f, -1.200000f, 0.100464f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral100 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-2.529710f, -1.200000f, 1.194072f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral101 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(1.854747f, -1.200000f, 1.739539f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral102 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(3.401989f, -1.200000f, 2.638952f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral103 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-4.535802f, -1.200000f, 1.194530f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral2.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral2_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral104 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-1.135435f, -1.200000f, 1.221646f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral105 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(4.913758f, -1.200000f, 1.837782f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral106 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-0.856375f, -1.200000f, 1.905520f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral107 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(4.774325f, -1.200000f, -1.109857f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral2.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral2_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral108 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-2.809607f, -1.200000f, 1.691540f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral109 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-5.392552f, -1.200000f, 2.788579f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral5.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral5_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral110 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-1.496777f, -1.200000f, -0.619565f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral111 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(3.333752f, -1.200000f, 1.314835f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral112 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(1.767810f, -1.200000f, 2.887800f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral113 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-0.323244f, -1.200000f, 1.102958f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral114 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-2.019938f, -1.200000f, 2.519027f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral115 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(4.381218f, -1.200000f, 1.687303f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral116 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-4.133320f, -1.200000f, -1.143920f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral117 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-3.850176f, -1.200000f, 2.729574f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral118 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-1.533548f, -1.200000f, 2.290512f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral119 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(3.062680f, -1.200000f, 2.632215f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral2.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral2_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral120 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-2.448262f, -1.200000f, 0.522688f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral121 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(4.144972f, -1.200000f, 2.526299f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral122 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-0.126241f, -1.200000f, 0.765070f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral5.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral5_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral123 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-2.591036f, -1.200000f, 2.598414f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral124 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(2.838831f, -1.200000f, 0.230709f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral125 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(1.801339f, -1.200000f, -0.403771f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral5.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral5_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral126 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(2.249212f, -1.200000f, -0.951052f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral5.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral5_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral127 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(1.335076f, -1.200000f, -0.654134f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral5.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral5_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral128 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(2.581828f, -1.200000f, 2.495064f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral5.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral5_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral129 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-1.804077f, -1.200000f, 1.923254f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral2.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral2_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral130 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(0.947920f, -1.200000f, 0.872974f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral131 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(3.376738f, -1.200000f, 1.362106f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral5.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral5_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral132 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-4.443317f, -1.200000f, -0.136716f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral133 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-1.242070f, -1.200000f, 1.445789f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral134 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-1.249283f, -1.200000f, 0.368096f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral135 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(4.192868f, -1.200000f, 0.793535f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral136 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(4.524547f, -1.200000f, 2.624761f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral137 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-1.437476f, -1.200000f, 1.771750f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral138 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-0.337275f, -1.200000f, 1.242931f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral139 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(2.838229f, -1.200000f, 1.502791f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral5.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral5_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral140 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-4.640614f, -1.200000f, 1.830677f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral141 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-1.725362f, -1.200000f, 0.481545f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral5.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral5_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral142 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-4.200267f, -1.200000f, 2.568401f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral143 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-1.724347f, -1.200000f, 1.445946f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral144 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(4.713619f, -1.200000f, 0.823597f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral145 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-3.895257f, -1.200000f, -1.203638f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral146 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-0.602005f, -1.200000f, 1.297182f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral147 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-1.054237f, -1.200000f, 2.971822f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral148 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-1.509408f, -1.200000f, -0.383613f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral149 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(0.474687f, -1.200000f, 2.720601f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral150 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(0.493462f, -1.200000f, 1.962868f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral151 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-0.936380f, -1.200000f, 0.324939f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral152 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(3.107220f, -1.200000f, 2.581269f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral153 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-5.279143f, -1.200000f, 1.623208f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral154 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-0.430734f, -1.200000f, 0.834565f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral155 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(5.099320f, -1.200000f, -1.186557f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral156 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(2.852674f, -1.200000f, -0.173549f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral157 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-1.563118f, -1.200000f, 0.859034f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral158 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(1.125087f, -1.200000f, 0.722778f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral159 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-0.381960f, -1.200000f, 1.881468f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral2.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral2_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral160 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-3.427431f, -1.200000f, -1.254978f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral161 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(0.107039f, -1.200000f, -0.773364f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral162 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(4.087926f, -1.200000f, 2.885680f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral5.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral5_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral163 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(3.602415f, -1.200000f, 1.955472f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral164 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-4.407285f, -1.200000f, 2.302809f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral165 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-3.679474f, -1.200000f, -0.399302f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral166 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-2.139745f, -1.200000f, -0.698951f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral167 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-2.149532f, -1.200000f, 1.098461f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral2.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral2_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral168 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(0.752917f, -1.200000f, 2.186928f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral169 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(0.799484f, -1.200000f, 2.375588f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral170 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(4.894180f, -1.200000f, 1.174462f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral171 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-1.647681f, -1.200000f, -0.868668f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral172 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(2.211059f, -1.200000f, 0.896806f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral173 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(1.737058f, -1.200000f, 0.138687f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral2.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral2_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral174 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(3.530246f, -1.200000f, 1.008251f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral175 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(1.519732f, -1.200000f, 1.080104f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral5.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral5_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral176 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-4.748293f, -1.200000f, -0.971467f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral177 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-1.341470f, -1.200000f, 1.606890f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral178 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-0.265379f, -1.200000f, 2.289369f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral179 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-2.689255f, -1.200000f, 0.201520f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral180 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-2.016525f, -1.200000f, 1.093399f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral181 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-1.079026f, -1.200000f, -0.685987f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral5.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral5_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral182 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-3.432833f, -1.200000f, 1.577793f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral5.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral5_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral183 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(0.808393f, -1.200000f, -0.407904f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral184 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-0.313687f, -1.200000f, 1.077589f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral185 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(3.751434f, -1.200000f, 2.632699f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral5.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral5_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral186 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-4.301210f, -1.200000f, 2.103893f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral2.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral2_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral187 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-1.763477f, -1.200000f, 2.099765f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral188 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(5.393934f, -1.200000f, -0.297240f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral189 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-2.046441f, -1.200000f, 1.326987f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral190 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(3.799192f, -1.200000f, 2.513825f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral191 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(3.071785f, -1.200000f, 2.595909f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral192 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(2.525187f, -1.200000f, -0.868413f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral5.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral5_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral193 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-4.453151f, -1.200000f, 0.012123f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral194 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-0.245411f, -1.200000f, 0.311161f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral2.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral2_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral195 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(5.086707f, -1.200000f, 0.341204f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral196 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-4.899067f, -1.200000f, 1.549017f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral5.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral5_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral197 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(5.022544f, -1.200000f, -0.241268f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral5.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral5_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral198 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-4.046415f, -1.200000f, 0.170133f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral199 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(4.429194f, -1.200000f, 0.442502f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral2.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral2_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral200 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(2.669857f, -1.200000f, -1.262404f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral201 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-2.083586f, -1.200000f, 1.934631f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral202 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-5.315284f, -1.200000f, 2.396333f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral2.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral2_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral203 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-0.995066f, -1.200000f, 0.873998f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral204 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-1.022930f, -1.200000f, 1.854128f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral205 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-3.980232f, -1.200000f, 1.049928f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral206 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(2.647268f, -1.200000f, 1.554108f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral207 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(3.867157f, -1.200000f, -0.369288f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral208 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(0.600096f, -1.200000f, 2.912953f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral209 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(2.734465f, -1.200000f, 2.326499f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral210 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(0.963344f, -1.200000f, 0.103001f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral211 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-2.206285f, -1.200000f, 1.726040f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral212 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(1.986999f, -1.200000f, 0.274509f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral213 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-2.266394f, -1.200000f, 1.872981f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral2.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral2_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral214 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-0.330891f, -1.200000f, 1.314863f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral5.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral5_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral215 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(2.450861f, -1.200000f, 2.430324f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral5.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral5_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral216 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-5.147872f, -1.200000f, 2.616380f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral217 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-3.847980f, -1.200000f, 2.569245f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral218 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(4.415797f, -1.200000f, 1.473298f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral219 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-0.402206f, -1.200000f, 1.909181f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral220 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(5.130824f, -1.200000f, 1.468694f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral221 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(3.034435f, -1.200000f, 0.552824f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral222 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(4.739201f, -1.200000f, -1.070107f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral223 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(2.791152f, -1.200000f, 1.215093f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral5.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral5_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral224 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-3.264102f, -1.200000f, 0.786873f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral225 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-3.977244f, -1.200000f, 2.361295f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral226 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(2.345464f, -1.200000f, 2.959850f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral5.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral5_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral227 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(2.618095f, -1.200000f, 0.689222f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral228 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(1.879918f, -1.200000f, 1.103671f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral229 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-4.316472f, -1.200000f, 2.671431f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral5.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral5_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral230 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(3.065305f, -1.200000f, -0.896775f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral231 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(4.961268f, -1.200000f, 1.141213f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral2.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral2_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral232 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-4.099124f, -1.200000f, -0.832976f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral233 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(1.170408f, -1.200000f, 0.692954f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral234 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(4.704710f, -1.200000f, 2.326325f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral235 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(0.510756f, -1.200000f, 1.882347f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral236 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-0.122002f, -1.200000f, 1.059122f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral3.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral3_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral237 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-3.845794f, -1.200000f, 0.096747f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral2.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral2_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral238 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-4.508811f, -1.200000f, 1.193477f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral239 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-3.038881f, -1.200000f, 2.542841f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral6.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral6_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral240 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-1.559181f, -1.200000f, 2.097930f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral241 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(1.550913f, -1.200000f, 0.346610f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral2.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral2_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral242 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-3.725384f, -1.200000f, 1.573364f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral2.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral2_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral243 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(5.023260f, -1.200000f, 1.182047f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral244 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-0.713583f, -1.200000f, -0.253501f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral245 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-2.292012f, -1.200000f, 1.840589f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral246 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-4.178962f, -1.200000f, -1.155777f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral4.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral4_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral247 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-0.989890f, -1.200000f, 0.826277f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral248 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(1.094882f, -1.200000f, 0.697510f , 0,
+0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral7.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral7_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+
+    coral249 = VisibleEntity {
+        model = "genericCoralModel1";
+        frame = CFrame::fromXYZYPRDegrees(-1.829951f, -1.200000f, 0.734291f ,
+0, 0, 0);
+        articulatedModelPose = UniversalMaterial::Specification {
+            lambertian = "Models/Coral/Coral1.png";
+            bump = BumpMap::Specification {
+                 texture ="Models/Coral/Coral1_Bump.png";
+                 settings = BumpMap::Settings {
+                     iterations = 0;
+                 };
+           };
+        };
+    };
+
+    };
+}; 

@@ -1,0 +1,450 @@
+#version 410 // -*- c++ -*-
+#include <g3dmath.glsl>
+//http://g3d.cs.williams.edu/websvn/filedetails.php?repname=g3d&path=%2FG3D10%2Fdata-files%2Fshader%2Fnoise.glsl
+#include <noise.glsl>
+#include <Texture/Texture.glsl>
+
+//Surfel Operations
+#define unionSurfaces(f, P, X, x, m) smoothMin(f(X, P, m), f(x, P, m), .25)
+#define unionSurfaceFloats(x,y) smoothMin(x,y,.25)
+#define subtractSurfaces(f, P, X, x, m) max(f(X, P, m), -f(x, P, m))
+#define subtractSurfaceFloats(x,y) max(x, -y)
+#define intersectSurfaces(f, P, X, x, m) max(f(X,P,m), f(x,P,m))
+#define intersectSurfaceFloats(x,y) max(x, y)
+#define repeatSurfaces(f, P, X, m, period) f(X, mod(P, period) - 0.5*period, m)
+
+//Transformations
+#define scaleSurface(f, P, X, m, s) (f(X, P/s, m) * (s))
+#define rotateSurface(f, P, X, m, M) f(X, (inverse(M) * P) * determinant(M), m)
+#define translateSurface(f, P, X, m, off) f(X, P - off, m)
+#define transformSurface(f, P, X, m, M, off, scale) f(X, (inverse(M) * (P-off)/scale) * determinant(M), m) * scale
+
+//Helper Matrices http://mathworld.wolfram.com/RotationMatrix.html
+#define rotationMatrixX(d) mat3(1, 0, 0, 0, cos(d), sin(d), 0, -sin(d), cos(d))
+#define rotationMatrixY(d) mat3(cos(d), 0, -sin(d), 0, 1, 0, sin(d), 0, cos(d))
+#define rotationMatrixZ(d) mat3(cos(d), sin(d), 0, -sin(d), cos(d), 0, 0, 0, 1)
+#define identityMatrix() mat3(1,0,0,0,1,0,0,0,1)
+
+// Input arguments from the C++ program
+uniform mat4x3         cameraToWorldMatrix;
+
+uniform TextureCube    environmentMap;
+
+uniform float          tanHalfFieldOfViewY;
+uniform float          projectionMatrix22, projectionMatrix23;
+
+// Light position and power
+const Point3 lightPos = Point3(50, 100, 65);
+
+// Output to the App::m_framebuffer
+out Color3 pixelColor;
+
+
+
+struct Material {
+    Color3      lambertian;
+    float       metal;
+    float       glossyCoefficient;
+    float       glossyExponent;
+};
+
+
+struct Surfel {
+    Point3      position;
+    Vector3     normal;
+    Material    material;
+};
+
+struct ISphere {
+    Point3      center;
+    float       radius;
+    Material    material;
+};
+
+struct ITorus{
+    Point3      center;
+    float       minorRadius;
+    float       majorRadius;
+    Material    material;
+};
+
+struct IBox{
+    Point3      center;
+    float       radius;
+    Material    material;
+};
+
+struct IRoundBox{
+    Point3      center;
+    float       radius;
+    Material    material;
+};
+
+struct IRectangle{
+    Point3      center;
+    Vector3     vertices;
+    float       radius;
+    Material    material;
+};
+
+struct IRoundRectangle{
+    Point3      center;
+    Vector3     vertices;
+    float       radius;
+    Material    material;
+};
+
+struct ICylinder{
+    Point3      center;
+    float       radius;
+    float       halfHeight;
+    float       bound;
+    Material    material;
+};
+
+struct Gun{
+    Point3      center;
+    ICylinder   outside;
+    ICylinder   inside;
+    ICylinder   muzzle;
+};
+
+struct TurretStructure{
+    Point3     center;
+    IRoundRectangle  turret;
+    ICylinder  turretRing;
+    ICylinder   cupola;
+};
+
+struct TankTurret{
+    Point3      center;
+    Gun         gun;
+    IRoundBox   gunShield;
+    TurretStructure turret;
+};
+
+struct Tracks{
+    Point3          center;
+    ITorus          wheels;
+};
+
+struct TankBody{
+    Point3  center;
+    IRoundRectangle body;
+    ICylinder   gasTank1;
+    ICylinder   gasTank2;
+    IRectangle  sideSkirts;
+};
+
+/*****************MATERIALS**************************************/
+Color3 greenishGrey = Color3(.15,.25,.1);
+float metallic = .3;
+float glossyCoef = .6;
+float glossyExp = 8;
+
+ Material ignore;
+ Material darkMetal = Material(Color3(0), metallic, glossyCoef, glossyExp);
+ Material darkGreen = Material(greenishGrey, metallic, glossyCoef, glossyExp);
+
+/*********************PRIMITIVES*************************************************/
+//Body of the tank
+IRoundRectangle outside = IRoundRectangle(Point3(0,0,0), Vector3(4,1,9), 5, darkGreen);
+ICylinder gasTank1 = ICylinder(Point3(0,0,0), 1, 3, 1, darkGreen);
+IRectangle sideSkirts = IRectangle(Point3(0), Vector3(0.4, 2.2, 6.7), 5, darkGreen);
+
+//Turret of the tank
+IRoundRectangle turret = IRoundRectangle(Point3(0,0,5), Vector3(2,2,3), 2, darkGreen);
+ICylinder turretRing = ICylinder(Point3(0,-3.5,4), 3, 1, 1, darkGreen);
+ICylinder cupola = ICylinder(Point3(1,4,2.5), 1, .5, 1, darkGreen);
+IRoundBox gunShield = IRoundBox(Point3(0,0,0), 1, darkGreen);
+
+//The Tank's Gun
+ICylinder gunOutside = ICylinder(Point3(0,-3,0), .6, 5, 1, darkGreen);
+ICylinder gunInside = ICylinder(Point3(0,-3,0), .4, 6, 1, darkGreen);
+ICylinder gunMuzzle = ICylinder(Point3(0,-3,0), .8, 2, 1, darkGreen);
+
+// The Tank's Tracks
+ITorus trackWheels = ITorus(Point3(0, 0, 0), .3, .5, darkMetal);
+
+/*********************TANK BUILD************************************************/
+Gun gun = Gun(Point3(0,0,0), gunOutside, gunInside, gunMuzzle);
+Tracks tracks = Tracks(Point3(0), trackWheels);
+TurretStructure turretStruct = TurretStructure(Point3(0,0,0), turret, turretRing, cupola);
+TankTurret tankTurret = TankTurret(Point3(0,0,0), gun, gunShield, turretStruct); 
+TankBody tankBody = TankBody(Point3(0), outside, gasTank1, gasTank1, sideSkirts);
+
+float estimateSphereDistance(Point3 X, Point3 center, float radius) {
+    return length(X - center) - radius;
+}
+
+float estimateSphereDistance(Point3 X) {
+    const Point3  C = Point3(0.5,0.5,0);
+    const float   r = 0.5;
+    return length(X - C) - r;
+}
+
+// GLSL Ray Marching [_rn_rayMrch] from http://graphicscodex.com 
+float smoothMin(float a, float b, float blendRadius) {
+    float c = saturate(0.5 + (b - a) * (0.5 / blendRadius));
+    return lerp(b, a, c) - blendRadius * c * (1.0 - c);
+}
+
+float length8(Vector2 v){
+    return pow(pow8(v.x) + pow8(v.y), 1.0);
+}
+
+float estimateDistance(const ISphere sphere, Point3 X, in out Material material){
+    material = sphere.material;
+    return length(X - sphere.center) - sphere.radius;
+}
+
+float estimateDistance(const ITorus torus, Point3 X, in out Material material){
+    material = torus.material;
+    return length(vec2(length(X.xz - torus.center.xz) - torus.majorRadius, X.y - torus.center.y)) - torus.minorRadius;
+}
+
+float estimateDistance(const IBox box, Point3 X, in out Material material){
+    material = box.material;
+    Vector3 d = abs(X - box.center) - box.radius;
+    return min(maxComponent(d),0) + length(max(d, Vector3(0,0,0)));
+}
+
+float estimateDistance(const IRectangle box, Point3 X, in out Material material){
+    material = box.material;
+    vec3 d = abs(X-box.center) - box.vertices;
+    return min(max(d.x, max(d.y,d.z)),0.0) + length(max(d, 0.0));
+}
+
+float estimateDistance(const IRoundRectangle box, Point3 X, in out Material material){
+    material = box.material;
+    vec3 d = max(abs(X-box.center) - box.vertices, 0.0);
+    return length(d)- box.radius;
+}
+
+float estimateDistance(const IRoundBox box, Point3 X, in out Material material){ 
+    material = box.material;
+    return length(max(abs(X - box.center) - box.radius, 0.0)) -  box.radius;
+}
+
+float estimateDistance(const ICylinder cyl, Point3 X, in out Material material){
+    material = cyl.material;
+    Vector2 d = abs(Vector2(length(X.xz - cyl.center.xz), X.y - cyl.center.y)) - Vector2(cyl.radius, cyl.halfHeight);
+    return min(maxComponent(d),0) + length(max(d, Vector2(0,0)));
+}
+
+float estimateDistance(const Gun gun, Point3 X, in out Material material){
+    material = gun.outside.material;
+    Material ignore;
+    float t1 = unionSurfaces(estimateDistance, X, gun.outside, gun.muzzle, ignore);
+    float t2 = estimateDistance(gun.inside, X, ignore);
+    return subtractSurfaceFloats(t1, t2wd);
+}
+
+float estimateDistance(const TurretStructure turretStruct, Point3 X, in out Material material){
+    Material ignore;
+    float d1 = estimateDistance(turretStruct.cupola, X, ignore);
+    return unionSurfaceFloats(unionSurfaces(estimateDistance, X, turretStruct.turret, turretStruct.turretRing, material), d1);
+}
+
+float estimateDistance(const TankTurret tankTurret, Point3 X, in out Material material){
+    float d1 = transformSurface(estimateDistance, X, tankTurret.gun, ignore, rotationMatrixX(pi/2), vec3(0,0,0), 1);
+    float d2 = unionSurfaces(estimateDistance, X, tankTurret.turret, tankTurret.gunShield, material);
+    return unionSurfaceFloats(d1,d2);
+}
+
+float estimateDistance(const Tracks tracks, Point3 X, in out Material material){
+    float t1 = estimateDistance(tracks.wheels, X, material);
+    return t1;
+}
+
+float estimateDistance(const TankBody body, Point3 X, in out Material material){
+    Material ignore;
+    float t1 = transformSurface(estimateDistance, X, body.body, material, identityMatrix(), vec3(0,0,-4), 1);
+    float t2 = transformSurface(estimateDistance, X, body.gasTank1, material, rotationMatrixZ(pi/2), vec3(0,4.2,-14.9), 1);
+    float t3 = transformSurface(estimateDistance, X, body.gasTank2, material, rotationMatrixZ(pi/2), vec3(0,5.2,-13.1), 1);
+
+    float t4 = transformSurface(estimateDistance, X, body.sideSkirts, ignore, identityMatrix(), vec3(7.4,-1, -3.8), 2);
+    float t5 = transformSurface(estimateDistance, X, body.sideSkirts, ignore, identityMatrix(), vec3(-7.4,-1, -3.8), 2);
+    float t6 = transformSurface(estimateDistance, X, body.sideSkirts, ignore, rotationMatrixX(-pi/4)*rotationMatrixY(pi/2), vec3(0, 1, 10.5), 3);
+    float t7 = transformSurface(estimateDistance, X, body.sideSkirts, ignore, rotationMatrixX(pi/3)*rotationMatrixY(pi/2), vec3(0, 3, -17.45), 3);
+    return unionSurfaceFloats(unionSurfaceFloats(subtractSurfaceFloats(subtractSurfaceFloats(subtractSurfaceFloats(subtractSurfaceFloats(t1, t4), t5), t6), t7), t2), t3);
+}
+
+float estimateDistance(Point3 X, in out Material material){
+    Material m1;
+    Material m2;
+    Material m3;
+    float t1 = transformSurface(estimateDistance, X, tankBody, m1, identityMatrix(), vec3(0,3.2,0), 0.5);
+    float t2 = transformSurface(estimateDistance, X, tankTurret, m2, rotationMatrixY(pi/2+pi/4), vec3(-1.6,8.4, 1), 0.5);
+
+    float w1 = transformSurface(estimateDistance, X, tracks, m3, rotationMatrixZ(pi/2), vec3(3.25, 1.5, 3), 2);
+    float w4 = transformSurface(estimateDistance, X, tracks, m3, rotationMatrixZ(pi/2), vec3(-3.25, 1.5, 3), 2);
+    float w2 = transformSurface(estimateDistance, X, tracks, m3, rotationMatrixZ(pi/2), vec3(-3.25, 1.5, 1), 2);
+    float w3 = transformSurface(estimateDistance, X, tracks, m3, rotationMatrixZ(pi/2), vec3(3.25, 1.5, 1), 2);
+    float w5 = transformSurface(estimateDistance, X, tracks, m3, rotationMatrixZ(pi/2), vec3(-3.25, 1.5, -1), 2);
+    float w6 = transformSurface(estimateDistance, X, tracks, m3, rotationMatrixZ(pi/2), vec3(3.25, 1.5, -1), 2);
+    float w7 = transformSurface(estimateDistance, X, tracks, m3, rotationMatrixZ(pi/2), vec3(-3.25, 1.5, -3), 2);
+    float w8 = transformSurface(estimateDistance, X, tracks, m3, rotationMatrixZ(pi/2), vec3(3.25, 1.5, -3), 2);
+    float w9 = transformSurface(estimateDistance, X, tracks, m3, rotationMatrixZ(pi/2), vec3(-3.25, 1.5, -5), 2);
+    float w10 = transformSurface(estimateDistance, X, tracks, m3, rotationMatrixZ(pi/2), vec3(3.25, 1.5, -5), 2);
+    float w11 = transformSurface(estimateDistance, X, tracks, m3, rotationMatrixZ(pi/2), vec3(-3.25, 1.5, -7), 2);
+    float w12 = transformSurface(estimateDistance, X, tracks, m3, rotationMatrixZ(pi/2), vec3(3.25, 1.5, -7), 2);
+    
+    float t3 = unionSurfaceFloats(w1, w2);
+    t3 = unionSurfaceFloats(t3, w3);
+    t3 = unionSurfaceFloats(t3, w4);
+    t3 = unionSurfaceFloats(t3, w5);
+    t3 = unionSurfaceFloats(t3, w6);
+    t3 = unionSurfaceFloats(t3, w7);
+    t3 = unionSurfaceFloats(t3, w8);
+    t3 = unionSurfaceFloats(t3, w9);
+    t3 = unionSurfaceFloats(t3, w10);
+    t3 = unionSurfaceFloats(t3, w11);
+    t3 = unionSurfaceFloats(t3, w12);
+
+
+    bool t1less = t1 < t2 && t1 < t3;
+    bool t2less = t2 < t1 && t2 < t3;
+    bool t3less = t3 < t2 && t3 < t1;
+
+    material = (t1less) ? m1 : material;
+    material = (t2less) ? m2 : material;
+    material = (t3less) ? m3 : material;
+    return unionSurfaceFloats(unionSurfaceFloats(t1, t2), t3);
+}
+
+float estimateDistance(Point3 X){
+    Material ignore;
+    return estimateDistance(X, ignore);
+}
+
+
+bool traceRaySphere(Point3 P, Vector3 w, in out float maxDistance, in out Surfel surfel) {
+    const int   maxIterations = 200;
+    const float closeEnough   = 1e-2;
+    float t = 0;
+    for (int i = 0; i < maxIterations; ++i) {
+    float dt = estimateSphereDistance(P + w * t);
+        t += dt;
+        if (dt < closeEnough) {
+            maxDistance = t;
+            surfel.material.lambertian = Color3(0.5,0.345,0.987);
+            surfel.position = P + w*t;
+            float epsilon = 0.05;
+            Point3 Q = P + (w * (t-epsilon));
+            surfel.normal = normalize(Vector3(
+                estimateSphereDistance(Q + Vector3(epsilon,0,0)), 
+                estimateSphereDistance(Q + Vector3(0,epsilon,0)), 
+                estimateSphereDistance(Q + Vector3(0,0,epsilon))) - estimateSphereDistance(Q));
+            return true;
+        } else if (t > maxDistance) {
+            return false;
+        }
+    }
+    return false;
+}
+
+bool traceRayAnalyticFloor(Point3 P, Vector3 w, in out float maxDistance, in out Surfel surfel){
+    float t = -P.y/w.y;
+    if(t < maxDistance && sign(w.y*P.y) < 0.0){
+        surfel.position = P + w * t;
+        surfel.normal = Vector3(0,1,0);
+        surfel.material.lambertian = lerp(Color3(0.3, 0.4, 0.1), Color3(0.2,0.1,0.1), clamp(noise(surfel.position, 2), 0, 1));
+        maxDistance = t;
+        return true;   
+    } else{
+        return false;
+    }
+}
+
+bool traceRayMarch(Point3 P, Vector3 w, in out float maxDistance, in out Surfel surfel){
+    const int maxIter = 200;
+    const float closeEnough = 1e-2;
+    float t = 0;
+    for(int i = 0; (i<maxIter) && (t<maxDistance); ++i){
+        float dt = estimateDistance(P+ (w*t));
+        t += max(dt, closeEnough);
+        if(dt < closeEnough){
+            surfel.position = P + (w * t);
+            float epsilon = 0.05;
+            Point3 Q = P + (w * (t-epsilon)); // for shading
+            surfel.normal = normalize(Vector3(
+                estimateDistance(Q + Vector3(epsilon,0,0)), 
+                estimateDistance(Q + Vector3(0,epsilon,0)), 
+                estimateDistance(Q + Vector3(0,0,epsilon))) - estimateDistance(Q, surfel.material));
+            surfel.material.lambertian = (surfel.material.lambertian.r > 0.01 && surfel.material.lambertian.b > 0.01 && surfel.material.lambertian.g > 0.01) ? 
+                lerp(surfel.material.lambertian, Color3(0.5, 0.2, 0.2), clamp(noise(surfel.position, 2), 0, 1)) : 
+                lerp(surfel.material.lambertian, Color3(0.15, 0.1, 0.1), clamp(noise(surfel.position/0.1, 2), 0, 1));
+            maxDistance = t;
+            return true;
+        } 
+    }
+    return false;
+}
+
+bool traceRay(Point3 P, Vector3 w, in out float maxDistance, in out Surfel surfel) {
+    bool hit = traceRayAnalyticFloor(P, w, maxDistance, surfel);
+    hit = traceRayMarch(P, w, maxDistance, surfel) || hit;
+    //hit = traceRaySphere(P, w, maxDistance, surfel) || hit;
+    return hit;
+}
+
+void main() {
+    // Generate an eye ray in camera space, and then transform to world space
+
+    // Primary ray origin    
+    Point3 P  = cameraToWorldMatrix[3];
+
+    // Primary ray direction
+    Vector3 w = Matrix3(cameraToWorldMatrix) * 
+        normalize(Vector3((gl_FragCoord.xy - g3d_FragCoordExtent / 2.0) * Vector2(1, -1),
+                          g3d_FragCoordExtent.y / ( -2.0 * tanHalfFieldOfViewY)));
+
+    float maxDist = inf;       
+
+    //////////////////////////////////////
+    
+    Surfel surfel;
+
+    if(traceRay(P,w,maxDist,surfel)){
+        Vector3 wi = normalize(lightPos - surfel.position);
+        Vector3 wo = -w;
+        Vector3 n = surfel.normal;
+        
+        Vector3 w_m = 2 * n * dot(wo, n) - wo;
+
+        float distanceToLight = length(lightPos - surfel.position);
+        Biradiance3 lightRad = vec3(1e6,1e6,1e6)/ (4 * pi * square(distanceToLight));
+
+        Color3 glossyCoefficient = surfel.material.glossyCoefficient * lerp(Color3(0.05), surfel.material.lambertian, surfel.material.metal);
+       
+        Color3 lambertianCoefficient = lerp(surfel.material.lambertian, Color3(0), surfel.material.metal);        
+        
+        Radiance3 ambientLight = Radiance3(0.5);
+        Radiance3 ambientRad = ambientLight * lambertianCoefficient + ambientLight * glossyCoefficient;
+        
+        // Shade stuff
+        Surfel ignore;
+        float shadowDist = inf;
+        bool shadow = traceRay( (n * 0.1) + surfel.position, wi, distanceToLight, ignore);
+        
+        float g = surfel.material.glossyExponent;
+        Vector3 wh = normalize(wi + wo);
+        
+        vec3 bsdf = lambertianCoefficient / pi + pow(max(0.0, dot(n, wh)), g) * glossyCoefficient * (g + 8.0) / 8.0;
+        
+        pixelColor = lightRad/pi * float (!shadow) * max(0, dot(n,wi)) * bsdf + ambientRad;
+
+    } else {   
+        pixelColor = lerp(Color3(0), Color3(.2,.1,.1),  clamp(noise(P/60, 3), 0,1)) * sampleTexture(environmentMap, w).rgb;
+    }
+
+    //////////////////////////////////////
+     
+    // Camera space z value
+    float csZ = maxDist / w.z;
+    
+    // Pack into standard OpenGL depth buffer format to make the result compatible
+    // with rasterization and post-processing.
+    gl_FragDepth = (maxDist == inf) ? 1.0 : ((projectionMatrix22 * csZ + projectionMatrix23) / -csZ);
+}

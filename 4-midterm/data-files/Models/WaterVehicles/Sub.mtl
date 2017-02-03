@@ -1,0 +1,56 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 19.10.2016 09:55:20
+
+newmtl Yellow_Sub_Material
+	Ns 90.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 1.0000 0.8471 0.0000
+	Ks 0.1600 0.7671 1.1906
+	Ke 0.0000 0.0000 0.0000
+	map_bump Map__1_Cellular.tga
+	map_refl Map__0_Falloff.tga
+
+newmtl Mani_Material
+	Ns 70.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.2627 0.2627 0.2627
+	Ks 0.2700 0.2700 0.2700
+	Ke 0.0000 0.0000 0.0000
+	map_bump -bm 0.0500 Map__2_Cellular.tga
+
+newmtl Front_Light
+	Ns 75.0000
+	Ni 1.5000
+	d 0.9500
+	Tr 0.0500
+	Tf 0.9500 0.9500 0.9500 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.1922 0.4784 1.0000
+	Ks 0.6431 0.6996 0.8000
+	Ke 0.0000 0.6627 0.9725
+	map_Ke Map__7_Falloff.tga
+	map_d Map__5_Falloff.tga
+
+newmtl Port_Windows
+	Ns 60.0000
+	Ni 1.5000
+	d 0.9500
+	Tr 0.0500
+	Tf 0.9500 0.9500 0.9500 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.1529 0.1216 0.7765
+	Ks 0.4020 0.4373 0.5000
+	Ke 0.0000 0.6627 0.9725
+	map_d Map__3_Falloff.tga

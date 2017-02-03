@@ -1,0 +1,69 @@
+/* -*- c++ -*- */
+{ 
+    name = "Coral"; 
+
+    models = {
+        cubeModel = ArticulatedModel::Specification {
+            filename = "model/cube/cube.obj";
+            preprocess = {
+                setMaterial(all(), Color3(1,1,1));
+            };
+        };
+
+        boardModel = ArticulatedModel::Specification {
+            filename = "ifs/square.ifs";
+            scale = 2;
+            preprocess = {
+                setMaterial(all(), 
+                    UniversalMaterial::Specification {
+                        lambertian = "test-lambertian.png";
+                        bump = "test-bump.png"
+                    });
+                transformGeometry(all(), Matrix4::scale(1,1,0));
+            };
+        };
+        starModel = ArticulatedModel::Specification {
+            filename = "board.off";
+            scale = 2;
+            preprocess = {
+                setMaterial(all(), 
+                    UniversalMaterial::Specification {
+                        lambertian = "sideTest.png";
+                    });
+            };
+        };
+    };
+
+    entities = { 
+        
+        skybox = Skybox { 
+            texture = "cubemap/whiteroom/whiteroom-*.png"; 
+        };
+        
+        sun = Light { 
+            attenuation = (0, 0, 1); 
+            bulbPower = Power3(50); 
+            frame = CFrame::fromXYZYPRDegrees(-15, 207, -41, -164, -77, 77);
+            shadowMapSize = Vector2int16(2048, 2048); 
+            spotHalfAngleDegrees = 5; 
+            spotSquare = true; 
+            type = "SPOT"; 
+        }; 
+
+        cube1 = VisibleEntity {
+            model = "boardModel";
+            frame = CFrame::fromXYZYPRDegrees(0, 0, 0, 180, 180, 0);
+
+        };
+
+        cube0 = VisibleEntity {
+            model = "starModel";
+            frame = CFrame::fromXYZYPRDegrees(-3, 0, -2, 0, 0, 0);
+
+        };
+
+        camera = Camera {
+            frame = CFrame::fromXYZYPRDegrees(0, 0, 5);
+        };
+    };
+};

@@ -1,0 +1,161 @@
+/* -*- c++ -*- */
+{ 
+    name = "Cornell Cube"; 
+    models = {
+        cubeModel = ArticulatedModel::Specification { 
+            filename = "model/cube/cube.obj";
+            preprocess = {
+                setMaterial(all(), Color3(1,1,1));
+                transformGeometry(all(),Matrix4::scale(.65,.75,.65));
+            };
+        }; 
+        largeCube = ArticulatedModel::Specification { 
+            filename = "model/cube/cube.obj";
+            preprocess = {
+                setMaterial(all(), Color3(1,1,1));
+                transformGeometry(all(),Matrix4::scale(.65,1.5,.65));
+            };
+        }; 
+        leftWall = ArticulatedModel::Specification { 
+            filename = "model/cube/cube.obj";
+            preprocess = {
+                setMaterial(all(), Color3(0.6,0.08,0.05));
+                transformGeometry(all(),Matrix4::scale(0,2,2));
+            };
+        }; 
+
+        rightWall = ArticulatedModel::Specification { 
+            filename = "model/cube/cube.obj";
+            preprocess = {
+                setMaterial(all(), Color3(.08,.60,0.05));
+                transformGeometry(all(),Matrix4::scale(0,2,2));
+            };
+        }; 
+
+        yellowWall = ArticulatedModel::Specification { 
+            filename = "model/cube/cube.obj";
+            preprocess = {
+                setMaterial(all(), Color3(.84,.7,0.42));
+                transformGeometry(all(),Matrix4::scale(0,2,2));
+            };
+        }; 
+
+    };
+
+    entities = { 
+
+        skybox = Skybox { 
+            texture = "cubemap/whiteroom/whiteroom-*.png"; 
+        };
+    
+        floorLight = Light { 
+            attenuation = (0, 0, 1); 
+            bulbPower = Power3(45); 
+            castsShadows = true;
+            extent = Vector2(0.75, 0.75); 
+            frame = CFrame::fromXYZYPRDegrees(0, .96, 0, 0, -90, 0); 
+            producesDirectIllumination = true; 
+            producesIndirectIllumination = true; 
+            shadowMapSize = Vector2int16(1024, 1024); 
+            spotHalfAngleDegrees = 45; 
+            spotSquare = true; 
+            type = "SPOT"; 
+        };
+    
+        backLight = Light { 
+            attenuation = (0, 0, 1); 
+            bulbPower = Power3(45); 
+            castsShadows = true;
+            extent = Vector2(0.75, 0.75); 
+            frame = CFrame::fromXYZYPRDegrees(0, .96, 0, 0, 0, 0); 
+            producesDirectIllumination = true; 
+            producesIndirectIllumination = true; 
+            shadowMapSize = Vector2int16(1024, 1024); 
+            spotHalfAngleDegrees = 45; 
+            spotSquare = true; 
+            type = "SPOT"; 
+        };
+        
+        foreLight = Light { 
+            attenuation = (0, 0, 1); 
+            bulbPower = Power3(45); 
+            castsShadows = true;
+            extent = Vector2(0.75, 0.75); 
+            frame = CFrame::fromXYZYPRDegrees(0, .96, 0, 180, 0, 180); 
+            producesDirectIllumination = true; 
+            producesIndirectIllumination = true; 
+            shadowMapSize = Vector2int16(1024, 1024); 
+            spotHalfAngleDegrees = 45; 
+            spotSquare = true; 
+            type = "SPOT"; 
+        };
+            
+        leftLight = Light { 
+            attenuation = (0, 0, 1); 
+            bulbPower = Power3(45); 
+            castsShadows = true;
+            extent = Vector2(0.75, 0.75); 
+            frame = CFrame::fromXYZYPRDegrees(0, .96, 0, -90, 0, 0); 
+            producesDirectIllumination = true; 
+            producesIndirectIllumination = true; 
+            shadowMapSize = Vector2int16(1024, 1024); 
+            spotHalfAngleDegrees = 45; 
+            spotSquare = true; 
+            type = "SPOT"; 
+        };
+        
+   
+        rightLight = Light { 
+            attenuation = (0, 0, 1); 
+            bulbPower = Power3(45); 
+            castsShadows = true;
+            extent = Vector2(0.75, 0.75); 
+            frame = CFrame::fromXYZYPRDegrees(0, .96, 0, 90, 0, 0); 
+            producesDirectIllumination = true; 
+            producesIndirectIllumination = true; 
+            shadowMapSize = Vector2int16(1024, 1024); 
+            spotHalfAngleDegrees = 45; 
+            spotSquare = true; 
+            type = "SPOT"; 
+        };
+
+        cube0 = VisibleEntity {
+            model = "cubeModel";
+            frame = CFrame::fromXYZYPRDegrees(0.35,-.625,0.5,-15.0,0.0,0.0);
+        };
+
+        cube1 = VisibleEntity {
+            model = "largeCube";
+            frame = CFrame::fromXYZYPRDegrees(-0.35,-.25,-0.5,15.0,0.0,0.0);
+        };
+
+        roof = VisibleEntity {
+            model = "yellowWall";
+            frame = CFrame::fromXYZYPRDegrees(0.0,1.0,0.0,90.0,0.0,90.0);
+        };
+
+        floor = VisibleEntity {
+            model = "yellowWall";
+            frame = CFrame::fromXYZYPRDegrees(0.0,-1.0,0.0,90.0,0,90);
+        };
+
+        wall0 = VisibleEntity {
+            model = "rightWall";
+            frame = CFrame::fromXYZYPRDegrees(1.0,0.0,0.0,0.0,90.0,0.0);
+        };
+
+        wall1 = VisibleEntity {
+            model = "leftWall";
+            frame = CFrame::fromXYZYPRDegrees(-1.0,0.0,0.0,0.0,90.0,0.0);
+        };
+
+        backwall = VisibleEntity {
+            model = "yellowWall";
+            frame = CFrame::fromXYZYPRDegrees(0.0,0.0,-1.0,90.0,0,0.0);
+        };
+
+        camera = Camera {             
+            frame = CFrame::fromXYZYPRDegrees( 0.0, 0.0, 5.0); 
+        }; 
+    }; 
+ } 

@@ -1,0 +1,695 @@
+﻿                  <meta charset="utf-8">
+                 **Development Journal**
+            **Procedurally Generated Coral**
+        **Jose Rivas (jdr3@williams.edu),**
+        **John Freeman (jcf1@williams.edu),**
+        **Julia Goldman (jdg2@williams.edu),**
+        **and Matheus de Carvalho Souza (mc13@williams.edu)** 
+
+2016-10-15: Random Coral Generation
+=============================================================
+
+![](2016-10-15_008_4-midterm_r1678_g3d_r927__.jpg)
+
+Each Coral is generated separately with the same parameters. (More efficient
+just to reuse coral, but cool.)
+
+
+
+2016-10-15: Overhead
+=============================================================
+
+![](2016-10-15_007_4-midterm_r1678_g3d_r927__.jpg)
+
+Of course, if we look at our coral from above it all becomes stars.
+
+
+
+2016-10-15: Field of Coral
+=============================================================
+
+![](2016-10-15_006_4-midterm_r1678_g3d_r927__.jpg)
+
+generateCoralScene() now generates a scene file containing a bunch of identical,
+already created coral. The next step is ti make it create the coral itself, for
+variation.
+
+
+
+2016-10-15: Generated Scene
+=============================================================
+Adding generateCoralScene Function to App for testing purposes. Will probably create separate class when testing is complete.
+
+2016-10-15: Single Model
+=============================================================
+
+![](2016-10-15_005_4-midterm_r1676_g3d_r927__.jpg)
+
+Look in genCoral.Scene.Any to see how multiple coral can share the same model,
+and have the material applied to just the individual entity,
+
+
+
+2016-10-15: Using One Model
+=============================================================
+
+![(No water)](2016-10-15_004_4-midterm_r1676_g3d_r927___No_water_.jpg)
+
+
+
+2016-10-15: Testing Using One Model
+=============================================================
+
+![Without Materials](2016-10-15_003_4-midterm_r1676_g3d_r927__Without_Materials.jpg)
+
+
+
+2016-10-15: Current Coral
+=============================================================
+
+![](2016-10-15_002_4-midterm_r1676_g3d_r927__.jpg)
+
+
+
+2016-10-15: That's better.
+=============================================================
+
+![](2016-10-15_001_4-midterm_r1676_g3d_r927__.jpg)
+
+Y coordinates of vertices were slightly off. Now line up properly.
+
+
+
+2016-10-15: Off File doesn't quite line up right.
+=============================================================
+
+![](2016-10-15_000_4-midterm_r1676_g3d_r927__.jpg)
+
+
+
+2016-10-14: Overlapping branches
+=============================================================
+Approach: smooth edge endings out in bump map, unless it is the beginning of the coral root or the ends of the coral branches.
+
+![Lines - Before](2016-10-14_008_4-midterm_r1671_g3d_r927___Lines_-_Before.png width=200px) ![Lines - After](2016-10-14_006_4-midterm_r1671_g3d_r927___Select_smoothing_of_corners.png width=200px) ![Coral - Before](2016-10-14_007_4-midterm_r1671_g3d_r927___Coral_-_Before.png width=200px) ![Coral - After](2016-10-14_005_4-midterm_r1671_g3d_r927___First_stab_at_solving_the_problem.png width=200px)
+
+Works well for lines, because I know exactly where they start and end.
+Still doesn't quite work for coral. Figure out line edges. 
+
+2016-10-14: Gradient coral color
+=============================================================
+[Matheus]
+
+![Severe](2016-10-14_000_4-midterm_r1652_g3d_r927___decrease_with_respect_to_height.png width=200px) ![Gradient lines](2016-10-14_001_4-midterm_r1652_g3d_r927___Gradient_lines.png width=200px) ![Coral with gradient](2016-10-14_003_4-midterm_r1652_g3d_r927.jpg width=200px) ![Less severe](2016-10-14_002_4-midterm_r1652_g3d_r927___Less_severe_gradient.png width=200px) 
+![Nice gradient](2016-10-14_004_4-midterm_r1652_g3d_r927___Nice_gradient.png width=200px)
+
+- Severe gradient: 
+    Original color c falls by $$\frac{c}{Height}$$ for each vertical pixel.
+    Although darkish, I like the texture on the coral. 
+
+- Not severe enough:
+    Original color c falls by $$\frac{c}{2.0 \cdot Height}$$ for each vertical pixel. Now gradient is not severe enough.
+
+- Nice Gradient:
+    Original color c falls by $$\frac{c}{1.5 \cdot Height}$$ for each vertical pixel.
+
+- Polish ideas: 
+    1. randomly decide the severity of the gradient for each coral model. 
+
+    2. randomly choose a color for a pixel within a range that is restricted by the height, so we can get gradient and random colors.
+
+
+016-10-13: Thick Lines - Quadratic approach
+=============================================================
+The approach: 
+1. offset origin and end center line point coordinates by the thickness L(C0.x - r, C0.y - r) and H(C1.x + r, C1.y + r);
+2. Iterate through all pixels in the box defined by the diagonal LH;
+3. Set the pixels that are within thickness from the center line. 
+
+![Color lines](2016-10-13_010_4-midterm_r1633_g3d_r927_.png width=200px) ![Bump map](2016-10-13_011_4-midterm_r1633_g3d_r927_.png width=200px) ![overlapping corners](2016-10-13_009_4-midterm_r1633_g3d_r927___overlapping_corners.png width=200px)
+
+Bumpmap outlines all line segments. Goal: make it continuous from base to branch
+end -> use max color values.
+
+![Blended corners](2016-10-13_012_4-midterm_r1633_g3d_r927_.png width=200px) ![Blended corners](2016-10-13_013_4-midterm_r1633_g3d_r927_.png width=200px) 
+
+Problem: using mmax values blends overlapping branches! We need to think of ways of solving this -> maybe not shading corners apart from the last one?
+
+2016-10-13: Smooth corners
+=============================================================
+Round corners didn't line up with diagonal lines. 
+
+Our first approach to round corners was to define a box around the end points (C0 and C1) of the line along the diagonal LH with L(C.x - r, C.y - r) and H(C.x + r, C.y + r), and then set the pixels of the box that lied within the r centered at C. This worked well with vertical and horizontal lines, but the spheres were skewed with respect to diagonal lines. 
+
+To solve this we tried drawing the bouding box along the slope of the lines. That made the round corners closer to perfect, but not quite. 
+
+We then proceeded to define the bumping gradient within the round corners, and for that we set each pixel in the corner to bump = Color4(1-i,1-i,1-i, 1), where  i = abs(cLine.distance(Px)/r), cLine is the center line and Px is the pixel. This worked well, and we then proceedted to set the corner pixel to the max(bump, previousColor) to avoid outlining every intersection with black. 
+
+![Gradient with round corners](2016-10-13_008_4-midterm_r1633_g3d_r927___.png)
+
+
+All of this required increasingly confusing code that still did not generate perfect diagonal round corners. We then decided to switch to the Quadradic approach for thick line drawing, paying the run time cost for a more straight forward code.  
+
+
+2016-10-13: Weird Coral
+============================================================
+![](2016-10-13_016_4-midterm_r1646_g3d_r927___.png)
+
+=============================================================
+
+![](2016-10-13_015_4-midterm_r1646_g3d_r927___.png)
+
+For some reason, the left branch is more cramped than the right side.
+
+
+
+2016-10-13: Overlapping is weird.
+=============================================================
+
+![](2016-10-13_014_4-midterm_r1628_g3d_r927__.jpg)
+
+
+
+2016-10-13: Now with multiple planes!
+=============================================================
+
+![](2016-10-13_013_4-midterm_r1628_g3d_r927__.jpg)
+
+
+
+2016-10-13: Reflected Coral
+=============================================================
+
+![](2016-10-13_012_4-midterm_r1628_g3d_r927__.jpg)
+
+
+
+2016-10-13: Multiple Coral
+=============================================================
+
+![](2016-10-13_011_4-midterm_r1628_g3d_r927__.jpg)
+
+
+
+2016-10-13: Under water
+=============================================================
+
+![](2016-10-13_010_4-midterm_r1628_g3d_r927__.jpg)
+
+
+
+2016-10-13: Water, low gamma
+=============================================================
+
+![](2016-10-13_009_4-midterm_r1628_g3d_r927__.jpg)
+
+
+
+2016-10-13: Under Water
+=============================================================
+
+![](2016-10-13_008_4-midterm_r1622_g3d_r927__.jpg)
+
+
+2016-10-13: More Sparse Coral
+=============================================================
+
+![](2016-10-13_009_4-midterm_r1628_g3d_r927___.png)
+
+
+
+2016-10-13: Perfect Tree
+=============================================================
+
+![](2016-10-13_008_4-midterm_r1628_g3d_r927___.png)
+
+
+
+2016-10-13: Lowered Gamma
+=============================================================
+
+![](2016-10-13_007_4-midterm_r1619_g3d_r927__.jpg)
+
+
+
+2016-10-13: What's going on?
+=============================================================
+
+![](2016-10-13_006_4-midterm_r1619_g3d_r927__.jpg)
+
+
+
+2016-10-13: Looks cool from above
+=============================================================
+
+![](2016-10-13_005_4-midterm_r1619_g3d_r927__.jpg)
+
+...but not so much from the side.
+
+
+
+2016-10-13: Can we make it less lop sided?
+=============================================================
+
+![](2016-10-13_004_4-midterm_r1608_g3d_r927__.jpg)
+
+
+2016-10-13: Fixed Coral Angles
+=============================================================
+
+![](2016-10-13_002_4-midterm_r1607_g3d_r875___.png)
+
+![](2016-10-13_001_4-midterm_r1607_g3d_r875___.png)
+
+Fixed Coral so that angles are now being added correctly
+
+
+
+2016-10-13: Thinner Coral
+=============================================================
+
+![](2016-10-13_000_4-midterm_r1607_g3d_r875__.jpg)
+
+-[FFXF]+[FXF][FXFF]F, and F -> FF.
+
+
+2016-10-13: Not centered, but functional
+=============================================================
+
+![](2016-10-13_003_4-midterm_r1608_g3d_r927__.jpg)
+
+
+
+2016-10-13: Upside down
+=============================================================
+
+![](2016-10-13_002_4-midterm_r1608_g3d_r927__.jpg)
+
+
+
+2016-10-13: Expanding to star
+=============================================================
+
+![](2016-10-13_001_4-midterm_r1608_g3d_r927__.jpg)
+
+Not mapping texture to new pane correctly, but the wireframe looks good.
+
+
+
+2016-10-13: OFF file
+=============================================================
+We now have working texture coordinates on the OFF file, although it looks pretty flat.
+![Flat](2016-10-13_000_4-midterm_r1608_g3d_r927__Flat.jpg)
+
+
+>>>>>>> .r1618
+2016-10-12: CoralGenerator
+=============================================================
+Added CoralGenerator.h and CoralGenerator.cpp.  Has the same functionality as before, but now seperated from App. Also allows us to mush more easily write new L-Systems to create new kinds of coral.  Only public method is writeCoral.  Saving file is now a responsibility of the caller.
+
+
+2016-10-10: Rounded Corners
+=============================================================
+
+![Attempt to round the corners for a more natural look](2016-10-10_007_4-midterm_r1536_g3d_r875___Attempt_to_round_the_corners_for_a_more_natural_look.png)
+
+
+2016-10-10: Tesselations
+=============================================================
+
+![](2016-10-10_009_4-midterm_r1536_g3d_r875__.jpg)
+
+When using a texture with a background alpha of 1, we can see that the texture
+is getting tesselated.
+
+
+
+2016-10-10: Wireframe
+=============================================================
+
+![](2016-10-10_008_4-midterm_r1536_g3d_r875__.jpg)
+
+
+2016-10-10: Texture?
+=============================================================
+
+![](2016-10-10_007_4-midterm_r1536_g3d_r875__.jpg)
+
+Created shape to put texture on, but cannot get texture coordinates quite right.
+
+
+2016-10-10:Lots of coral
+=============================================================
+
+![](2016-10-10_007_4-midterm_r1532_g3d_r875__.jpg)
+
+Made using a recusion level of 8.
+
+
+2016-10-10: Coral with Correct Thickness
+=============================================================
+
+![](2016-10-10_006_4-midterm_r1526_g3d_r875__.jpg)
+
+
+
+2016-10-10: Lines now correct thickness
+=============================================================
+
+![](2016-10-10_005_4-midterm_r1526_g3d_r875__.jpg)
+
+
+
+2016-10-10: Fixed Slope
+=============================================================
+
+![](2016-10-10_004_4-midterm_r1526_g3d_r875__.jpg)
+
+We were calculating slope with integer division before.
+
+
+
+2016-10-10: Still not quite right
+=============================================================
+
+![Before](2016-10-10_003_4-midterm_r1526_g3d_r875__Before.jpg)
+
+![After](2016-10-10_002_4-midterm_r1526_g3d_r875__.jpg)
+
+We had: int t_y = abs(halfGirth/(1 - abs(d.direction().y)));
+Now have: int t_y = abs(halfGirth/(abs(d.direction().x)));
+
+
+
+2016-10-10: Coral
+=============================================================
+
+![](2016-10-10_001_4-midterm_r1526_g3d_r875__.jpg)
+
+Now using "ifs/square.ifs" for the model instead of "model/cube/cube.obj" to avoid having to transform a cube.
+
+
+
+2016-10-10: Coral
+=============================================================
+
+![](2016-10-10_000_4-midterm_r1526_g3d_r875__.jpg)
+
+Now one sided. Changed drawThickLine slightly, but still not quite right.
+
+
+
+2016-10-09: Thickness at different angles
+=============================================================
+
+![Thickness at different angles](2016-10-09_006_4-midterm_r1519_g3d_r875__Thickness_at_different_angles.jpg)
+
+Inconsistent. Ask Prof. McGuire. 
+
+
+
+2016-10-09: Coral!!!!
+=============================================================
+
+![](2016-10-09_012_4-midterm_r1517_g3d_r875__.jpg)
+
+Coral made with a deeper recursion depth.
+
+
+
+2016-10-09: Coral!
+=============================================================
+
+![](2016-10-09_011_4-midterm_r1517_g3d_r875__.jpg)
+
+We can generate coral. The thicknesses are off, and it's a bit busy, and I had to manually remove the background of the images, but we can make coral!
+
+
+
+2016-10-09: Gleaming in the sun.
+=============================================================
+
+![](2016-10-09_010_4-midterm_r1517_g3d_r875__.jpg)
+
+
+
+2016-10-09: First image from generated pictures/gradient
+=============================================================
+
+![](2016-10-09_009_4-midterm_r1517_g3d_r875__.jpg)
+
+Even though we set the background pixels to (1, 1, 1, 0) initially, when the image is generated the background is (1, 1, 1, 1). Thus, the background had to be removed manually in photoshop, which is not sustainable.
+
+
+
+2016-10-09: What?
+=============================================================
+
+![](2016-10-09_008_4-midterm_r1517_g3d_r875__.jpg)
+Lines are still getting thicker than intended.
+
+
+
+2016-10-09: Gradients
+=============================================================
+
+![](2016-10-09_007_4-midterm_r1517_g3d_r875__.jpg)
+
+
+
+2016-10-09: Crazy Coral
+=============================================================
+
+![](2016-10-09_004_4-midterm_r1512_g3d_r875___.png)
+
+more coral generated with randomness.  Looks like a good start for fan coral.
+
+
+
+2016-10-09: Thick lines again
+=============================================================
+![Thick lines](2016-10-09_004_4-midterm_r1512_g3d_r875___Thick_lines.png)
+
+![](2016-10-09_004_4-midterm_r1512_g3d_r875___.png)
+
+2016-10-09: Generating Using Randomness
+=============================================================
+
+![](2016-10-09_003_4-midterm_r1505_g3d_r875___.png)
+
+
+
+2016-10-09: Generating Using Randomness
+=============================================================
+
+![](2016-10-09_003_4-midterm_r1505_g3d_r875___.png)
+
+
+2016-10-09: Diagonals are still not perfect.
+=============================================================
+
+$$ t_y = \frac{t}{1 - (point2 - point1).direction().y)}$$ so the denominator approaches infinity as direction.y() approaches 1. 
+
+Thus results in diagonal lines having the proper thickness at direction.y or direction.x = 0, but increasing to 2*t at 30 degrees and 60 degrees repectively, going above twice the thickness as they approach 45 degrees. We need to think of away to solve this.
+
+2016-10-09: Thick lines work!
+=============================================================
+![Thick Lines](2016-10-09_002_4-midterm_r1508_g3d_r875_.png)
+
+Solution: for diagonal lines: 
+- flat lines: determine thickness with respect to the y component of the direction of the line. 
+- steep lines: determine thickness with respect to the x component of the direction of the line. 
+- iterate through range [-thickness, thickness] to draw lines. 
+
+$$ t_y = \frac{t}{(point2 - point1).direction().y)}$$ , where t is thickness and t_y thickness in y. 
+
+Still need to round point edges 
+
+
+2016-10-09: Crazy Coral
+=============================================================
+
+![](2016-10-09_004_4-midterm_r1512_g3d_r875___.png)
+
+more coral generated with randomness.  Looks like a good start for fan coral.
+
+
+2016-10-09: Attempting two planes.
+=============================================================
+
+![](2016-10-09_004_4-midterm_r1513_g3d_r875__.jpg)
+
+Obviously, the image isn't centered, and we're using a front view for both the
+front and the side.
+
+
+
+2016-10-09: Getting our Gradiants
+=============================================================
+Plans:
+void drawThickLine(const Point2int32& point1, const Point2int32& point2, const Color3& c, int halfGirth, shared_ptr<Image>& image, shared_ptr<Image>& map);
+
+In every for loop within thickline, we will call draw<whatever>line twice, once with each image. The first will get the color, the second will get a color between black and white based on where it is in the loop.
+Loop goes from -var to var. The gradiant should be black (0,0,0) at -var and var, and (1,1,1) at 0. So, increment = 1.0f/var. Or is it 1.0f/(var-1)? Update with increment each time, but beware the sign of i. 
+
+2016-10-09: Generating Using Randomness
+=============================================================
+
+![](2016-10-09_003_4-midterm_r1505_g3d_r875___.png)
+
+This was generated with updated L-Sysytem code allowing more complex rules and
+using some randomness in how we expand rules.
+
+
+2016-10-09: Rendering
+==============================================================
+If we render the handmade coral with our Path Tracer (at low resolution), the weird outlines do not appear.
+
+2016-10-09: We have a working L-System
+==============================================================
+
+![](2016-10-09_002_4-midterm_r1505_g3d_r875___.png)
+
+Another tree structure made by a slight change to L-System.
+
+![](2016-10-09_001_4-midterm_r1505_g3d_r875___.png)
+
+We have a basic L-system working with very simple rules implemented that was
+used to create the this image for a tree-like structure.
+
+2016-10-08: Bug partially solved
+==============================================================
+![](2016-10-09_000_4-midterm_r1504_g3d_r875_.png)
+
+Use offset instead of incrementing coordinates by thickness in drawThickLine. For diagonal lines it requires trigonometry. The x coordinate should be at x+cos(pi/4)*offset and y coordinate shoud ble at y+sin(pi/4)*offset. Negatively sloped lines are still problematic.....
+
+2016-10-08: Adapting Jose's code (help)
+==============================================================
+![Jose's code for V and H, Julia's for diagonals](2016-10-08_003_4-midterm_r1503_g3d_r875_.png)
+
+Jose and Julia, if you could help with the following that'd be great (I'll also come back to it tomorrow): 
+
+I'm not sure I interpreted Jose's code for diagonal lines right (look at commented out code in drawLine). Julia's code for diagonal lines works. 
+
+When it comes to thick lines, both codes lead to pointy ends for vertical and horizontal lines. Julia's code leads to negatively sloped lines being thin. That's why I think it could be worth it for Jose to help me implement his code. I can't find where this is coming from, I could use another set of eyes.
+
+John: 
+
+Since you're doing the L-system, you may want to take a look at Jose's Fractal code I pasted onto Drawing.cpp
+
+
+
+2016-10-08: In the light
+=============================================================
+
+![](2016-10-08_002_4-midterm_r1499_g3d_r875__.jpg)
+
+When we generate the coral, we need to make sure the gradiants meld more
+smoothly.
+
+Jose has added stuff to the specfication, which we should have done first according to the META-specification. We shall now continue to revise this as we continue to work on the project.
+
+2016-10-08: Hadmade Coral
+=============================================================
+
+![](2016-10-08_001_4-midterm_r1497_g3d_r875__.jpg)
+
+Created 2d coral and gradiant. Still getting weird outside lines.
+
+
+
+2016-10-08: Attempting to make the 2D look 3D
+=============================================================
+
+![](2016-10-08_000_4-midterm_r1497_g3d_r875__.jpg)
+
+Attempting to use a hand created rectangle and gradient to make a 3D looking
+cylinder, but weird stuff keeps happening around the edges.
+
+
+
+2016-10-08: Materials
+=============================================================
+Idea: create the material for our corals. the material should encode the color and shading normals that "pretend" the images are 3-D. Then we can just use the material in our images.
+
+Use: 
+- [G3D::UniversalMaterial](http://graphics.cs.williams.edu/courses/cs371/f12/G3D/manual/class_g3_d_1_1_universal_material.html) : give it a [BumpMap](http://graphics.cs.williams.edu/courses/cs371/f12/G3D/manual/class_g3_d_1_1_bump_map.html) constructed through (maybe?) [MapComponent](http://graphics.cs.williams.edu/courses/cs371/f12/G3D/manual/class_g3_d_1_1_map_component.html) from our gradient image. 
+
+
+2016-10-07: Thick lines
+=============================================================
+Matheus [21:45, 23:00]
+Maybe change drawVLine to write with respect to y, since x is the same? See code commeted into the function. 
+
+drawThickLine changes: 
+- Single outter for loop with inner if statements. Do that for other functions as well. 
+- Check if coordinates are inBound before drawing lines 
+- for flat and steep lines, add the thickness parameter to both x and y coordinates.
+
+Editing tips: 
+- Make all edits, and copy them to the buffer (and past it somewhere if you're afraid of changing the buffer). Then revert to old code. Comment old code out and paste edits in. This way we can easily go back to old code if we so decide. 
+
+2016-10-07: 136 Lab
+=============================================================
+11 am. Now leaving lab. Whoever comes next, if you want to keep working on this part of the code, I recommend either  trying to make 2D recursive branching structures using lines of a single width to get the strcuture of the needed code down, or attempting to make thicker lines.
+
+
+![](2016-10-07_000_4-midterm_r1473_g3d_r875___.png)
+10:40 am. App can now replicate my 136 2D graphics lab. Not all of this functionality will be useful, but do now have a function for drawing arbitary 2D lines, and example code for using it. Next step: create a drawThickLine which can draw thicker lines. Can we just draw lines on either side of our line? 
+
+For horizontal line:
+above:*-------------------------------*
+orig: *-------------------------------*
+below:*-------------------------------*
+
+vertical:
+l o r
+* * *
+| | |
+| | |
+* * *
+
+Flatter:
+Above and below
+
+Steeper: left and right
+
+Could work.
+
+Currently working for horizontal lines only. Hmm. Probably a small bug? Someone could try to fix this, or try a different technique. 
+
+2016-10-06: Cards and Billboards
+======================================================================
+Julia: Arrived at 10 am. Goal: Get my old lab 4 from CS 136 working as part of this project, so that we can use it to generate 2D billboards. 
+
+2016-10-06: Procedural coral modeling 
+======================================================================
+See [this](http://teampisces.weebly.com/richard.html) for reference. 
+
+![Coral generation](http://teampisces.weebly.com/uploads/3/0/7/3/30733957/1899336_orig.gif)
+
+Random curve generation
+---------------------------------------------------------------------
+To generate the form of a coral branch. 
+
+Random L-system generation 
+---------------------------------------------------------------------
+To generate the "skeleton" of the coral, which maps the center of the random generated curves that specify the coral's form.
+
+Shading corals 
+---------------------------------------------------------------------
+[This](https://renderman.pixar.com/view/shading-a-coral-reef) may be a source of inspiration. It seems like something that would go into polishing.
+
+
+![simple](http://teampisces.weebly.com/uploads/3/0/7/3/30733957/748404459.png?468)
+
+
+![simple](http://floridaclimateinstitute.org/images/newsletter/201604um-coral.jpg)
+
+![Different types](http://antoniosliapis.com//graphics/research/a_constructive_approach_for_the_generation_of_underwater_environments.png)
+
+
+![Figure [teaser]: A Procedurally Generated Underwater Corral Reef using a Lindenmayer System.](evocativeTeaser.png)
+
+<!-- Markdeep: -->
+<style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace;}</style><script src="https://casual-effects.com/markdeep/latest/markdeep.min.js"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>

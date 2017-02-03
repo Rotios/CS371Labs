@@ -1,0 +1,107 @@
+﻿ <meta charset="utf-8">
+**Report - Working with Cubes**
+
+Program Description
+=============================================================
+
+This program generates three distinct OFF files that represent a Heightfield of any given image, a cylinder with a given radius, height and "slice" count, and a glass with a given slice count. The algorithms to create these objects are as follows:
+
+For the Heightfield, I follow the following algorithm:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+def HeightField(image, yScale, xzScale):
+
+    vertices = ""
+    for every pixel in image:
+        color = image -> get the color at the pixel
+        vertices += Vertex (pixel.posX()*xzScale, color.average()*yScale, pixel.posY()*xzScale)
+        
+    Faces = ""
+    for every vertex v created
+            Faces += Vertex(v), Vertex(v.x, v.y-1), Vertex(v.x-1, v.y-1), Vertex(v.x-1, v.y)
+
+    NumVertices = image.height * image.width
+    NumFaces = (image.height-1) * (image.width-1)
+    
+    print "OFF" + NumVertices + NumFaces + vertices + Faces in OFF file format
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This algorithm, then, finds the greyscale color of each pixel and creates a Vertex using that pixel's x location for x, its y location for z, and its greyscale value for y. All of these are scaled according to the scale given above. It then connects the vertices using the right hand rule (going counter-clockwise), and finally counts the number of vertices and faces before priting it all out in OFF file format.
+
+The Cylinder uses a more complex algorithm. First, it uses generateCylVertices to create the vertices of each of the cylinders lids. This is done by dividing a circle into n number of slices and using the sine, cosine rules to find the location of the vertices given a certain radius. It also adds another vertex at the center of each lid to make it easy to create the slices. Finally, using the vertices, it not only connects them into using generateCylLids, it then uses generateCylSides to create the sides of the cylinder using quads. It does so by following the right hand rule all across the cylinder, so that each face can be viewed from the outside.
+
+The Glass function simply combines what I did for the cylinder, but does not create lids for the top section. Instead, the glass function simply creates vertices at different heights and with different radii. It then connects the vertices from top-down using quads. Lids are created for the stem and the glass. In order to figure out what section of the glass is being connected, an offset is given, which is where the vertex data begins for the section. After that, it creates more cylinders on the inside of the glass, but instead of connecting them counter-clockwise (right-hand rule), it does so clockwise. This allows the glass to be seen from the inside. Finally, the glass is topped off with a doughnut entrance at the top to connect the outside and inside cylinders.
+
+Results
+=============================================================
+
+![](cube2.jpg)
+
+![](cylinder.jpg)
+
+![](heightfield.jpg)
+
+![](original.jpg)
+
+Custom Scene
+=============================================================
+
+![](roomPlus.jpg)
+
+Simply added a wine glass, an amazon echo, and a trash can, all of which need to be touched up a lot.
+
+Questions
+=============================================================
+
+1. One of the easiest ways to simulate a reflection of the mountain on the water without reflective 3D models is to simply texture the mountain onto the water. In other words, it would be like placing a picture on top of the water that is see through. Perspective would not change the image, but if you were in a certain spot, it would look like it was a reflection.
+
+2. Triangles are used, because triangles are a planar simplex, meaning that every polygon can be cut down into individual triangles that do not intersect. While it is less space efficient, this makes the results of our calculations more exact, and allows for better representations of objects, since more of them are used than if we used quads, for example.
+
+3. One algorithm can simply check a surrounding area of a given location and check to see if they are the same in height, or if the change in height is uniform (linear). If the change in height is linear, then it is possible to represent that with a single quad without loss of accuracy. However, if the change is drastic, we can check the individual areas and use triangles to create the mesh.
+
+
+WorkFlow
+=============================================================
+
+Task                    |   Description                                             | Planned Time (h)  | Actual Time (h)
+________________________|___________________________________________________________|___________________|___________________
+Report draft            | Document that has first impression answers to Report      | .5                | .2
+*Cube.off* draft        | Cube begun, even if not complete                          | .2                | .16...
+*makeCylinder* draft    | Function begun, but may not do anything                   | .2                | .2
+*heightfield.off* draft | Function begun, but may not have code                     | .25               | .5
+Cyl and Field GUI draft | Get a GUI started that shows up                           | .5                | 1
+Report MVP              | Relook at the draft and check answers                     | 1                 | .5
+*Cube.off* MVP          | A cube object is created                                  | .5                | .25
+*makeCylinder* MVP      | A cylinder-like object is created                         | .5                | 3
+*heightfield.off* MVP   | Height field appears, even if incorrect slightly          | .5                | 1
+Cyl and Field GUI MVP   | Have the GUI do something, even if not right              | .5                | 2
+*glass.off* draft       | Begin creating the glass                                  | .25               | 1
+*glass.off* MVP         | Create an object that looks close to a glass              | .5                | 2
+Demo Scene draft        | Put the created glass in some scene                       | .15               | .2
+Demo Scene MVP          | Make sure scene looks decent                              | .5                | .1
+*makeCylinder* Polish   | Make sure the method creates the right object             | .25               | 1
+*heightfield.off* polish| Make sure the method created the right object             | .25               | 1
+Cyl and Field GUI polish| Ensure that the GUI works correctly and is easy to use    | .25               | .5
+*glass.off* polish      | Make sure the glass is to complete specification          | .25               | 1
+Report Polish           | Answer everything as correctly as possible                | .25               | 1
+Demo Scene Polish       | Make scene look as amazing as possible                    | .25               | 0
+Total                   | Total Time Taken                                          |                   |
+ 
+
+Reflections
+=============================================================
+
+I learned quite a few things from this Lab, which I will list below.
+
+    1. From the Programming:
+        - I learned how to create cylinders and other objects using meshes
+        - I learned to always be watchful of the right-hand rule when placing faces
+        - I learned how to create a GUI and link it to my code to generate items
+    2. From Debugging:
+        - I learned how to use the wiremesh option to figure out exactly where I went wrong
+    3. From the Report:
+        - I learned to think about the algorithms first, before I go about creating them
+    4. Other:
+        - I learned that I am horrible at budgeting my time
+        - I learned to reread the specification to ensure I don't miss anything like needing slices for the glass object
+
+<!-- Markdeep: -->
+<style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace;}</style><script src="https://casual-effects.com/markdeep/latest/markdeep.min.js"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>

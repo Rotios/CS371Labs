@@ -1,0 +1,29 @@
+/* -*- c++ -*- */
+
+ /* (c) 2016 Jose Rivas
+ //Automatically Generated Scene File Named staircase 
+
+{/n/tname = "staircase"
+     models = {
+        stairModel = ArticulatedModel::Specification {
+            filename = "model/crate/crate.obj";
+            preprocess = {
+                transformGeometry(all(),Matrix4::scale(1.5, .5, 1));
+            };
+        };
+    };
+ entities = {
+        skybox = Skybox {
+            texture = "cubemap/whiteroom/whiteroom-*.png"
+        };
+        camera = Camera {
+            frame = CFrame::fromXYZYPRDegrees( 0.0, 0.0, 5.0);
+        };
+        stair19 = visibleEntity {
+            model = "stairModel"
+            frame = CFrame::fromXYZYPRDegrees(0.000000, 9.500000, 0.000000,
+20.000000, 0.0, 0.0);
+        };
+        
+    };
+ } 

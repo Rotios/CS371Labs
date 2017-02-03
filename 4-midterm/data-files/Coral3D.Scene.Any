@@ -1,0 +1,56 @@
+/* -*- c++ -*- */
+{ 
+name = "Coral 3D"; 
+
+    models = {
+        fish1 = ArticulatedModel::Specification {
+            filename = "Models/TropicalFish.zip/TropicalFish/TropicalFish01.obj";
+            scale = 0.01f;
+            
+        };
+        
+        fish2 = ArticulatedModel::Specification {
+            filename = "Models/TropicalFish.zip/TropicalFish/TropicalFish02.obj";
+            scale = 0.01f;
+        };
+
+        shark = ArticulatedModel::Specification {
+            filename = "Models/Shark.zip/Shark/Shark.obj";
+            scale = 1;
+        };
+
+        castle = ArticulatedModel::Specification {
+            filename = "Models/Castle.zip/Castle/Castle.obj";
+            scale = 0.01f;
+        };
+    };
+
+    entities = { 
+        
+        skybox = Skybox { 
+            texture = "cubemap/whiteroom/whiteroom-*.png"; 
+        };
+        
+        friend1 = VisibleEntity {
+            model = "fish1";
+            frame = CFrame::fromXYZYPRDegrees(0.01f, 0, 0, 0,0, 0);
+
+        };
+        
+        friend2 = VisibleEntity {
+            model = "fish2";
+            frame = CFrame::fromXYZYPRDegrees(2,0,2, 0, 0, 0);
+
+        };
+        
+        shark1 = VisibleEntity {
+            model = "shark";
+            frame = CFrame::fromXYZYPRDegrees(4,0,4, 0, 0, 0);
+
+        }; 
+        
+        camera = Camera {
+            frame = CFrame::fromXYZYPRDegrees(0, 0, 5);
+        };
+    };
+};

@@ -1,0 +1,28 @@
+/* -*- c++ -*- */
+{ 
+    name = "cubeOff"; 
+    models = {
+        cubeModel = ArticulatedModel::Specification { 
+            filename = "model/cube.off";
+            preprocess = {
+                setMaterial(all(), Color3(1,0,1));
+            };
+        }; 
+    };
+
+    entities = { 
+
+        skybox = Skybox { 
+            texture = "cubemap/whiteroom/whiteroom-*.png"; 
+        };
+
+
+        cube0 = VisibleEntity {
+            model = "cubeModel";
+        };
+
+        camera = Camera {             
+            frame = CFrame::fromXYZYPRDegrees( 0, 0, 5); 
+        }; 
+    }; 
+ } 

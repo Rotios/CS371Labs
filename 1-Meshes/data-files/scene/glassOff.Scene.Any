@@ -1,0 +1,43 @@
+/* -*- c++ -*- */
+{ 
+    name = "glassOff"; 
+    models = {
+        glassModel = ArticulatedModel::Specification { 
+            filename = "model/triangles.off";
+            preprocess = {
+                setMaterial(all(), Color3(1,0,1));
+            };
+        }; 
+
+    };
+
+    entities = { 
+
+        skybox = Skybox { 
+            texture = "cubemap/whiteroom/whiteroom-*.png"; 
+        };
+
+
+        cube0 = VisibleEntity {
+            model = "glassModel";
+        };
+        
+        floorLight = Light { 
+            attenuation = (0, 0, 1); 
+            bulbPower = Power3(100); 
+            castsShadows = true;
+            extent = Vector2(0.75, 0.75); 
+            frame = CFrame::fromXYZYPRDegrees(0, 6.3, 0, 0, -90, 0); 
+            producesDirectIllumination = true; 
+            producesIndirectIllumination = true; 
+            shadowMapSize = Vector2int16(1024, 1024); 
+            spotHalfAngleDegrees = 45; 
+            spotSquare = true; 
+            type = "SPOT"; 
+        };
+
+        camera = Camera {             
+            frame = CFrame::fromXYZYPRDegrees( 0, 0, 5); 
+        }; 
+    }; 
+ } 
